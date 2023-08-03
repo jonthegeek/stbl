@@ -116,6 +116,16 @@ to_int <- function(x,
 }
 
 #' @export
+.to_int_impl.factor <- function(x,
+                                ...,
+                                x_arg = rlang::caller_arg(x),
+                                call = rlang::caller_env()) {
+  return(
+    .to_int_impl(as.character(x), ..., x_arg = x_arg, call = call)
+  )
+}
+
+#' @export
 .to_int_impl.complex <- function(x,
                                  ...,
                                  x_arg = rlang::caller_arg(x),

@@ -50,14 +50,14 @@
 # simplified.
 .obj_type <- function(x) {
   if (missing(x)) {
-    return("unknown type")
+    return("unknown type") # nocov
   }
 
   # Anything with a class.
   if (is.object(x)) {
-    if (inherits(x, "quosure")) {
+    if (inherits(x, "quosure")) { # nocov start
       return("quosure")
-    }
+    } # nocov end
     return(class(x)[[1L]])
   }
 

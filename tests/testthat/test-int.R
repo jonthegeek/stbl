@@ -148,6 +148,24 @@ test_that("to_int() works for complexes", {
   )
 })
 
+test_that("to_int() works for factors", {
+  expected <- c(1L, 3L, 5L, 7L)
+  given <- factor(expected)
+  expect_identical(
+    to_int(given),
+    expected
+  )
+  given <- letters
+  expect_snapshot(
+    to_int(given),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapper(given),
+    error = TRUE
+  )
+})
+
 test_that("to_int() works for hexbins, etc", {
   expected <- 1:1000
   given <- as.hexmode(expected)
