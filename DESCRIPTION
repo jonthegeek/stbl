@@ -10,6 +10,10 @@ License: MIT + file LICENSE
 URL: https://github.com/jonthegeek/ykwim,
     https://jonthegeek.github.io/ykwim/
 BugReports: https://github.com/jonthegeek/ykwim/issues
+Imports: 
+    cli,
+    rlang (>= 1.1.0),
+    vctrs
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
