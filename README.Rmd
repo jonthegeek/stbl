@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 # ykwim
 
 <!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/ykwim)](https://CRAN.R-project.org/package=ykwim)
+[![Codecov test coverage](https://codecov.io/gh/jonthegeek/ykwim/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jonthegeek/ykwim?branch=main)
+[![R-CMD-check](https://github.com/jonthegeek/ykwim/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jonthegeek/ykwim/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Coerce inputs to the desired class when possible, or throw an informative error.
