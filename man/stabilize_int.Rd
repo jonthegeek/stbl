@@ -32,6 +32,12 @@ tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 \item{max_size}{Integer. The maximum size of the object. Object size will be
 tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
+\item{min_value}{Integer scalar. The lowest allowed value for \code{x}. If \code{NULL}
+(default) values are not checked.}
+
+\item{max_value}{Integer scalar. The highest allowed value for \code{x}. If \code{NULL}
+(default) values are not checked.}
+
 \item{x_arg}{Character. An argument name for x. The automatic value will work
 in most cases, or pass it through from higher-level functions to make error
 messages clearer in unexported functions.}

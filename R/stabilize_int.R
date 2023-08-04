@@ -3,6 +3,10 @@
 #' More details soon.
 #'
 #' @inheritParams .coerce-params
+#' @param min_value Integer scalar. The lowest allowed value for `x`. If `NULL`
+#'   (default) values are not checked.
+#' @param max_value Integer scalar. The highest allowed value for `x`. If `NULL`
+#'   (default) values are not checked.
 #'
 #' @return The argument as an integer.
 #' @export
