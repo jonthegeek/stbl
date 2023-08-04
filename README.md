@@ -40,7 +40,10 @@ classes.
 For example, perhaps you would like to protect against the case where
 data is not properly translated from character on load.
 
-Without {ykwim}:
+### Without ykwim:
+
+Without the argument-stabilizers provided in ykwim, error messages can
+be cryptic, and errors trigger when you might not want them to.
 
 ``` r
 # Without ykwim.
@@ -50,6 +53,11 @@ my_old_fun <- function(my_arg_name) {
 my_old_fun("1")
 #> Error in my_arg_name + 1: non-numeric argument to binary operator
 ```
+
+### With ykwim:
+
+ykwim helps to ensure that arguments meet are what you expect them to
+be.
 
 ``` r
 my_fun <- function(my_arg_name) {

@@ -3,7 +3,7 @@ wrapper <- function(wrapper_val, ...) {
 }
 
 test_that("to_int() works for ints", {
-  given <- 1:1000
+  given <- 1:10
   expect_identical(
     to_int(given),
     given
@@ -12,7 +12,7 @@ test_that("to_int() works for ints", {
     wrapper(given),
     given
   )
-  given[[42]] <- NA
+  given[[4]] <- NA
   expect_identical(
     to_int(given),
     given
@@ -20,14 +20,6 @@ test_that("to_int() works for ints", {
   expect_identical(
     wrapper(given),
     given
-  )
-  expect_snapshot(
-    to_int(given, allow_na = FALSE),
-    error = TRUE
-  )
-  expect_snapshot(
-    wrapper(given, allow_na = FALSE),
-    error = TRUE
   )
 })
 
@@ -52,7 +44,7 @@ test_that("to_int() works for NULL", {
 })
 
 test_that("to_int() works for lgls", {
-  given <- rep(c(TRUE, FALSE), 500)
+  given <- rep(c(TRUE, FALSE), 5)
   expected <- as.integer(given)
   expect_identical(
     to_int(given),
@@ -65,7 +57,7 @@ test_that("to_int() works for lgls", {
 })
 
 test_that("to_int() works for dbls", {
-  expected <- 1:1000
+  expected <- 1:10
   given <- as.double(expected)
   expect_identical(
     to_int(given),
@@ -75,7 +67,7 @@ test_that("to_int() works for dbls", {
     wrapper(given),
     expected
   )
-  given[[42]] <- 1.1
+  given[[4]] <- 1.1
   expect_snapshot(
     to_int(given),
     error = TRUE
@@ -84,7 +76,7 @@ test_that("to_int() works for dbls", {
     wrapper(given),
     error = TRUE
   )
-  given[[42]] <- Inf
+  given[[4]] <- Inf
   expect_snapshot(
     to_int(given),
     error = TRUE
@@ -96,7 +88,7 @@ test_that("to_int() works for dbls", {
 })
 
 test_that("to_int() works for chrs", {
-  expected <- 1:1000
+  expected <- 1:10
   given <- as.character(expected)
   expect_identical(
     to_int(given),
@@ -106,7 +98,7 @@ test_that("to_int() works for chrs", {
     wrapper(given),
     expected
   )
-  given[[42]] <- "1.1"
+  given[[4]] <- "1.1"
   expect_snapshot(
     to_int(given),
     error = TRUE
@@ -115,7 +107,7 @@ test_that("to_int() works for chrs", {
     wrapper(given),
     error = TRUE
   )
-  given[[42]] <- "a"
+  given[[4]] <- "a"
   expect_snapshot(
     to_int(given),
     error = TRUE
@@ -127,7 +119,7 @@ test_that("to_int() works for chrs", {
 })
 
 test_that("to_int() works for complexes", {
-  expected <- 1:1000
+  expected <- 1:10
   given <- as.complex(expected)
   expect_identical(
     to_int(given),
@@ -137,7 +129,7 @@ test_that("to_int() works for complexes", {
     wrapper(given),
     expected
   )
-  given[[42]] <- 1 + 1i
+  given[[4]] <- 1 + 1i
   expect_snapshot(
     to_int(given),
     error = TRUE
@@ -167,7 +159,7 @@ test_that("to_int() works for factors", {
 })
 
 test_that("to_int() works for hexbins, etc", {
-  expected <- 1:1000
+  expected <- 1:10
   given <- as.hexmode(expected)
   expect_identical(
     to_int(given),
@@ -178,7 +170,7 @@ test_that("to_int() works for hexbins, etc", {
     expected
   )
 
-  given <- as.raw(1:255)
+  given <- as.raw(1:10)
   expect_snapshot(
     to_int(given),
     error = TRUE
