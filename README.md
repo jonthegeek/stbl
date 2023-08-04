@@ -56,8 +56,7 @@ my_old_fun("1")
 
 ### With ykwim:
 
-ykwim helps to ensure that arguments meet are what you expect them to
-be.
+ykwim helps to ensure that arguments are what you expect them to be.
 
 ``` r
 my_fun <- function(my_arg_name) {
