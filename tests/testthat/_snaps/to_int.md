@@ -1,21 +1,3 @@
-# to_int() works for ints
-
-    Code
-      to_int(given, allow_na = FALSE)
-    Condition
-      Error:
-      ! `given` must not contain NA values.
-      * NA locations: 42
-
----
-
-    Code
-      wrapper(given, allow_na = FALSE)
-    Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must not contain NA values.
-      * NA locations: 42
-
 # to_int() works for NULL
 
     Code
@@ -39,7 +21,7 @@
     Condition
       Error:
       ! Can't convert from `given` <double> to <integer> due to loss of precision.
-      * Locations: 42
+      * Locations: 4
 
 ---
 
@@ -48,7 +30,7 @@
     Condition
       Error in `wrapper()`:
       ! Can't convert from `wrapper_val` <double> to <integer> due to loss of precision.
-      * Locations: 42
+      * Locations: 4
 
 ---
 
@@ -57,7 +39,7 @@
     Condition
       Error:
       ! Can't convert from `given` <double> to <integer> due to loss of precision.
-      * Locations: 42
+      * Locations: 4
 
 ---
 
@@ -66,7 +48,7 @@
     Condition
       Error in `wrapper()`:
       ! Can't convert from `wrapper_val` <double> to <integer> due to loss of precision.
-      * Locations: 42
+      * Locations: 4
 
 # to_int() works for chrs
 
@@ -76,7 +58,7 @@
       Error:
       ! `given` <character> must be coercible to <integer>
       x Can't convert some values due to loss of precision.
-      * Locations: 42
+      * Locations: 4
 
 ---
 
@@ -86,7 +68,7 @@
       Error in `wrapper()`:
       ! `wrapper_val` <character> must be coercible to <integer>
       x Can't convert some values due to loss of precision.
-      * Locations: 42
+      * Locations: 4
 
 ---
 
@@ -96,7 +78,7 @@
       Error:
       ! `given` <character> must be coercible to <integer>
       x Can't convert some values due to incompatible values.
-      * Locations: 42
+      * Locations: 4
 
 ---
 
@@ -106,7 +88,7 @@
       Error in `wrapper()`:
       ! `wrapper_val` <character> must be coercible to <integer>
       x Can't convert some values due to incompatible values.
-      * Locations: 42
+      * Locations: 4
 
 # to_int() works for complexes
 
@@ -116,7 +98,7 @@
       Error:
       ! `given` <complex> must be coercible to <integer>
       x Can't convert some values due to non-zero complex components.
-      * Locations: 42
+      * Locations: 4
 
 ---
 
@@ -126,7 +108,7 @@
       Error in `wrapper()`:
       ! `wrapper_val` <complex> must be coercible to <integer>
       x Can't convert some values due to non-zero complex components.
-      * Locations: 42
+      * Locations: 4
 
 # to_int() works for factors
 
