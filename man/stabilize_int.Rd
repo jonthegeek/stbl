@@ -9,6 +9,8 @@ stabilize_int(
   ...,
   allow_null = TRUE,
   allow_na = TRUE,
+  coerce_character = TRUE,
+  coerce_factor = TRUE,
   min_size = NULL,
   max_size = NULL,
   min_value = NULL,
@@ -25,6 +27,14 @@ stabilize_int(
 \item{allow_null}{Logical. Is NULL an acceptable value?}
 
 \item{allow_na}{Logical. Are NA values ok?}
+
+\item{coerce_character}{Logical. Should character vectors such as "1" and
+"2.0" be coerced to integer?}
+
+\item{coerce_factor}{Logical. Should factors with values such as "1" and
+"2.0" be coerced to integer? Note that this function uses the character
+value from the factor, while \code{\link[=as.integer]{as.integer()}} uses the integer index of the
+factor.}
 
 \item{min_size}{Integer. The minimum size of the object. Object size will be
 tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
