@@ -53,6 +53,8 @@
 <span>  <span class="va">...</span>,</span>
 <span>  allow_null <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  allow_na <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  coerce_character <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  coerce_factor <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  min_size <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  max_size <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  min_value <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -78,6 +80,18 @@
 
 <dt>allow_na</dt>
 <dd><p>Logical. Are NA values ok?</p></dd>
+
+
+<dt>coerce_character</dt>
+<dd><p>Logical. Should character vectors such as "1" and
+"2.0" be coerced to integer?</p></dd>
+
+
+<dt>coerce_factor</dt>
+<dd><p>Logical. Should factors with values such as "1" and
+"2.0" be coerced to integer? Note that this function uses the character
+value from the factor, while <code><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer()</a></code> uses the integer index of the
+factor.</p></dd>
 
 
 <dt>min_size</dt>
