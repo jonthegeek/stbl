@@ -4,8 +4,6 @@ wrapper <- function(wrapper_val, ...) {
 
 # The _int part of this is tested in to_int.
 
-# TODO: Move NA and size checks into a general stabilize_vector()
-
 test_that("stabilize_int returns NULL", {
   expect_identical(
     stabilize_int(NULL),

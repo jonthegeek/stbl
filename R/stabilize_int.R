@@ -3,6 +3,7 @@
 #' More details soon.
 #'
 #' @inheritParams .coerce-params
+#' @inheritParams to_int
 #' @param min_value Integer scalar. The lowest allowed value for `x`. If `NULL`
 #'   (default) values are not checked.
 #' @param max_value Integer scalar. The highest allowed value for `x`. If `NULL`
@@ -19,6 +20,8 @@ stabilize_int <- function(x,
                           ...,
                           allow_null = TRUE,
                           allow_na = TRUE,
+                          coerce_character = TRUE,
+                          coerce_factor = TRUE,
                           min_size = NULL,
                           max_size = NULL,
                           min_value = NULL,
@@ -27,7 +30,15 @@ stabilize_int <- function(x,
                           call = rlang::caller_env()) {
   # TODO: Update these examples to show the fancy stuff.
   x_arg <- force(x_arg)
-  x <- to_int(x, allow_null = allow_null, x_arg = x_arg, call = call)
+
+  x <- to_int(
+    x,
+    allow_null = allow_null,
+    coerce_character = coerce_character,
+    coerce_factor = coerce_factor,
+    x_arg = x_arg,
+    call = call
+  )
   .check_value_int(
     x,
     min_value = min_value, max_value = max_value,

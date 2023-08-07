@@ -98,6 +98,15 @@ test_that("to_int() works for chrs", {
     wrapper(given),
     expected
   )
+  expect_snapshot(
+    to_int(given, coerce_character = FALSE),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapper(given, coerce_character = FALSE),
+    error = TRUE
+  )
+
   given[[4]] <- "1.1"
   expect_snapshot(
     to_int(given),
@@ -107,6 +116,14 @@ test_that("to_int() works for chrs", {
     wrapper(given),
     error = TRUE
   )
+  expect_snapshot(
+    to_int(given, coerce_character = FALSE),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapper(given, coerce_character = FALSE),
+    error = TRUE
+  )
   given[[4]] <- "a"
   expect_snapshot(
     to_int(given),
@@ -114,6 +131,14 @@ test_that("to_int() works for chrs", {
   )
   expect_snapshot(
     wrapper(given),
+    error = TRUE
+  )
+  expect_snapshot(
+    to_int(given, coerce_character = FALSE),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapper(given, coerce_character = FALSE),
     error = TRUE
   )
 })
@@ -147,6 +172,14 @@ test_that("to_int() works for factors", {
     to_int(given),
     expected
   )
+  expect_snapshot(
+    to_int(given, coerce_factor = FALSE),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapper(given, coerce_factor = FALSE),
+    error = TRUE
+  )
   given <- letters
   expect_snapshot(
     to_int(given),
@@ -158,18 +191,7 @@ test_that("to_int() works for factors", {
   )
 })
 
-test_that("to_int() works for hexbins, etc", {
-  expected <- 1:10
-  given <- as.hexmode(expected)
-  expect_identical(
-    to_int(given),
-    expected
-  )
-  expect_identical(
-    wrapper(given),
-    expected
-  )
-
+test_that("to_int() errors properly for raw, etc", {
   given <- as.raw(1:10)
   expect_snapshot(
     to_int(given),

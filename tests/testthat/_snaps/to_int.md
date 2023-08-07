@@ -53,6 +53,22 @@
 # to_int() works for chrs
 
     Code
+      to_int(given, coerce_character = FALSE)
+    Condition
+      Error:
+      ! Can't coerce `given` to <integer>.
+
+---
+
+    Code
+      wrapper(given, coerce_character = FALSE)
+    Condition
+      Error in `wrapper()`:
+      ! Can't coerce `wrapper_val` to <integer>.
+
+---
+
+    Code
       to_int(given)
     Condition
       Error:
@@ -73,6 +89,22 @@
 ---
 
     Code
+      to_int(given, coerce_character = FALSE)
+    Condition
+      Error:
+      ! Can't coerce `given` to <integer>.
+
+---
+
+    Code
+      wrapper(given, coerce_character = FALSE)
+    Condition
+      Error in `wrapper()`:
+      ! Can't coerce `wrapper_val` to <integer>.
+
+---
+
+    Code
       to_int(given)
     Condition
       Error:
@@ -89,6 +121,22 @@
       ! `wrapper_val` <character> must be coercible to <integer>
       x Can't convert some values due to incompatible values.
       * Locations: 4
+
+---
+
+    Code
+      to_int(given, coerce_character = FALSE)
+    Condition
+      Error:
+      ! Can't coerce `given` to <integer>.
+
+---
+
+    Code
+      wrapper(given, coerce_character = FALSE)
+    Condition
+      Error in `wrapper()`:
+      ! Can't coerce `wrapper_val` to <integer>.
 
 # to_int() works for complexes
 
@@ -113,6 +161,22 @@
 # to_int() works for factors
 
     Code
+      to_int(given, coerce_factor = FALSE)
+    Condition
+      Error:
+      ! Can't coerce `given` to <integer>.
+
+---
+
+    Code
+      wrapper(given, coerce_factor = FALSE)
+    Condition
+      Error in `wrapper()`:
+      ! Can't coerce `wrapper_val` to <integer>.
+
+---
+
+    Code
       to_int(given)
     Condition
       Error:
@@ -130,7 +194,7 @@
       x Can't convert some values due to incompatible values.
       * Locations: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ..., 25, and 26
 
-# to_int() works for hexbins, etc
+# to_int() errors properly for raw, etc
 
     Code
       to_int(given)

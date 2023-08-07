@@ -7,6 +7,8 @@
 to_int(
   x,
   allow_null = TRUE,
+  coerce_character = TRUE,
+  coerce_factor = TRUE,
   x_arg = rlang::caller_arg(x),
   call = rlang::caller_env()
 )
@@ -15,6 +17,14 @@ to_int(
 \item{x}{The argument to stabilize.}
 
 \item{allow_null}{Logical. Is NULL an acceptable value?}
+
+\item{coerce_character}{Logical. Should character vectors such as "1" and
+"2.0" be coerced to integer?}
+
+\item{coerce_factor}{Logical. Should factors with values such as "1" and
+"2.0" be coerced to integer? Note that this function uses the character
+value from the factor, while \code{\link[=as.integer]{as.integer()}} uses the integer index of the
+factor.}
 
 \item{x_arg}{Character. An argument name for x. The automatic value will work
 in most cases, or pass it through from higher-level functions to make error

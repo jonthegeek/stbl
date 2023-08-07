@@ -8,8 +8,8 @@
   if (is.null(x)) {
     return(x)
   }
-  rlang::check_dots_empty0(..., call = call)
 
+  rlang::check_dots_empty0(..., call = call)
   .check_na(x, allow_na, x_arg, call)
   .check_size(x, min_size, max_size, x_arg, call)
   return(x)
