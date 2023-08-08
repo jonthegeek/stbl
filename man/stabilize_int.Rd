@@ -16,7 +16,8 @@ stabilize_int(
   min_value = NULL,
   max_value = NULL,
   x_arg = rlang::caller_arg(x),
-  call = rlang::caller_env()
+  call = rlang::caller_env(),
+  x_class = object_type(x)
 )
 }
 \arguments{
@@ -54,15 +55,31 @@ messages clearer in unexported functions.}
 
 \item{call}{The execution environment of the call. See the \code{call} argument of
 \code{rlang::abort()} for more information.}
+
+\item{x_class}{Character. The class name of \code{x} to use in error messages. Use
+this if you remove a special class from \code{x} before checking its coercion,
+but want the error message to match the original class.}
 }
 \value{
 The argument as an integer.
 }
 \description{
-More details soon.
+Check an integer argument to ensure that it meets expectations, coercing it
+to integer where possible. If the argument does not meet the requirements,
+the user will receive an informative error message. Note that \code{\link[=to_int]{to_int()}} is a
+faster version of this function with fewer options.
 }
 \examples{
 stabilize_int(1:10)
 stabilize_int("1")
 stabilize_int(1 + 0i)
+stabilize_int(NULL)
+try(stabilize_int(NULL, allow_null = FALSE))
+try(stabilize_int(c(1, NA), allow_na = FALSE))
+try(stabilize_int(letters))
+try(stabilize_int("1", coerce_character = FALSE))
+try(stabilize_int(factor(c("1", "a"))))
+try(stabilize_int(factor("1"), coerce_factor = FALSE))
+try(stabilize_int(1:10, min_value = 3))
+try(stabilize_int(1:10, max_value = 7))
 }

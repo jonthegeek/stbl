@@ -4,7 +4,7 @@
       to_int(given, allow_null = FALSE)
     Condition
       Error:
-      ! `given` can't be <NULL>.
+      ! `given` must not be <NULL>.
 
 ---
 
@@ -12,7 +12,7 @@
       wrapper(given, allow_null = FALSE)
     Condition
       Error in `wrapper()`:
-      ! `wrapper_val` can't be <NULL>.
+      ! `wrapper_val` must not be <NULL>.
 
 # to_int() works for dbls
 
@@ -56,7 +56,7 @@
       to_int(given, coerce_character = FALSE)
     Condition
       Error:
-      ! Can't coerce `given` to <integer>.
+      ! Can't coerce `given` <character> to <integer>.
 
 ---
 
@@ -64,7 +64,7 @@
       wrapper(given, coerce_character = FALSE)
     Condition
       Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` to <integer>.
+      ! Can't coerce `wrapper_val` <character> to <integer>.
 
 ---
 
@@ -92,7 +92,7 @@
       to_int(given, coerce_character = FALSE)
     Condition
       Error:
-      ! Can't coerce `given` to <integer>.
+      ! Can't coerce `given` <character> to <integer>.
 
 ---
 
@@ -100,7 +100,7 @@
       wrapper(given, coerce_character = FALSE)
     Condition
       Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` to <integer>.
+      ! Can't coerce `wrapper_val` <character> to <integer>.
 
 ---
 
@@ -128,7 +128,7 @@
       to_int(given, coerce_character = FALSE)
     Condition
       Error:
-      ! Can't coerce `given` to <integer>.
+      ! Can't coerce `given` <character> to <integer>.
 
 ---
 
@@ -136,7 +136,7 @@
       wrapper(given, coerce_character = FALSE)
     Condition
       Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` to <integer>.
+      ! Can't coerce `wrapper_val` <character> to <integer>.
 
 # to_int() works for complexes
 
@@ -164,7 +164,7 @@
       to_int(given, coerce_factor = FALSE)
     Condition
       Error:
-      ! Can't coerce `given` to <integer>.
+      ! Can't coerce `given` <factor> to <integer>.
 
 ---
 
@@ -172,7 +172,7 @@
       wrapper(given, coerce_factor = FALSE)
     Condition
       Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` to <integer>.
+      ! Can't coerce `wrapper_val` <factor> to <integer>.
 
 ---
 
@@ -180,7 +180,7 @@
       to_int(given)
     Condition
       Error:
-      ! `given` <character> must be coercible to <integer>
+      ! `given` <factor> must be coercible to <integer>
       x Can't convert some values due to incompatible values.
       * Locations: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ..., 25, and 26
 
@@ -190,7 +190,7 @@
       wrapper(given)
     Condition
       Error in `wrapper()`:
-      ! `wrapper_val` <character> must be coercible to <integer>
+      ! `wrapper_val` <factor> must be coercible to <integer>
       x Can't convert some values due to incompatible values.
       * Locations: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ..., 25, and 26
 

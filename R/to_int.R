@@ -20,20 +20,22 @@
 #' to_int(1:10)
 #' to_int("1")
 #' to_int(1 + 0i)
+#' to_int(NULL)
+#' try(to_int(c(1, 2, 3.1, 4, 5.2)))
+#' try(to_int("1", coerce_character = FALSE))
+#' try(to_int(c("1", "2", "3.1", "4", "5.2")))
 to_int <- function(x,
                    allow_null = TRUE,
                    coerce_character = TRUE,
                    coerce_factor = TRUE,
                    x_arg = rlang::caller_arg(x),
-                   call = rlang::caller_env()) {
+                   call = rlang::caller_env(),
+                   x_class = object_type(x)) {
   UseMethod("to_int")
 }
 
 #' @export
-to_int.integer <- function(x,
-                           ...,
-                           x_arg = rlang::caller_arg(x),
-                           call = rlang::caller_env()) {
+to_int.integer <- function(x, ...) {
   return(x)
 }
 
@@ -46,10 +48,7 @@ to_int.NULL <- function(x,
   if (allow_null) {
     return(NULL)
   }
-  cli::cli_abort(
-    c("{.arg {x_arg}} can't be {.cls NULL}."),
-    call = call
-  )
+  .stop_null(x_arg, call)
 }
 
 #' @export
@@ -73,35 +72,30 @@ to_int.character <- function(x,
                              ...,
                              coerce_character = TRUE,
                              x_arg = rlang::caller_arg(x),
-                             call = rlang::caller_env()) {
+                             call = rlang::caller_env(),
+                             x_class = object_type(x)) {
   if (coerce_character) {
     cast <- suppressWarnings(as.integer(x))
-    cast_double <- suppressWarnings(as.double(x))
     x_na <- is.na(x)
     non_numbers <- xor(x_na, is.na(cast))
-    bad_precision <- cast != cast_double & !x_na
+    bad_precision <- cast != suppressWarnings(as.double(x)) & !x_na
     failures <- non_numbers | bad_precision
 
     if (!any(failures)) {
       return(cast)
     }
-
     if (any(non_numbers)) {
       .stop_incompatible(
-        x, integer(), non_numbers,
+        x_class, integer(), non_numbers,
         due_to = "incompatible values", x_arg, call
       )
     }
-
     .stop_incompatible(
-      x, integer(), bad_precision,
+      x_class, integer(), bad_precision,
       due_to = "loss of precision", x_arg, call
     )
   }
-  cli::cli_abort(
-    "Can't coerce {.arg {x_arg}} to {.cls integer}.",
-    call = call
-  )
+  .stop_cant_coerce(x_class, "integer", call)
 }
 
 #' @export
@@ -109,33 +103,38 @@ to_int.factor <- function(x,
                           ...,
                           coerce_factor = TRUE,
                           x_arg = rlang::caller_arg(x),
-                          call = rlang::caller_env()) {
+                          call = rlang::caller_env(),
+                          x_class = object_type(x)) {
   if (coerce_factor) {
     return(
-      to_int(as.character(x), ..., x_arg = x_arg, call = call)
+      to_int(
+        as.character(x),
+        ...,
+        x_arg = x_arg,
+        call = call,
+        x_class = x_class
+      )
     )
   }
-  cli::cli_abort(
-    "Can't coerce {.arg {x_arg}} to {.cls integer}.",
-    call = call
-  )
+  .stop_cant_coerce(x_class, "integer", call)
 }
 
 #' @export
 to_int.complex <- function(x,
                            ...,
                            x_arg = rlang::caller_arg(x),
-                           call = rlang::caller_env()) {
+                           call = rlang::caller_env(),
+                           x_class = object_type(x)) {
   cast <- suppressWarnings(as.integer(x))
   x_na <- is.na(x)
   failures <- (cast != x & !x_na) | xor(x_na, is.na(cast))
-  if (!any(failures)) {
-    return(cast)
+  if (any(failures)) {
+    .stop_incompatible(
+      x_class, integer(), failures,
+      due_to = "non-zero complex components", x_arg, call
+    )
   }
-  .stop_incompatible(
-    x, integer(), failures,
-    due_to = "non-zero complex components", x_arg, call
-  )
+  return(cast)
 }
 
 #' @export

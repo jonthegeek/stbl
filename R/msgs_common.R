@@ -1,79 +1,44 @@
-.stop_incompatible <- function(x,
+.stop_must <- function(msg, call, additional_msg = NULL) {
+  main_msg <- paste("{.arg {x_arg}}", msg)
+  cli::cli_abort(
+    c(main_msg, additional_msg),
+    call = call,
+    .envir = rlang::caller_env()
+  )
+}
+
+.stop_cant_coerce <- function(from_class,
+                              to_class,
+                              call,
+                              additional_msg = NULL) {
+  main_msg <- .glue2(
+    "Can't coerce {.arg {x_arg}} {.cls [from_class]} to {.cls [to_class]}."
+  )
+  cli::cli_abort(
+    c(main_msg, additional_msg),
+    call = call,
+    .envir = rlang::caller_env()
+  )
+}
+
+.stop_null <- function(x_arg, call) {
+  .stop_must("must not be {.cls NULL}.", call)
+}
+
+.stop_incompatible <- function(x_class,
                                to,
                                failures,
                                due_to,
-                               x_arg = rlang::caller_arg(x),
-                               call = rlang::caller_env()) {
-  x_class <- object_type(x)
+                               x_arg,
+                               call) {
   to_class <- object_type(to)
   locations <- which(failures)
-  cli::cli_abort(
-    c(
-      "{.arg {x_arg}} {.cls {x_class}} must be coercible to {.cls {to_class}}",
+  .stop_must(
+    msg = "{.cls {x_class}} must be coercible to {.cls {to_class}}",
+    additional_msg = c(
       x = "Can't convert some values due to {due_to}.",
       "*" = "Locations: {locations}"
     ),
     call = call
   )
-}
-
-
-# object_type was derived from use_standalone("r-lib/rlang",
-# "standalone-obj-type.R") but simplified.
-
-#' Identify the class, type, etc of an object
-#'
-#' Extract the class (or type) of an object for use in error messages.
-#'
-#' @param x An object to test.
-#'
-#' @return A length-1 character vector describing the class of the object.
-#' @export
-#'
-#' @examples
-#' object_type("a")
-#' object_type(1L)
-#' object_type(1.1)
-#' object_type(mtcars)
-#' object_type(rlang::quo(something))
-object_type <- function(x) {
-  if (missing(x)) {
-    return("missing")
-  }
-
-  # Anything with a class.
-  if (is.object(x)) {
-    if (inherits(x, "quosure")) {
-      return("quosure")
-    }
-    return(class(x)[[1L]])
-  }
-
-  # Leftovers. Consider adding more cases here, but for now I like the
-  # specificity.
-  type <- typeof(x)
-  return(
-    switch(type,
-      language = "call",
-      type
-    )
-  )
-}
-
-`%&&%` <- function(x, y) {
-  if (is.null(x)) {
-    NULL
-  } else {
-    y
-  }
-}
-
-.find_failures <- function(x, check_value, check_fn) {
-  failures <- check_value %&&% check_fn(x, check_value)
-
-  if (any(failures)) {
-    return(which(failures))
-  }
-
-  return(NULL)
 }
