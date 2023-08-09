@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(ykwim)
+library(stbl)
 
-test_check("ykwim")
+test_check("stbl")
