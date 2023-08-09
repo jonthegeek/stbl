@@ -42,8 +42,8 @@ data is not properly translated from character on load.
 
 ### Without stbl:
 
-Without the argument-stabilizers provided in stbl, error messages can
-be cryptic, and errors trigger when you might not want them to.
+Without the argument-stabilizers provided in stbl, error messages can be
+cryptic, and errors trigger when you might not want them to.
 
 ``` r
 # Without stbl.
