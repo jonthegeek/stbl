@@ -1,4 +1,4 @@
-Package: ykwim
+Package: stbl
 Title: You Know What I Mean
 Version: 0.0.0.9000
 Authors@R: 
@@ -7,9 +7,9 @@ Authors@R:
 Description: Coerce inputs to the desired class when possible, or throw an
     informative error.
 License: MIT + file LICENSE
-URL: https://github.com/jonthegeek/ykwim,
-    https://jonthegeek.github.io/ykwim/
-BugReports: https://github.com/jonthegeek/ykwim/issues
+URL: https://github.com/jonthegeek/stbl,
+    https://jonthegeek.github.io/stbl/
+BugReports: https://github.com/jonthegeek/stbl/issues
 Imports: 
     cli,
     glue,
