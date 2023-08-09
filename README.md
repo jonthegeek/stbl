@@ -46,7 +46,6 @@ Without the argument-stabilizers provided in stbl, error messages can be
 cryptic, and errors trigger when you might not want them to.
 
 ``` r
-# Without stbl.
 my_old_fun <- function(my_arg_name) {
   my_arg_name + 1
 }
