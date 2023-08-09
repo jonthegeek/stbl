@@ -22,6 +22,10 @@ tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 in most cases, or pass it through from higher-level functions to make error
 messages clearer in unexported functions.}
 
+\item{x_class}{Character. The class name of \code{x} to use in error messages. Use
+this if you remove a special class from \code{x} before checking its coercion,
+but want the error message to match the original class.}
+
 \item{call}{The execution environment of the call. See the \code{call} argument of
 \code{rlang::abort()} for more information.}
 }

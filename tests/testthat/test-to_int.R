@@ -180,7 +180,7 @@ test_that("to_int() works for factors", {
     wrapper(given, coerce_factor = FALSE),
     error = TRUE
   )
-  given <- letters
+  given <- factor(letters)
   expect_snapshot(
     to_int(given),
     error = TRUE

@@ -10,7 +10,8 @@ to_int(
   coerce_character = TRUE,
   coerce_factor = TRUE,
   x_arg = rlang::caller_arg(x),
-  call = rlang::caller_env()
+  call = rlang::caller_env(),
+  x_class = object_type(x)
 )
 }
 \arguments{
@@ -32,6 +33,10 @@ messages clearer in unexported functions.}
 
 \item{call}{The execution environment of the call. See the \code{call} argument of
 \code{rlang::abort()} for more information.}
+
+\item{x_class}{Character. The class name of \code{x} to use in error messages. Use
+this if you remove a special class from \code{x} before checking its coercion,
+but want the error message to match the original class.}
 }
 \value{
 An integer equivalent to \code{x}.
@@ -46,4 +51,8 @@ default values, but should be faster.
 to_int(1:10)
 to_int("1")
 to_int(1 + 0i)
+to_int(NULL)
+try(to_int(c(1, 2, 3.1, 4, 5.2)))
+try(to_int("1", coerce_character = FALSE))
+try(to_int(c("1", "2", "3.1", "4", "5.2")))
 }

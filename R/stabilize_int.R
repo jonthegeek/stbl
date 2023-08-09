@@ -1,6 +1,9 @@
 #' Ensure an integer argument meets expectations
 #'
-#' More details soon.
+#' Check an integer argument to ensure that it meets expectations, coercing it
+#' to integer where possible. If the argument does not meet the requirements,
+#' the user will receive an informative error message. Note that [to_int()] is a
+#' faster version of this function with fewer options.
 #'
 #' @inheritParams .coerce-params
 #' @inheritParams to_int
@@ -16,6 +19,15 @@
 #' stabilize_int(1:10)
 #' stabilize_int("1")
 #' stabilize_int(1 + 0i)
+#' stabilize_int(NULL)
+#' try(stabilize_int(NULL, allow_null = FALSE))
+#' try(stabilize_int(c(1, NA), allow_na = FALSE))
+#' try(stabilize_int(letters))
+#' try(stabilize_int("1", coerce_character = FALSE))
+#' try(stabilize_int(factor(c("1", "a"))))
+#' try(stabilize_int(factor("1"), coerce_factor = FALSE))
+#' try(stabilize_int(1:10, min_value = 3))
+#' try(stabilize_int(1:10, max_value = 7))
 stabilize_int <- function(x,
                           ...,
                           allow_null = TRUE,
@@ -27,9 +39,10 @@ stabilize_int <- function(x,
                           min_value = NULL,
                           max_value = NULL,
                           x_arg = rlang::caller_arg(x),
-                          call = rlang::caller_env()) {
-  # TODO: Update these examples to show the fancy stuff.
+                          call = rlang::caller_env(),
+                          x_class = object_type(x)) {
   x_arg <- force(x_arg)
+  x_class <- force(x_class)
 
   x <- to_int(
     x,
@@ -37,21 +50,23 @@ stabilize_int <- function(x,
     coerce_character = coerce_character,
     coerce_factor = coerce_factor,
     x_arg = x_arg,
-    call = call
+    call = call,
+    x_class = x_class
   )
   .check_value_int(
     x,
     min_value = min_value, max_value = max_value,
     x_arg = x_arg, call = call
   )
-  .return_if_clear(
+  stabilize_arg(
     x = x,
     ...,
     allow_na = allow_na,
     min_size = min_size,
     max_size = max_size,
     x_arg = x_arg,
-    call = call
+    call = call,
+    x_class = x_class
   )
 }
 
