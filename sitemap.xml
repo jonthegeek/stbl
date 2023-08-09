@@ -37,12 +37,21 @@
     <loc>https://jonthegeek.github.io/stbl/reference/stabilize_arg.html</loc>
   </url>
   <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/stabilize_arg_scalar.html</loc>
+  </url>
+  <url>
     <loc>https://jonthegeek.github.io/stbl/reference/stabilize_int.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/stabilize_int_scalar.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/stbl-package.html</loc>
   </url>
   <url>
     <loc>https://jonthegeek.github.io/stbl/reference/to_int.html</loc>
   </url>
   <url>
-    <loc>https://jonthegeek.github.io/stbl/reference/ykwim-package.html</loc>
+    <loc>https://jonthegeek.github.io/stbl/reference/to_int_scalar.html</loc>
   </url>
 </urlset>
