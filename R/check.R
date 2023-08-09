@@ -57,6 +57,23 @@
   )
 }
 
+.check_scalar <- function(x,
+                          x_arg = rlang::caller_arg(x),
+                          call = rlang::caller_env(),
+                          x_class = object_type(x)) {
+  if (rlang::is_scalar_vector(x)) {
+    return(invisible(NULL))
+  }
+
+  x_size <- vctrs::vec_size(x)
+
+  .stop_must(
+    "must be a single {.cls {x_class}}.",
+    call = call,
+    additional_msg = c(x = "{.arg {x_arg}} has {cli::no(x_size)} values.")
+  )
+}
+
 .check_x_no_more_than_y <- function(x,
                                     y,
                                     x_arg = rlang::caller_arg(x),
