@@ -30,3 +30,11 @@ test_that("stabilize_arg_scalar() provides informative error messages", {
     error = TRUE
   )
 })
+
+test_that("stabilize_arg_scalar() deals with weird values", {
+  given <- NULL
+  expect_snapshot(
+    stabilize_arg_scalar(given, allow_null = c(TRUE, FALSE)),
+    error = TRUE
+  )
+})

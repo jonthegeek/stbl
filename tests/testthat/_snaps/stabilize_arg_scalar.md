@@ -34,3 +34,11 @@
       ! `wrapper_val` must be a single <non-NULL>.
       x `wrapper_val` has no values.
 
+# stabilize_arg_scalar() deals with weird values
+
+    Code
+      stabilize_arg_scalar(given, allow_null = c(TRUE, FALSE))
+    Condition
+      Error:
+      ! `allow_null` must have a single <logical> value.
+
