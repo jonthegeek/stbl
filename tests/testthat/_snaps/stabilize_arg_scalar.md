@@ -19,18 +19,18 @@
 ---
 
     Code
-      stabilize_arg_scalar(given)
+      stabilize_arg_scalar(given, allow_null = FALSE)
     Condition
       Error:
-      ! `given` must be a single <NULL>.
+      ! `given` must be a single <non-NULL>.
       x `given` has no values.
 
 ---
 
     Code
-      wrapper(given)
+      wrapper(given, allow_null = FALSE)
     Condition
       Error in `wrapper()`:
-      ! `wrapper_val` must be a single <NULL>.
+      ! `wrapper_val` must be a single <non-NULL>.
       x `wrapper_val` has no values.
 

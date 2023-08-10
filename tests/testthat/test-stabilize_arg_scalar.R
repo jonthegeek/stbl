@@ -22,11 +22,11 @@ test_that("stabilize_arg_scalar() provides informative error messages", {
 
   given <- NULL
   expect_snapshot(
-    stabilize_arg_scalar(given),
+    stabilize_arg_scalar(given, allow_null = FALSE),
     error = TRUE
   )
   expect_snapshot(
-    wrapper(given),
+    wrapper(given, allow_null = FALSE),
     error = TRUE
   )
 })

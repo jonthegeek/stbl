@@ -12,6 +12,7 @@
 #' to_int_scalar("1")
 #' try(to_int_scalar(1:10))
 to_int_scalar <- function(x,
+                          allow_null = TRUE,
                           coerce_character = TRUE,
                           coerce_factor = TRUE,
                           x_arg = rlang::caller_arg(x),
@@ -21,7 +22,7 @@ to_int_scalar <- function(x,
   x_class <- force(x_class)
   x <- to_int(
     x,
-    allow_null = FALSE,
+    allow_null = allow_null,
     coerce_character = coerce_character,
     coerce_factor = coerce_factor,
     x_arg = x_arg,
@@ -29,6 +30,12 @@ to_int_scalar <- function(x,
     x_class = x_class
   )
 
-  .check_scalar(x, x_arg = x_arg, call = call, x_class = x_class)
+  .check_scalar(
+    x,
+    allow_null = allow_null,
+    x_arg = x_arg,
+    call = call,
+    x_class = x_class
+  )
   return(x)
 }

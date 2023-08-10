@@ -71,6 +71,7 @@ to_int.character <- function(x,
                              x_arg = rlang::caller_arg(x),
                              call = rlang::caller_env(),
                              x_class = object_type(x)) {
+  coerce_character <- to_lgl(coerce_character, allow_null = FALSE, call = call)
   if (coerce_character) {
     cast <- suppressWarnings(as.integer(x))
     x_na <- is.na(x)
@@ -102,6 +103,7 @@ to_int.factor <- function(x,
                           x_arg = rlang::caller_arg(x),
                           call = rlang::caller_env(),
                           x_class = object_type(x)) {
+  coerce_factor <- to_lgl(coerce_factor, allow_null = FALSE, call = call)
   if (coerce_factor) {
     return(
       to_int(
