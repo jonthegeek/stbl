@@ -1,7 +1,9 @@
 #' Coerce an argument to logical
 #'
 #' If a value can be coerced to a logical without losing information, do so
-#' silently. Otherwise throw an informative error.
+#' silently. Otherwise throw an informative error. This function is equivalent
+#' to [stabilize_lgl()] with all of the additional arguments set to their
+#' default values, but should be faster.
 #'
 #' @inheritParams .coerce-params
 #'

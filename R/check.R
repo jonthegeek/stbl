@@ -2,7 +2,7 @@
                       allow_na = TRUE,
                       x_arg = rlang::caller_arg(x),
                       call = rlang::caller_env()) {
-  allow_na <- to_lgl(allow_na, allow_null = FALSE, call = call)
+  allow_na <- to_lgl_scalar(allow_na, allow_null = FALSE, call = call)
   failures <- is.na(x)
   if (allow_na || !any(failures)) {
     return(invisible(NULL))

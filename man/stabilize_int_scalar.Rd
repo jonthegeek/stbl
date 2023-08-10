@@ -63,5 +63,6 @@ check for length-1 integers.
 stabilize_int_scalar(1L)
 stabilize_int_scalar("1")
 try(stabilize_int_scalar(1:10))
-try(stabilize_int_scalar(NULL))
+stabilize_int_scalar(NULL)
+try(stabilize_int_scalar(NULL, allow_null = FALSE))
 }

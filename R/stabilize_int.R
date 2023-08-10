@@ -41,31 +41,25 @@ stabilize_int <- function(x,
                           x_arg = rlang::caller_arg(x),
                           call = rlang::caller_env(),
                           x_class = object_type(x)) {
-  x_arg <- force(x_arg)
-
-  x <- to_int(
+  .stabilize_cls(
     x,
+    to_cls_fn = to_int,
+    to_cls_args = list(
+      coerce_character = coerce_character,
+      coerce_factor = coerce_factor
+    ),
+    check_cls_value_fn = .check_value_int,
+    check_cls_value_fn_args = list(
+      min_value = min_value, max_value = max_value
+    ),
     allow_null = allow_null,
-    coerce_character = coerce_character,
-    coerce_factor = coerce_factor,
-    x_arg = x_arg,
-    call = call,
-    x_class = x_class
-  )
-  .check_value_int(
-    x,
-    min_value = min_value, max_value = max_value,
-    x_arg = x_arg, call = call
-  )
-  stabilize_arg(
-    x = x,
-    ...,
     allow_na = allow_na,
     min_size = min_size,
     max_size = max_size,
     x_arg = x_arg,
     call = call,
-    x_class = x_class
+    x_class = x_class,
+    ...
   )
 }
 

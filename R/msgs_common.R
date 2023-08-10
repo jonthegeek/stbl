@@ -1,4 +1,6 @@
 .stop_must <- function(msg, call, additional_msg = NULL) {
+  # TODO: This x_arg is a hidden argument and I don't have a good answer for how
+  # to get rid of it yet.
   main_msg <- paste("{.arg {x_arg}}", msg)
   cli::cli_abort(
     c(main_msg, additional_msg),
