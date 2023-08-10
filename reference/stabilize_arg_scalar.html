@@ -54,6 +54,7 @@ check for length-1 vectors.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stabilize_arg_scalar</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">...</span>,</span>
+<span>  allow_null <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  allow_na <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  x_arg <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/caller_arg.html" class="external-link">caller_arg</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>  call <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">caller_env</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -69,6 +70,10 @@ check for length-1 vectors.</p>
 
 <dt>...</dt>
 <dd><p>These dots are for future extensions and should be empty.</p></dd>
+
+
+<dt>allow_null</dt>
+<dd><p>Logical. Is NULL an acceptable value?</p></dd>
 
 
 <dt>allow_na</dt>
