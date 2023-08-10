@@ -27,8 +27,8 @@ stabilize_int_scalar <- function(x,
                                  x_class = object_type(x)) {
   .stabilize_cls_scalar(
     x,
-    to_cls_fn = to_int,
-    to_cls_args = list(
+    to_cls_scalar_fn = to_int_scalar,
+    to_cls_scalar_args = list(
       coerce_character = coerce_character,
       coerce_factor = coerce_factor
     ),

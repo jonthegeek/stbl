@@ -97,7 +97,12 @@ to_int.character <- function(x,
       due_to = "loss of precision", x_arg, call
     )
   }
-  .stop_cant_coerce(x_class, "integer", call)
+  .stop_cant_coerce(
+    from_class = x_class,
+    to_class = "integer",
+    x_arg = x_arg,
+    call = call
+  )
 }
 
 #' @export
@@ -119,7 +124,12 @@ to_int.factor <- function(x,
       )
     )
   }
-  .stop_cant_coerce(x_class, "integer", call)
+  .stop_cant_coerce(
+    from_class = x_class,
+    to_class = "integer",
+    x_arg = x_arg,
+    call = call
+  )
 }
 
 #' @export

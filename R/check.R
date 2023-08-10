@@ -10,6 +10,7 @@
   locations <- which(failures)
   .stop_must(
     msg = "must not contain NA values.",
+    x_arg = x_arg,
     additional_msg = c("*" = "NA locations: {locations}"),
     call = call
   )
@@ -36,6 +37,7 @@
   if (max_ok) {
     .stop_must(
       msg = "must have size >= {min_size}.",
+      x_arg = x_arg,
       additional_msg = c(x = "{x_size} is too small."),
       call = call
     )
@@ -43,6 +45,7 @@
 
   .stop_must(
     msg = "must have size <= {max_size}.",
+    x_arg = x_arg,
     additional_msg = c(x = "{x_size} is too big."),
     call = call
   )
@@ -67,6 +70,7 @@
   }
   .stop_must(
     "must be a single {.cls {x_class}}.",
+    x_arg = x_arg,
     call = call,
     additional_msg = c(x = "{.arg {x_arg}} has {cli::no(x_size)} values.")
   )
