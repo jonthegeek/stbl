@@ -45,10 +45,7 @@ to_int.NULL <- function(x,
                         allow_null = TRUE,
                         x_arg = rlang::caller_arg(x),
                         call = rlang::caller_env()) {
-  if (allow_null) {
-    return(NULL)
-  }
-  .stop_null(x_arg, call)
+  to_null(x, allow_null = allow_null, x_arg = x_arg, call = call)
 }
 
 #' @export

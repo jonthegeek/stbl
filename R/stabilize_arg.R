@@ -34,7 +34,7 @@ stabilize_arg <- function(x,
 
   if (is.null(x)) {
     return(
-      .check_null(x, allow_null = allow_null, x_arg = x_arg, call = call)
+      to_null(x, allow_null = allow_null, x_arg = x_arg, call = call)
     )
   }
 
