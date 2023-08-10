@@ -126,6 +126,44 @@ test_that("to_lgl works for characters", {
   )
 })
 
+test_that("to_lgl works for factors", {
+  given <- factor("TRUE")
+  expect_true(to_lgl(given))
+  given <- factor("FALSE")
+  expect_false(to_lgl(given))
+
+  given <- factor(c(
+    "TRUE", "T", "true",
+    "FALSE", "F", "false"
+  ))
+  expect_identical(
+    to_lgl(given),
+    as.logical(given)
+  )
+  given <- factor(c(
+    "TRUE", "T", "true", "t", "TrUe",
+    "FALSE", "F", "false", "f", "fAlSe"
+  ))
+  expect_identical(
+    to_lgl(given),
+    c(TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE)
+  )
+
+  given <- factor(letters)
+  expect_snapshot(
+    to_lgl(given),
+    error = TRUE
+  )
+
+  wrapper <- function(wrapper_val, ...) {
+    return(to_lgl(wrapper_val, ...))
+  }
+  expect_snapshot(
+    wrapper(given),
+    error = TRUE
+  )
+})
+
 test_that("to_lgl() errors for other things", {
   given <- list(1:10)
   expect_snapshot(

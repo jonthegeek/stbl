@@ -1,34 +1,29 @@
-#' Coerce an argument to a length-1 integer
+#' Coerce an argument to a length-1 logical vector
 #'
-#' This function wraps [to_int()], adding a quick check to confirm that the
+#' This function wraps [to_lgl()], adding a quick check to confirm that the
 #' input contains a single value.
 #'
-#' @inheritParams to_int
+#' @inheritParams to_lgl
 #'
-#' @return An integer equivalent to `x`.
+#' @return A logical vector equivalent to `x`.
 #' @export
 #'
 #' @examples
-#' to_int_scalar("1")
-#' try(to_int_scalar(1:10))
-to_int_scalar <- function(x,
+#' to_lgl_scalar("TRUE")
+#' try(to_lgl_scalar(c(TRUE, FALSE)))
+to_lgl_scalar <- function(x,
                           allow_null = TRUE,
-                          coerce_character = TRUE,
-                          coerce_factor = TRUE,
                           x_arg = rlang::caller_arg(x),
                           call = rlang::caller_env(),
                           x_class = object_type(x)) {
-  x_arg <- force(x_arg)
-  x <- to_int(
+  force(x_arg)
+  x <- to_lgl(
     x,
     allow_null = allow_null,
-    coerce_character = coerce_character,
-    coerce_factor = coerce_factor,
     x_arg = x_arg,
     call = call,
     x_class = x_class
   )
-
   .check_scalar(
     x,
     allow_null = allow_null,
