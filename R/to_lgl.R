@@ -73,6 +73,24 @@ to_lgl.character <- function(x,
   return(cast)
 }
 
+#' @export
+to_lgl.factor <- function(x,
+                          ...,
+                          x_arg = rlang::caller_arg(x),
+                          call = rlang::caller_env(),
+                          x_class = object_type(x)) {
+  return(
+    to_lgl.character(
+      as.character(x),
+      ...,
+      x_arg = x_arg,
+      call = call,
+      x_class = x_class
+    )
+  )
+}
+
+#' @export
 to_lgl.default <- function(x,
                            ...,
                            x_arg = rlang::caller_arg(x),

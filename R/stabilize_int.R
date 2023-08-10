@@ -42,7 +42,6 @@ stabilize_int <- function(x,
                           call = rlang::caller_env(),
                           x_class = object_type(x)) {
   x_arg <- force(x_arg)
-  x_class <- force(x_class)
 
   x <- to_int(
     x,
