@@ -15,6 +15,7 @@
 #' try(stabilize_int_scalar(NULL))
 stabilize_int_scalar <- function(x,
                                  ...,
+                                 allow_null = TRUE,
                                  allow_na = TRUE,
                                  coerce_character = TRUE,
                                  coerce_factor = TRUE,
@@ -43,6 +44,7 @@ stabilize_int_scalar <- function(x,
   stabilize_arg_scalar(
     x = x,
     ...,
+    allow_null = allow_null,
     allow_na = allow_na,
     x_arg = x_arg,
     call = call,

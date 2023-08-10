@@ -1,17 +1,8 @@
-.check_null <- function(x,
-                        allow_null = TRUE,
-                        x_arg = rlang::caller_arg(x),
-                        call = rlang::caller_env()) {
-  if (allow_null) {
-    return(x)
-  }
-  .stop_null(x_arg, call)
-}
-
 .check_na <- function(x,
                       allow_na = TRUE,
                       x_arg = rlang::caller_arg(x),
                       call = rlang::caller_env()) {
+  allow_na <- to_lgl(allow_na, allow_null = FALSE, call = call)
   failures <- is.na(x)
   if (allow_na || !any(failures)) {
     return(invisible(NULL))
@@ -29,8 +20,8 @@
                         max_size,
                         x_arg = rlang::caller_arg(x),
                         call = rlang::caller_env()) {
-  min_size <- to_int(min_size)
-  max_size <- to_int(max_size)
+  min_size <- to_int_scalar(min_size, call = call)
+  max_size <- to_int_scalar(max_size, call = call)
   .check_x_no_more_than_y(min_size, max_size, call = call)
 
   x_size <- vctrs::vec_size(x)
@@ -58,15 +49,22 @@
 }
 
 .check_scalar <- function(x,
+                          allow_null = TRUE,
                           x_arg = rlang::caller_arg(x),
                           call = rlang::caller_env(),
                           x_class = object_type(x)) {
+  if (.is_allowed_null(x, allow_null = allow_null, call = call)) {
+    return(invisible(NULL))
+  }
   if (rlang::is_scalar_vector(x)) {
     return(invisible(NULL))
   }
 
   x_size <- vctrs::vec_size(x)
 
+  if (x_class == "NULL") {
+    x_class <- "non-NULL"
+  }
   .stop_must(
     "must be a single {.cls {x_class}}.",
     call = call,
