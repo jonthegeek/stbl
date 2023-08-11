@@ -40,5 +40,6 @@
       stabilize_arg_scalar(given, allow_null = c(TRUE, FALSE))
     Condition
       Error:
-      ! `allow_null` must have a single <logical> value.
+      ! `allow_null` must be a single <logical>.
+      x `allow_null` has 2 values.
 

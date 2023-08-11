@@ -98,5 +98,10 @@ to_lgl.default <- function(x,
                            x_arg = rlang::caller_arg(x),
                            call = rlang::caller_env(),
                            x_class = object_type(x)) {
-  .stop_cant_coerce(from_class = x_class, to_class = "logical", call = call)
+  .stop_cant_coerce(
+    from_class = x_class,
+    to_class = "logical",
+    x_arg = x_arg,
+    call = call
+  )
 }

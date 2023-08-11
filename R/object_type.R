@@ -35,6 +35,7 @@ object_type <- function(x) {
   return(
     switch(type,
       language = "call",
+      closure = "function",
       type
     )
   )
