@@ -11,6 +11,7 @@ stabilize_chr(
   allow_na = TRUE,
   min_size = NULL,
   max_size = NULL,
+  regex = NULL,
   x_arg = rlang::caller_arg(x),
   call = rlang::caller_env(),
   x_class = object_type(x)
@@ -30,6 +31,9 @@ tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
 \item{max_size}{Integer. The maximum size of the object. Object size will be
 tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
+
+\item{regex}{Character scalar. An optional regex pattern to compare the
+value(s) of \code{x} against.}
 
 \item{x_arg}{Character. An argument name for x. The automatic value will work
 in most cases, or pass it through from higher-level functions to make error
@@ -59,4 +63,5 @@ try(stabilize_chr(NULL, allow_null = FALSE))
 try(stabilize_chr(c("a", NA), allow_na = FALSE))
 try(stabilize_chr(letters, min_size = 50))
 try(stabilize_chr(letters, max_size = 20))
+try(stabilize_chr(c("hide", "find", "find", "hide"), regex = "hide"))
 }

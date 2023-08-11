@@ -79,7 +79,7 @@
     Condition
       Error:
       ! `given` must have size >= 11.
-      x 10 is too small.
+      x 3 is too small.
 
 ---
 
@@ -88,23 +88,14 @@
     Condition
       Error in `wrapper()`:
       ! `x` must have size >= 11.
-      x 10 is too small.
+      x 3 is too small.
 
 ---
 
     Code
-      stabilize_arg(given, max_size = 4)
+      stabilize_arg(given, max_size = 2)
     Condition
       Error:
-      ! `given` must have size <= 4.
-      x 10 is too big.
-
----
-
-    Code
-      wrapper(given, max_size = 4)
-    Condition
-      Error in `wrapper()`:
-      ! `x` must have size <= 4.
-      x 10 is too big.
+      ! `given` must have size <= 2.
+      x 3 is too big.
 
