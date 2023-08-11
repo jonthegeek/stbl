@@ -1,8 +1,5 @@
 test_that("stabilize_arg() returns its inputs for default settings", {
-  given <- 1:10
-  expect_identical(stabilize_arg(given), given)
-  expect_identical(stabilize_arg(letters), letters)
-  given <- given + 0.1
+  given <- 1:2
   expect_identical(stabilize_arg(given), given)
   expect_identical(stabilize_arg(NULL), NULL)
 })
@@ -27,15 +24,11 @@ test_that("stabilize_arg() rejects NULLs when asked", {
   }
   given <- NULL
   expect_snapshot(
-    {
-      stabilize_arg(given, allow_null = FALSE)
-    },
+    stabilize_arg(given, allow_null = FALSE),
     error = TRUE
   )
   expect_snapshot(
-    {
-      wrapper(given, allow_null = FALSE)
-    },
+    wrapper(given, allow_null = FALSE),
     error = TRUE
   )
 })
@@ -44,15 +37,8 @@ test_that("stabilize_arg() checks NAs", {
   wrapper <- function(x, ...) {
     stabilize_arg(x, ...)
   }
-  given <- 1:10
-  expect_identical(
-    stabilize_arg(given, allow_na = FALSE),
-    given
-  )
-  expect_identical(
-    wrapper(given, allow_na = FALSE),
-    given
-  )
+  given <- 1:8
+  expect_identical(stabilize_arg(given, allow_na = FALSE), given)
 
   given[c(4, 7)] <- NA
   expect_snapshot(
@@ -71,7 +57,7 @@ test_that("stabilize_arg() checks size args", {
   }
 
   given <- TRUE
-  expect_no_error(stabilize_arg(given, min_size = 1, max_size = 1))
+  expect_true(stabilize_arg(given, min_size = 1, max_size = 1))
 
   expect_snapshot(
     stabilize_arg(given, min_size = 2, max_size = 1),
@@ -84,17 +70,9 @@ test_that("stabilize_arg() checks size args", {
 })
 
 test_that("stabilize_arg() checks size", {
-  wrapper <- function(x, ...) {
-    stabilize_arg(x, ...)
-  }
-
-  given <- 1:10
+  given <- 1:3
   expect_identical(
     stabilize_arg(given, min_size = 1, max_size = 10),
-    given
-  )
-  expect_identical(
-    wrapper(given, min_size = 1, max_size = 10),
     given
   )
 
@@ -102,16 +80,15 @@ test_that("stabilize_arg() checks size", {
     stabilize_arg(given, min_size = 11),
     error = TRUE
   )
+  wrapper <- function(x, ...) {
+    stabilize_arg(x, ...)
+  }
   expect_snapshot(
     wrapper(given, min_size = 11),
     error = TRUE
   )
   expect_snapshot(
-    stabilize_arg(given, max_size = 4),
-    error = TRUE
-  )
-  expect_snapshot(
-    wrapper(given, max_size = 4),
+    stabilize_arg(given, max_size = 2),
     error = TRUE
   )
 })

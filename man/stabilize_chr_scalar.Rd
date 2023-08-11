@@ -9,6 +9,7 @@ stabilize_chr_scalar(
   ...,
   allow_null = TRUE,
   allow_na = TRUE,
+  regex = NULL,
   x_arg = rlang::caller_arg(x),
   call = rlang::caller_env(),
   x_class = object_type(x)
@@ -22,6 +23,9 @@ stabilize_chr_scalar(
 \item{allow_null}{Logical. Is NULL an acceptable value?}
 
 \item{allow_na}{Logical. Are NA values ok?}
+
+\item{regex}{Character scalar. An optional regex pattern to compare the
+value(s) of \code{x} against.}
 
 \item{x_arg}{Character. An argument name for x. The automatic value will work
 in most cases, or pass it through from higher-level functions to make error

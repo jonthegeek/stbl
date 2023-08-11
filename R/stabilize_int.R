@@ -68,8 +68,8 @@ stabilize_int <- function(x,
                              max_value,
                              x_arg = rlang::caller_arg(x),
                              call = rlang::caller_env()) {
-  min_value <- to_int(min_value)
-  max_value <- to_int(max_value)
+  min_value <- to_int_scalar(min_value, call = call)
+  max_value <- to_int_scalar(max_value, call = call)
 
   min_failure_locations <- .find_failures(x, min_value, `<`)
   max_failure_locations <- .find_failures(x, max_value, `>`)

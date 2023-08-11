@@ -26,28 +26,10 @@
 ---
 
     Code
-      wrapper(given)
-    Condition
-      Error in `wrapper()`:
-      ! Can't convert from `wrapper_val` <double> to <integer> due to loss of precision.
-      * Locations: 4
-
----
-
-    Code
       to_int(given)
     Condition
       Error:
       ! Can't convert from `given` <double> to <integer> due to loss of precision.
-      * Locations: 4
-
----
-
-    Code
-      wrapper(given)
-    Condition
-      Error in `wrapper()`:
-      ! Can't convert from `wrapper_val` <double> to <integer> due to loss of precision.
       * Locations: 4
 
 # to_int() works for chrs
@@ -89,54 +71,12 @@
 ---
 
     Code
-      to_int(given, coerce_character = FALSE)
-    Condition
-      Error:
-      ! Can't coerce `given` <character> to <integer>.
-
----
-
-    Code
-      wrapper(given, coerce_character = FALSE)
-    Condition
-      Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` <character> to <integer>.
-
----
-
-    Code
       to_int(given)
     Condition
       Error:
       ! `given` <character> must be coercible to <integer>
       x Can't convert some values due to incompatible values.
       * Locations: 4
-
----
-
-    Code
-      wrapper(given)
-    Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` <character> must be coercible to <integer>
-      x Can't convert some values due to incompatible values.
-      * Locations: 4
-
----
-
-    Code
-      to_int(given, coerce_character = FALSE)
-    Condition
-      Error:
-      ! Can't coerce `given` <character> to <integer>.
-
----
-
-    Code
-      wrapper(given, coerce_character = FALSE)
-    Condition
-      Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` <character> to <integer>.
 
 # to_int() works for complexes
 
@@ -217,12 +157,4 @@
     Condition
       Error:
       ! `mean` must be a vector, not a function.
-
----
-
-    Code
-      wrapper(mean)
-    Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must be a vector, not a function.
 
