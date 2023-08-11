@@ -40,6 +40,12 @@
     <loc>https://jonthegeek.github.io/stbl/reference/stabilize_arg_scalar.html</loc>
   </url>
   <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/stabilize_chr.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/stabilize_chr_scalar.html</loc>
+  </url>
+  <url>
     <loc>https://jonthegeek.github.io/stbl/reference/stabilize_int.html</loc>
   </url>
   <url>
@@ -53,6 +59,12 @@
   </url>
   <url>
     <loc>https://jonthegeek.github.io/stbl/reference/stbl-package.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/to_chr.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/to_chr_scalar.html</loc>
   </url>
   <url>
     <loc>https://jonthegeek.github.io/stbl/reference/to_int.html</loc>
