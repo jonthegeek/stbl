@@ -56,6 +56,7 @@ check for length-1 character vectors.</p>
 <span>  <span class="va">...</span>,</span>
 <span>  allow_null <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  allow_na <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  regex <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  x_arg <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/caller_arg.html" class="external-link">caller_arg</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
 <span>  call <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">caller_env</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  x_class <span class="op">=</span> <span class="fu"><a href="object_type.html">object_type</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -78,6 +79,11 @@ check for length-1 character vectors.</p>
 
 <dt>allow_na</dt>
 <dd><p>Logical. Are NA values ok?</p></dd>
+
+
+<dt>regex</dt>
+<dd><p>Character scalar. An optional regex pattern to compare the
+value(s) of <code>x</code> against.</p></dd>
 
 
 <dt>x_arg</dt>
