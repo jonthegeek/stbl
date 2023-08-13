@@ -1,9 +1,3 @@
-# TODO: Document to_chr.
-# TODO: stabilize_chr
-# TODO: to_chr_scalar
-# TODO: stabilize_chr_scalar
-# TODO: See if there's anything to abstract for to_*().
-
 #' Coerce an argument to character
 #'
 #' If a value can be coerced to a character without losing information, do so
