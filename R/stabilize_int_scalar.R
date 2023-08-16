@@ -4,6 +4,7 @@
 #' check for length-1 integers.
 #'
 #' @inheritParams stabilize_int
+#' @inheritParams .coerce-params
 #'
 #' @return `x`, unless one of the checks fails.
 #' @export
@@ -17,6 +18,7 @@
 stabilize_int_scalar <- function(x,
                                  ...,
                                  allow_null = TRUE,
+                                 allow_zero_length = TRUE,
                                  allow_na = TRUE,
                                  coerce_character = TRUE,
                                  coerce_factor = TRUE,
@@ -37,6 +39,7 @@ stabilize_int_scalar <- function(x,
       min_value = min_value, max_value = max_value
     ),
     allow_null = allow_null,
+    allow_zero_length = allow_zero_length,
     allow_na = allow_na,
     x_arg = x_arg,
     call = call,

@@ -10,6 +10,8 @@
 
 \item{allow_null}{Logical. Is NULL an acceptable value?}
 
+\item{allow_zero_length}{Logical. Are zero-length vectors acceptable?}
+
 \item{min_size}{Integer. The minimum size of the object. Object size will be
 tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 

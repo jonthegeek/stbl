@@ -48,3 +48,12 @@
       Error in `wrapper()`:
       ! `wrapper_val` must not be <NULL>.
 
+# to_chr_scalar rejects length-0 chrs when told to do so
+
+    Code
+      to_chr_scalar(given, allow_zero_length = FALSE)
+    Condition
+      Error:
+      ! `given` must be a single <character>.
+      x `given` has no values.
+

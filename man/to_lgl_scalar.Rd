@@ -7,6 +7,7 @@
 to_lgl_scalar(
   x,
   allow_null = TRUE,
+  allow_zero_length = TRUE,
   x_arg = rlang::caller_arg(x),
   call = rlang::caller_env(),
   x_class = object_type(x)
@@ -16,6 +17,8 @@ to_lgl_scalar(
 \item{x}{The argument to stabilize.}
 
 \item{allow_null}{Logical. Is NULL an acceptable value?}
+
+\item{allow_zero_length}{Logical. Are zero-length vectors acceptable?}
 
 \item{x_arg}{Character. An argument name for x. The automatic value will work
 in most cases, or pass it through from higher-level functions to make error

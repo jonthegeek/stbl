@@ -4,6 +4,7 @@
 #' input contains a single value.
 #'
 #' @inheritParams to_int
+#' @inheritParams .coerce-params
 #'
 #' @return An integer equivalent to `x`.
 #' @export
@@ -13,6 +14,7 @@
 #' try(to_int_scalar(1:10))
 to_int_scalar <- function(x,
                           allow_null = TRUE,
+                          allow_zero_length = TRUE,
                           coerce_character = TRUE,
                           coerce_factor = TRUE,
                           x_arg = rlang::caller_arg(x),
@@ -27,27 +29,9 @@ to_int_scalar <- function(x,
       coerce_factor = coerce_factor
     ),
     allow_null = allow_null,
+    allow_zero_length = allow_zero_length,
     x_arg = x_arg,
     call = call,
     x_class = x_class
   )
-  x_arg <- force(x_arg)
-  x <- to_int(
-    x,
-    allow_null = allow_null,
-    coerce_character = coerce_character,
-    coerce_factor = coerce_factor,
-    x_arg = x_arg,
-    call = call,
-    x_class = x_class
-  )
-
-  .check_scalar(
-    x,
-    allow_null = allow_null,
-    x_arg = x_arg,
-    call = call,
-    x_class = x_class
-  )
-  return(x)
 }

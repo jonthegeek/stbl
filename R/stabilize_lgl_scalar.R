@@ -4,6 +4,7 @@
 #' check for length-1 logical vectors.
 #'
 #' @inheritParams stabilize_lgl
+#' @inheritParams .coerce-params
 #'
 #' @return `x`, unless one of the checks fails.
 #' @export
@@ -17,6 +18,7 @@
 stabilize_lgl_scalar <- function(x,
                                  ...,
                                  allow_null = TRUE,
+                                 allow_zero_length = TRUE,
                                  allow_na = TRUE,
                                  x_arg = rlang::caller_arg(x),
                                  call = rlang::caller_env(),
@@ -25,6 +27,7 @@ stabilize_lgl_scalar <- function(x,
     x,
     to_cls_scalar_fn = to_lgl_scalar,
     allow_null = allow_null,
+    allow_zero_length = allow_zero_length,
     allow_na = allow_na,
     x_arg = x_arg,
     call = call,

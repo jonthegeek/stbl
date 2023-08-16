@@ -8,6 +8,7 @@ stabilize_chr_scalar(
   x,
   ...,
   allow_null = TRUE,
+  allow_zero_length = TRUE,
   allow_na = TRUE,
   regex = NULL,
   x_arg = rlang::caller_arg(x),
@@ -21,6 +22,8 @@ stabilize_chr_scalar(
 \item{...}{These dots are for future extensions and should be empty.}
 
 \item{allow_null}{Logical. Is NULL an acceptable value?}
+
+\item{allow_zero_length}{Logical. Are zero-length vectors acceptable?}
 
 \item{allow_na}{Logical. Are NA values ok?}
 

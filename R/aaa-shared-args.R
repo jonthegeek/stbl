@@ -6,6 +6,7 @@
 #' @param ... These dots are for future extensions and should be empty.
 #' @param allow_na Logical. Are NA values ok?
 #' @param allow_null Logical. Is NULL an acceptable value?
+#' @param allow_zero_length Logical. Are zero-length vectors acceptable?
 #' @param min_size Integer. The minimum size of the object. Object size will be
 #'   tested using [vctrs::vec_size()].
 #' @param max_size Integer. The maximum size of the object. Object size will be

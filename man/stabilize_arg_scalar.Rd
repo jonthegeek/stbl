@@ -8,6 +8,7 @@ stabilize_arg_scalar(
   x,
   ...,
   allow_null = TRUE,
+  allow_zero_length = TRUE,
   allow_na = TRUE,
   x_arg = rlang::caller_arg(x),
   call = rlang::caller_env(),
@@ -20,6 +21,8 @@ stabilize_arg_scalar(
 \item{...}{These dots are for future extensions and should be empty.}
 
 \item{allow_null}{Logical. Is NULL an acceptable value?}
+
+\item{allow_zero_length}{Logical. Are zero-length vectors acceptable?}
 
 \item{allow_na}{Logical. Are NA values ok?}
 

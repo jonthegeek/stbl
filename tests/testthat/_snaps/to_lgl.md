@@ -1,3 +1,11 @@
+# to_lgl() fails with missing value
+
+    Code
+      to_lgl()
+    Condition
+      Error:
+      ! `unknown arg` must not be missing.
+
 # to_lgl() works for NULL
 
     Code
