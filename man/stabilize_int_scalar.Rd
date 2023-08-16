@@ -8,6 +8,7 @@ stabilize_int_scalar(
   x,
   ...,
   allow_null = TRUE,
+  allow_zero_length = TRUE,
   allow_na = TRUE,
   coerce_character = TRUE,
   coerce_factor = TRUE,
@@ -24,6 +25,8 @@ stabilize_int_scalar(
 \item{...}{These dots are for future extensions and should be empty.}
 
 \item{allow_null}{Logical. Is NULL an acceptable value?}
+
+\item{allow_zero_length}{Logical. Are zero-length vectors acceptable?}
 
 \item{allow_na}{Logical. Are NA values ok?}
 

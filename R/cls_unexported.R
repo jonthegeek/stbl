@@ -3,13 +3,16 @@
                            to_cls_fn,
                            to_cls_args = list(),
                            allow_null = TRUE,
+                           allow_zero_length = TRUE,
                            x_arg = rlang::caller_arg(x),
                            call = rlang::caller_env(),
                            x_class = object_type(x)) {
   if (is_rlang_cls_scalar(x)) {
     return(x)
   }
+
   force(x_arg)
+  force(call)
   x <- rlang::inject(
     to_cls_fn(
       x,
@@ -23,6 +26,7 @@
   .check_scalar(
     x,
     allow_null = allow_null,
+    allow_zero_length = allow_zero_length,
     x_arg = x_arg,
     call = call,
     x_class = x_class
@@ -43,8 +47,8 @@
                            x_arg = rlang::caller_arg(x),
                            call = rlang::caller_env(),
                            x_class = object_type(x)) {
-  x_arg <- force(x_arg)
-
+  force(x_arg)
+  force(call)
   x <- rlang::inject(
     to_cls_fn(
       x,
@@ -84,17 +88,20 @@
                                   check_cls_value_fn = NULL,
                                   check_cls_value_fn_args = list(),
                                   allow_null = TRUE,
+                                  allow_zero_length = TRUE,
                                   allow_na = TRUE,
                                   x_arg = rlang::caller_arg(x),
                                   call = rlang::caller_env(),
                                   x_class = object_type(x)) {
   rlang::check_dots_empty0(..., call = call)
-  x_arg <- force(x_arg)
+  force(x_arg)
+  force(call)
 
   x <- rlang::inject(
     to_cls_scalar_fn(
       x,
       allow_null = allow_null,
+      allow_zero_length = allow_zero_length,
       !!!to_cls_scalar_args,
       x_arg = x_arg,
       call = call,

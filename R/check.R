@@ -3,17 +3,21 @@
                       x_arg = rlang::caller_arg(x),
                       call = rlang::caller_env()) {
   allow_na <- to_lgl_scalar(allow_na, allow_null = FALSE, call = call)
-  failures <- is.na(x)
-  if (allow_na || !any(failures)) {
+  if (allow_na) {
     return(invisible(NULL))
   }
-  locations <- which(failures)
-  .stop_must(
-    msg = "must not contain NA values.",
-    x_arg = x_arg,
-    additional_msg = c("*" = "NA locations: {locations}"),
-    call = call
-  )
+
+  failures <- is.na(x)
+  if (any(failures)) {
+    locations <- which(failures)
+    .stop_must(
+      msg = "must not contain NA values.",
+      x_arg = x_arg,
+      additional_msg = c("*" = "NA locations: {locations}"),
+      call = call
+    )
+  }
+  return(invisible(NULL))
 }
 
 .check_size <- function(x,
@@ -21,6 +25,10 @@
                         max_size,
                         x_arg = rlang::caller_arg(x),
                         call = rlang::caller_env()) {
+  if (is.null(min_size) && is.null(max_size)) {
+    return(invisible(NULL))
+  }
+
   min_size <- to_int_scalar(min_size, call = call)
   max_size <- to_int_scalar(max_size, call = call)
   .check_x_no_more_than_y(min_size, max_size, call = call)
@@ -53,12 +61,28 @@
 
 .check_scalar <- function(x,
                           allow_null = TRUE,
+                          allow_zero_length = TRUE,
                           x_arg = rlang::caller_arg(x),
                           call = rlang::caller_env(),
                           x_class = object_type(x)) {
-  if (.is_allowed_null(x, allow_null = allow_null, call = call)) {
-    return(invisible(NULL))
+  # TODO: Some of this is redundant.
+  if (!length(x)) {
+    if (is.null(x)) {
+      if (.is_allowed_null(x, allow_null = allow_null, call = call)) {
+        return(invisible(NULL))
+      }
+    } else {
+      allow_zero_length <- to_lgl_scalar(
+        allow_zero_length,
+        allow_null = FALSE,
+        call = call
+      )
+      if (allow_zero_length) {
+        return(invisible(NULL))
+      }
+    }
   }
+
   if (rlang::is_scalar_vector(x)) {
     return(invisible(NULL))
   }

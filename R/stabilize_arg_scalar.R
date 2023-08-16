@@ -4,6 +4,7 @@
 #' check for length-1 vectors.
 #'
 #' @inheritParams stabilize_arg
+#' @inheritParams .coerce-params
 #'
 #' @return `x`, unless one of the checks fails.
 #' @export
@@ -15,6 +16,7 @@
 stabilize_arg_scalar <- function(x,
                                  ...,
                                  allow_null = TRUE,
+                                 allow_zero_length = TRUE,
                                  allow_na = TRUE,
                                  x_arg = rlang::caller_arg(x),
                                  call = rlang::caller_env(),
@@ -23,6 +25,7 @@ stabilize_arg_scalar <- function(x,
   .check_scalar(
     x,
     allow_null = allow_null,
+    allow_zero_length = allow_zero_length,
     x_arg = x_arg,
     call = call,
     x_class = x_class

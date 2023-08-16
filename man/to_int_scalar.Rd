@@ -7,6 +7,7 @@
 to_int_scalar(
   x,
   allow_null = TRUE,
+  allow_zero_length = TRUE,
   coerce_character = TRUE,
   coerce_factor = TRUE,
   x_arg = rlang::caller_arg(x),
@@ -18,6 +19,8 @@ to_int_scalar(
 \item{x}{The argument to stabilize.}
 
 \item{allow_null}{Logical. Is NULL an acceptable value?}
+
+\item{allow_zero_length}{Logical. Are zero-length vectors acceptable?}
 
 \item{coerce_character}{Logical. Should character vectors such as "1" and
 "2.0" be coerced to integer?}

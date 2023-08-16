@@ -1,3 +1,10 @@
+test_that("to_lgl() fails with missing value", {
+  expect_snapshot(
+    to_lgl(),
+    error = TRUE
+  )
+})
+
 test_that("to_lgl() works for lgls", {
   expect_true(to_lgl(TRUE))
   expect_false(to_lgl(FALSE))
