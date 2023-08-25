@@ -8,8 +8,8 @@ to_lgl_scalar(
   x,
   allow_null = TRUE,
   allow_zero_length = TRUE,
-  x_arg = rlang::caller_arg(x),
-  call = rlang::caller_env(),
+  x_arg = caller_arg(x),
+  call = caller_env(),
   x_class = object_type(x)
 )
 }

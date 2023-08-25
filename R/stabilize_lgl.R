@@ -26,8 +26,8 @@ stabilize_lgl <- function(x,
                           allow_na = TRUE,
                           min_size = NULL,
                           max_size = NULL,
-                          x_arg = rlang::caller_arg(x),
-                          call = rlang::caller_env(),
+                          x_arg = caller_arg(x),
+                          call = caller_env(),
                           x_class = object_type(x)) {
   .stabilize_cls(
     x,

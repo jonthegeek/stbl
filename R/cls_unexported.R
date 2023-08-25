@@ -4,8 +4,8 @@
                            to_cls_args = list(),
                            allow_null = TRUE,
                            allow_zero_length = TRUE,
-                           x_arg = rlang::caller_arg(x),
-                           call = rlang::caller_env(),
+                           x_arg = caller_arg(x),
+                           call = caller_env(),
                            x_class = object_type(x)) {
   if (is_rlang_cls_scalar(x)) {
     return(x)
@@ -13,7 +13,7 @@
 
   force(x_arg)
   force(call)
-  x <- rlang::inject(
+  x <- inject(
     to_cls_fn(
       x,
       allow_null = allow_null,
@@ -44,12 +44,12 @@
                            allow_na = TRUE,
                            min_size = NULL,
                            max_size = NULL,
-                           x_arg = rlang::caller_arg(x),
-                           call = rlang::caller_env(),
+                           x_arg = caller_arg(x),
+                           call = caller_env(),
                            x_class = object_type(x)) {
   force(x_arg)
   force(call)
-  x <- rlang::inject(
+  x <- inject(
     to_cls_fn(
       x,
       allow_null = allow_null,
@@ -60,7 +60,7 @@
     )
   )
   if (!is.null(check_cls_value_fn)) {
-    rlang::inject(
+    inject(
       check_cls_value_fn(
         x,
         !!!check_cls_value_fn_args,
@@ -90,14 +90,14 @@
                                   allow_null = TRUE,
                                   allow_zero_length = TRUE,
                                   allow_na = TRUE,
-                                  x_arg = rlang::caller_arg(x),
-                                  call = rlang::caller_env(),
+                                  x_arg = caller_arg(x),
+                                  call = caller_env(),
                                   x_class = object_type(x)) {
-  rlang::check_dots_empty0(..., call = call)
+  check_dots_empty0(..., call = call)
   force(x_arg)
   force(call)
 
-  x <- rlang::inject(
+  x <- inject(
     to_cls_scalar_fn(
       x,
       allow_null = allow_null,
@@ -109,7 +109,7 @@
     )
   )
   if (!is.null(check_cls_value_fn)) {
-    rlang::inject(
+    inject(
       check_cls_value_fn(
         x,
         !!!check_cls_value_fn_args,

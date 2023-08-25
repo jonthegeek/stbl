@@ -38,8 +38,8 @@ stabilize_int <- function(x,
                           max_size = NULL,
                           min_value = NULL,
                           max_value = NULL,
-                          x_arg = rlang::caller_arg(x),
-                          call = rlang::caller_env(),
+                          x_arg = caller_arg(x),
+                          call = caller_env(),
                           x_class = object_type(x)) {
   .stabilize_cls(
     x,
@@ -66,8 +66,8 @@ stabilize_int <- function(x,
 .check_value_int <- function(x,
                              min_value,
                              max_value,
-                             x_arg = rlang::caller_arg(x),
-                             call = rlang::caller_env()) {
+                             x_arg = caller_arg(x),
+                             call = caller_env()) {
   min_value <- to_int_scalar(min_value, call = call)
   max_value <- to_int_scalar(max_value, call = call)
 
@@ -87,5 +87,5 @@ stabilize_int <- function(x,
     x = "Values are too high at locations {max_failure_locations}."
   )
 
-  cli::cli_abort(c(min_msg, max_msg), call = call)
+  cli_abort(c(min_msg, max_msg), call = call)
 }

@@ -26,8 +26,8 @@
 #' try(to_chr(NULL, allow_null = FALSE))
 to_chr <- function(x,
                    allow_null = TRUE,
-                   x_arg = rlang::caller_arg(x),
-                   call = rlang::caller_env(),
+                   x_arg = caller_arg(x),
+                   call = caller_env(),
                    x_class = object_type(x)) {
   UseMethod("to_chr")
 }
@@ -41,16 +41,16 @@ to_chr.character <- function(x, ...) {
 to_chr.NULL <- function(x,
                         ...,
                         allow_null = TRUE,
-                        x_arg = rlang::caller_arg(x),
-                        call = rlang::caller_env()) {
+                        x_arg = caller_arg(x),
+                        call = caller_env()) {
   to_null(x, allow_null = allow_null, x_arg = x_arg, call = call)
 }
 
 #' @export
 to_chr.list <- function(x,
                         ...,
-                        x_arg = rlang::caller_arg(x),
-                        call = rlang::caller_env(),
+                        x_arg = caller_arg(x),
+                        call = caller_env(),
                         x_class = object_type(x)) {
   .stop_cant_coerce(
     from_class = x_class,
@@ -63,8 +63,8 @@ to_chr.list <- function(x,
 #' @export
 to_chr.data.frame <- function(x,
                               ...,
-                              x_arg = rlang::caller_arg(x),
-                              call = rlang::caller_env(),
+                              x_arg = caller_arg(x),
+                              call = caller_env(),
                               x_class = object_type(x)) {
   .stop_cant_coerce(
     from_class = x_class,
@@ -77,10 +77,10 @@ to_chr.data.frame <- function(x,
 #' @export
 to_chr.default <- function(x,
                            ...,
-                           x_arg = rlang::caller_arg(x),
-                           call = rlang::caller_env(),
+                           x_arg = caller_arg(x),
+                           call = caller_env(),
                            x_class = object_type(x)) {
-  rlang::try_fetch(
+  try_fetch(
     as.character(x),
     error = function(cnd) {
       .stop_cant_coerce(

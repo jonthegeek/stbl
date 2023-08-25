@@ -18,10 +18,10 @@ stabilize_arg_scalar <- function(x,
                                  allow_null = TRUE,
                                  allow_zero_length = TRUE,
                                  allow_na = TRUE,
-                                 x_arg = rlang::caller_arg(x),
-                                 call = rlang::caller_env(),
+                                 x_arg = caller_arg(x),
+                                 call = caller_env(),
                                  x_class = object_type(x)) {
-  rlang::check_dots_empty0(..., call = call)
+  check_dots_empty0(..., call = call)
   .check_scalar(
     x,
     allow_null = allow_null,
