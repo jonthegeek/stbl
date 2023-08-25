@@ -1,7 +1,7 @@
 .check_na <- function(x,
                       allow_na = TRUE,
-                      x_arg = rlang::caller_arg(x),
-                      call = rlang::caller_env()) {
+                      x_arg = caller_arg(x),
+                      call = caller_env()) {
   allow_na <- to_lgl_scalar(allow_na, allow_null = FALSE, call = call)
   if (allow_na) {
     return(invisible(NULL))
@@ -23,8 +23,8 @@
 .check_size <- function(x,
                         min_size,
                         max_size,
-                        x_arg = rlang::caller_arg(x),
-                        call = rlang::caller_env()) {
+                        x_arg = caller_arg(x),
+                        call = caller_env()) {
   if (is.null(min_size) && is.null(max_size)) {
     return(invisible(NULL))
   }
@@ -33,7 +33,7 @@
   max_size <- to_int_scalar(max_size, call = call)
   .check_x_no_more_than_y(min_size, max_size, call = call)
 
-  x_size <- vctrs::vec_size(x)
+  x_size <- vec_size(x)
 
   min_ok <- is.null(min_size) || x_size >= min_size
   max_ok <- is.null(max_size) || x_size <= max_size
@@ -62,8 +62,8 @@
 .check_scalar <- function(x,
                           allow_null = TRUE,
                           allow_zero_length = TRUE,
-                          x_arg = rlang::caller_arg(x),
-                          call = rlang::caller_env(),
+                          x_arg = caller_arg(x),
+                          call = caller_env(),
                           x_class = object_type(x)) {
   # TODO: Some of this is redundant.
   if (!length(x)) {
@@ -83,11 +83,11 @@
     }
   }
 
-  if (rlang::is_scalar_vector(x)) {
+  if (is_scalar_vector(x)) {
     return(invisible(NULL))
   }
 
-  x_size <- vctrs::vec_size(x)
+  x_size <- vec_size(x)
 
   if (x_class == "NULL") {
     x_class <- "non-NULL"
@@ -96,17 +96,17 @@
     "must be a single {.cls {x_class}}.",
     x_arg = x_arg,
     call = call,
-    additional_msg = c(x = "{.arg {x_arg}} has {cli::no(x_size)} values.")
+    additional_msg = c(x = "{.arg {x_arg}} has {no(x_size)} values.")
   )
 }
 
 .check_x_no_more_than_y <- function(x,
                                     y,
-                                    x_arg = rlang::caller_arg(x),
-                                    y_arg = rlang::caller_arg(y),
-                                    call = rlang::caller_env()) {
+                                    x_arg = caller_arg(x),
+                                    y_arg = caller_arg(y),
+                                    call = caller_env()) {
   if (!is.null(x) && !is.null(y) && x > y) {
-    cli::cli_abort(
+    cli_abort(
       c(
         "{.arg {x_arg}} can't be larger than {.arg {y_arg}}.",
         "*" = "{.arg {x_arg}} = {x}",

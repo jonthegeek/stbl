@@ -15,8 +15,8 @@ stabilize_int(
   max_size = NULL,
   min_value = NULL,
   max_value = NULL,
-  x_arg = rlang::caller_arg(x),
-  call = rlang::caller_env(),
+  x_arg = caller_arg(x),
+  call = caller_env(),
   x_class = object_type(x)
 )
 }

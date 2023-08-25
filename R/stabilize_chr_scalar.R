@@ -21,8 +21,8 @@ stabilize_chr_scalar <- function(x,
                                  allow_zero_length = TRUE,
                                  allow_na = TRUE,
                                  regex = NULL,
-                                 x_arg = rlang::caller_arg(x),
-                                 call = rlang::caller_env(),
+                                 x_arg = caller_arg(x),
+                                 call = caller_env(),
                                  x_class = object_type(x)) {
   .stabilize_cls_scalar(
     x,

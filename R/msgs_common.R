@@ -1,9 +1,17 @@
+#' @importFrom rlang caller_arg
+#' @export
+rlang::caller_arg
+
+#' @importFrom rlang caller_env
+#' @export
+rlang::caller_env
+
 .stop_must <- function(msg, x_arg, call, additional_msg = NULL) {
   main_msg <- .glue2("{.arg [x_arg]} [msg]")
-  cli::cli_abort(
+  cli_abort(
     c(main_msg, additional_msg),
     call = call,
-    .envir = rlang::caller_env()
+    .envir = caller_env()
   )
 }
 
@@ -15,10 +23,10 @@
   main_msg <- .glue2(
     "Can't coerce {.arg [x_arg]} {.cls [from_class]} to {.cls [to_class]}."
   )
-  cli::cli_abort(
+  cli_abort(
     c(main_msg, additional_msg),
     call = call,
-    .envir = rlang::caller_env()
+    .envir = caller_env()
   )
 }
 

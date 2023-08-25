@@ -1,5 +1,5 @@
-.glue2 <- function(..., env = rlang::caller_env()) {
-  glue::glue(..., .envir = env, .open = "[", .close = "]")
+.glue2 <- function(..., env = caller_env()) {
+  glue(..., .envir = env, .open = "[", .close = "]")
 }
 
 `%&&%` <- function(x, y) {

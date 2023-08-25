@@ -10,8 +10,8 @@ to_int_scalar(
   allow_zero_length = TRUE,
   coerce_character = TRUE,
   coerce_factor = TRUE,
-  x_arg = rlang::caller_arg(x),
-  call = rlang::caller_env(),
+  x_arg = caller_arg(x),
+  call = caller_env(),
   x_class = object_type(x)
 )
 }

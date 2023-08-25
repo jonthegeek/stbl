@@ -17,12 +17,12 @@ to_int_scalar <- function(x,
                           allow_zero_length = TRUE,
                           coerce_character = TRUE,
                           coerce_factor = TRUE,
-                          x_arg = rlang::caller_arg(x),
-                          call = rlang::caller_env(),
+                          x_arg = caller_arg(x),
+                          call = caller_env(),
                           x_class = object_type(x)) {
   .to_cls_scalar(
     x,
-    is_rlang_cls_scalar = rlang::is_scalar_integer,
+    is_rlang_cls_scalar = is_scalar_integer,
     to_cls_fn = to_int,
     to_cls_args = list(
       coerce_character = coerce_character,
