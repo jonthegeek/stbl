@@ -8,7 +8,8 @@
 #' @inheritParams .coerce-params
 #' @inheritParams to_chr
 #' @param regex Character scalar. An optional regex pattern to compare the
-#'   value(s) of `x` against.
+#'   value(s) of `x` against. If a complex regex pattern throws an error, try
+#'   installing the stringi package with `install.packages("stringi")`.
 #'
 #' @return The argument as a character vector.
 #' @export
@@ -56,7 +57,7 @@ stabilize_chr <- function(x,
     return(invisible(NULL))
   }
   regex <- to_chr_scalar(regex, call = call)
-  success <- grepl(regex, x)
+  success <- .has_regex_pattern(x, regex)
   if (all(success)) {
     return(invisible(NULL))
   }
@@ -70,4 +71,11 @@ stabilize_chr <- function(x,
     ),
     call = call
   )
+}
+
+.has_regex_pattern <- function(x, regex) {
+  if (requireNamespace("stringi", quietly = TRUE)) {
+    return(stringi::stri_detect_regex(x, regex))
+  }
+  return(grepl(regex, x))
 }
