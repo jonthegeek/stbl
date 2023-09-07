@@ -18,3 +18,10 @@
       x Some values do not match.
       * Locations: 1
 
+# stabilize_chr() works with complex url regex
+
+    Code
+      stabilize_chr("example.com", regex = url_regex)
+    Output
+      [1] "example.com"
+

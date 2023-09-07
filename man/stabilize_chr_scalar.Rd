@@ -28,7 +28,8 @@ stabilize_chr_scalar(
 \item{allow_na}{Logical. Are NA values ok?}
 
 \item{regex}{Character scalar. An optional regex pattern to compare the
-value(s) of \code{x} against.}
+value(s) of \code{x} against. If a complex regex pattern throws an error, try
+installing the stringi package with \code{install.packages("stringi")}.}
 
 \item{x_arg}{Character. An argument name for x. The automatic value will work
 in most cases, or pass it through from higher-level functions to make error

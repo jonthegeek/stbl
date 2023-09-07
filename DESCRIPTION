@@ -17,6 +17,7 @@ Imports:
     rlang (>= 1.1.0),
     vctrs
 Suggests: 
+    stringi,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Config/testthat/parallel: true
