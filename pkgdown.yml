@@ -2,7 +2,7 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2023-09-07T20:29Z
+last_built: 2023-10-25T22:03Z
 urls:
   reference: https://jonthegeek.github.io/stbl/reference
   article: https://jonthegeek.github.io/stbl/articles
