@@ -6,12 +6,17 @@ rlang::caller_arg
 #' @export
 rlang::caller_env
 
-.stop_must <- function(msg, x_arg, call, additional_msg = NULL) {
+.stop_must <- function(msg,
+                       x_arg,
+                       call,
+                       additional_msg = NULL,
+                       class = "stbl_error_must") {
   main_msg <- .glue2("{.arg [x_arg]} [msg]")
   cli_abort(
     c(main_msg, additional_msg),
     call = call,
-    .envir = caller_env()
+    .envir = caller_env(),
+    class = class
   )
 }
 
@@ -23,15 +28,22 @@ rlang::caller_env
   main_msg <- .glue2(
     "Can't coerce {.arg [x_arg]} {.cls [from_class]} to {.cls [to_class]}."
   )
+  error_class <- paste0("stbl_error_coerce_", to_class)
   cli_abort(
     c(main_msg, additional_msg),
     call = call,
-    .envir = caller_env()
+    .envir = caller_env(),
+    class = error_class
   )
 }
 
 .stop_null <- function(x_arg, call) {
-  .stop_must("must not be {.cls NULL}.", x_arg = x_arg, call = call)
+  .stop_must(
+    "must not be {.cls NULL}.",
+    x_arg = x_arg,
+    call = call,
+    class = "stbl_error_bad_null"
+  )
 }
 
 .stop_incompatible <- function(x_class,
