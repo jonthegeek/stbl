@@ -7,6 +7,10 @@ test_that("stabilize_arg_scalar() allows length-1 args through", {
 
 test_that("stabilize_arg_scalar() provides informative error messages", {
   given <- 1:10
+  expect_error(
+    stabilize_arg_scalar(given),
+    class = "stbl_error_non_scalar"
+  )
   expect_snapshot(
     stabilize_arg_scalar(given),
     error = TRUE
@@ -21,6 +25,10 @@ test_that("stabilize_arg_scalar() provides informative error messages", {
   )
 
   given <- NULL
+  expect_error(
+    stabilize_arg_scalar(given, allow_null = FALSE),
+    class = "stbl_error_non_scalar"
+  )
   expect_snapshot(
     stabilize_arg_scalar(given, allow_null = FALSE),
     error = TRUE

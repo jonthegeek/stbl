@@ -14,7 +14,8 @@
       msg = "must not contain NA values.",
       x_arg = x_arg,
       additional_msg = c("*" = "NA locations: {locations}"),
-      call = call
+      call = call,
+      class = "stbl_error_bad_na"
     )
   }
   return(invisible(NULL))
@@ -47,7 +48,8 @@
       msg = "must have size >= {min_size}.",
       x_arg = x_arg,
       additional_msg = c(x = "{x_size} is too small."),
-      call = call
+      call = call,
+      class = "stbl_error_size_too_small"
     )
   }
 
@@ -55,7 +57,8 @@
     msg = "must have size <= {max_size}.",
     x_arg = x_arg,
     additional_msg = c(x = "{x_size} is too big."),
-    call = call
+    call = call,
+    class = "stbl_error_size_too_large"
   )
 }
 
@@ -96,7 +99,8 @@
     "must be a single {.cls {x_class}}.",
     x_arg = x_arg,
     call = call,
-    additional_msg = c(x = "{.arg {x_arg}} has {no(x_size)} values.")
+    additional_msg = c(x = "{.arg {x_arg}} has {no(x_size)} values."),
+    class = "stbl_error_non_scalar"
   )
 }
 
@@ -112,7 +116,8 @@
         "*" = "{.arg {x_arg}} = {x}",
         "*" = "{.arg {y_arg}} = {y}"
       ),
-      call = call
+      call = call,
+      class = "stbl_error_size_x_vs_y"
     )
   }
 }

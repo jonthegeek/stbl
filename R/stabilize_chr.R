@@ -77,5 +77,5 @@ stabilize_chr <- function(x,
   if (requireNamespace("stringi", quietly = TRUE)) {
     return(stringi::stri_detect_regex(x, regex))
   }
-  return(grepl(regex, x))
+  return(grepl(regex, x)) # nocov
 }

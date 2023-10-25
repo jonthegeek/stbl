@@ -23,6 +23,10 @@ test_that("stabilize_arg() rejects NULLs when asked", {
     stabilize_arg(x, ...)
   }
   given <- NULL
+  expect_error(
+    stabilize_arg(given, allow_null = FALSE),
+    class = "stbl_error_bad_null"
+  )
   expect_snapshot(
     stabilize_arg(given, allow_null = FALSE),
     error = TRUE
@@ -41,6 +45,10 @@ test_that("stabilize_arg() checks NAs", {
   expect_identical(stabilize_arg(given, allow_na = FALSE), given)
 
   given[c(4, 7)] <- NA
+  expect_error(
+    stabilize_arg(given, allow_na = FALSE),
+    class = "stbl_error_bad_na"
+  )
   expect_snapshot(
     stabilize_arg(given, allow_na = FALSE),
     error = TRUE
@@ -59,9 +67,17 @@ test_that("stabilize_arg() checks size args", {
   given <- TRUE
   expect_true(stabilize_arg(given, min_size = 1, max_size = 1))
 
+  expect_error(
+    stabilize_arg(given, min_size = 2, max_size = 1),
+    class = "stbl_error_size_x_vs_y"
+  )
   expect_snapshot(
     stabilize_arg(given, min_size = 2, max_size = 1),
     error = TRUE
+  )
+  expect_error(
+    wrapper(given, min_size = 2, max_size = 1),
+    class = "stbl_error_size_x_vs_y"
   )
   expect_snapshot(
     wrapper(given, min_size = 2, max_size = 1),
@@ -76,6 +92,10 @@ test_that("stabilize_arg() checks size", {
     given
   )
 
+  expect_error(
+    stabilize_arg(given, min_size = 11),
+    class = "stbl_error_size_too_small"
+  )
   expect_snapshot(
     stabilize_arg(given, min_size = 11),
     error = TRUE
@@ -83,9 +103,17 @@ test_that("stabilize_arg() checks size", {
   wrapper <- function(x, ...) {
     stabilize_arg(x, ...)
   }
+  expect_error(
+    wrapper(given, min_size = 11),
+    class = "stbl_error_size_too_small"
+  )
   expect_snapshot(
     wrapper(given, min_size = 11),
     error = TRUE
+  )
+  expect_error(
+    stabilize_arg(given, max_size = 2),
+    class = "stbl_error_size_too_large"
   )
   expect_snapshot(
     stabilize_arg(given, max_size = 2),
