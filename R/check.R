@@ -84,7 +84,7 @@
         return(invisible(NULL))
       }
       x_class <- paste(x_class, "(non-empty)")
-      error_class <- "stbl_error_non_empty"
+      error_class <- "stbl_error_bad_empty"
     }
   }
 
