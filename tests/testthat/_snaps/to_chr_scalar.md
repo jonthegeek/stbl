@@ -54,6 +54,6 @@
       to_chr_scalar(given, allow_zero_length = FALSE)
     Condition
       Error:
-      ! `given` must be a single <character>.
+      ! `given` must be a single <character (non-empty)>.
       x `given` has no values.
 

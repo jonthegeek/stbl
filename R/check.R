@@ -68,7 +68,7 @@
                           x_arg = caller_arg(x),
                           call = caller_env(),
                           x_class = object_type(x)) {
-  # TODO: Some of this is redundant.
+  error_class <- "stbl_error_non_scalar"
   if (!length(x)) {
     if (is.null(x)) {
       if (.is_allowed_null(x, allow_null = allow_null, call = call)) {
@@ -83,6 +83,8 @@
       if (allow_zero_length) {
         return(invisible(NULL))
       }
+      x_class <- paste(x_class, "(non-empty)")
+      error_class <- "stbl_error_non_empty"
     }
   }
 
@@ -100,7 +102,7 @@
     x_arg = x_arg,
     call = call,
     additional_msg = c(x = "{.arg {x_arg}} has {no(x_size)} values."),
-    class = "stbl_error_non_scalar"
+    class = error_class
   )
 }
 
