@@ -29,7 +29,7 @@
     allow_zero_length = allow_zero_length,
     x_arg = x_arg,
     call = call,
-    x_class = x_class
+    x_class = class(x)
   )
   return(x)
 }
