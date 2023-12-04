@@ -49,6 +49,12 @@
     <loc>https://jonthegeek.github.io/stbl/reference/stabilize_chr_scalar.html</loc>
   </url>
   <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/stabilize_fct.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/stabilize_fct_scalar.html</loc>
+  </url>
+  <url>
     <loc>https://jonthegeek.github.io/stbl/reference/stabilize_int.html</loc>
   </url>
   <url>
@@ -68,6 +74,12 @@
   </url>
   <url>
     <loc>https://jonthegeek.github.io/stbl/reference/to_chr_scalar.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/to_fct.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/stbl/reference/to_fct_scalar.html</loc>
   </url>
   <url>
     <loc>https://jonthegeek.github.io/stbl/reference/to_int.html</loc>
