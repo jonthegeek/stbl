@@ -65,6 +65,34 @@ to_fct.NULL <- function(x,
 }
 
 #' @export
+to_fct.data.frame <- function(x,
+                              ...,
+                              x_arg = caller_arg(x),
+                              call = caller_env(),
+                              x_class = object_type(x)) {
+  .stop_cant_coerce(
+    from_class = x_class,
+    to_class = "factor",
+    x_arg = x_arg,
+    call = call
+  )
+}
+
+#' @export
+to_fct.list <- function(x,
+                        ...,
+                        x_arg = caller_arg(x),
+                        call = caller_env(),
+                        x_class = object_type(x)) {
+  .stop_cant_coerce(
+    from_class = x_class,
+    to_class = "factor",
+    x_arg = x_arg,
+    call = call
+  )
+}
+
+#' @export
 to_fct.default <- function(x,
                            ...,
                            levels = NULL,
