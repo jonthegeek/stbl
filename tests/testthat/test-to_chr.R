@@ -68,6 +68,21 @@ test_that("to_chr() works for other things", {
   )
 })
 
+test_that("to_chr() tries to flatten lists", {
+  expect_identical(
+    to_chr(list("a", "b")),
+    c("a", "b")
+  )
+  expect_identical(
+    to_chr(list(1, 2)),
+    c("1", "2")
+  )
+  expect_identical(
+    to_chr(list("a")),
+    c("a")
+  )
+})
+
 test_that("to_chr() fails gracefully for weird cases", {
   wrapper <- function(wrapper_val, ...) {
     return(to_chr(wrapper_val, ...))

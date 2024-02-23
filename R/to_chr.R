@@ -52,6 +52,13 @@ to_chr.list <- function(x,
                         x_arg = caller_arg(x),
                         call = caller_env(),
                         x_class = object_type(x)) {
+  flat <- unlist(x)
+  if (length(flat) == length(x)) {
+    if (length(flat) == 1) {
+      flat <- flat[[1]]
+    }
+    return(to_chr(flat))
+  }
   .stop_cant_coerce(
     from_class = x_class,
     to_class = "character",
