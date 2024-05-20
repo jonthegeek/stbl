@@ -24,13 +24,28 @@ and to then see if what the user supplied can work for that purpose.
 
 ## Installation
 
-You can install the development version of stbl from
-[GitHub](https://github.com/) with:
+<div class=".pkgdown-release">
+
+Install the released version of stbl from
+[CRAN](https://cran.r-project.org/):
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("jonthegeek/stbl")
+install.packages("stbl")
 ```
+
+</div>
+
+<div class=".pkgdown-devel">
+
+Install the development version of stbl from
+[GitHub](https://github.com/):
+
+``` r
+# install.packages("pak")
+pak::pak("jonthegeek/stbl")
+```
+
+</div>
 
 ## Usage
 
