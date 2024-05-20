@@ -71,6 +71,11 @@ tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 \item{max_size}{Integer. The maximum size of the object. Object size will be
 tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
+\item{levels}{Character. Expected levels. If \code{NULL} (default), the levels
+will be computed by \code{\link[base:factor]{base::factor()}}.}
+
+\item{to_na}{Character. Values to coerce to \code{NA}.}
+
 \item{x_arg}{Character. An argument name for x. The automatic value will work
 in most cases, or pass it through from higher-level functions to make error
 messages clearer in unexported functions.}

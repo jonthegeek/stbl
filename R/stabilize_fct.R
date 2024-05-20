@@ -19,7 +19,9 @@
 #' `allow_null = FALSE`).
 #'
 #' @inheritParams .coerce-params
-#' @inheritParams to_fct
+#' @param levels Character. Expected levels. If `NULL` (default), the levels
+#'   will be computed by [base::factor()].
+#' @param to_na Character. Values to coerce to `NA`.
 #'
 #' @return The argument as a factor.
 #' @export
