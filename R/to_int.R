@@ -1,29 +1,5 @@
-#' Coerce an argument to integer
-#'
-#' If a value can be coerced to an integer without losing information, do so
-#' silently. Otherwise throw an informative error. This function is equivalent
-#' to [stabilize_int()] with all of the additional arguments set to their
-#' default values, but should be faster.
-#'
-#' @inheritParams .coerce-params
-#' @param coerce_character Logical. Should character vectors such as "1" and
-#'   "2.0" be coerced to integer?
-#' @param coerce_factor Logical. Should factors with values such as "1" and
-#'   "2.0" be coerced to integer? Note that this function uses the character
-#'   value from the factor, while [as.integer()] uses the integer index of the
-#'   factor.
-#'
-#' @return An integer equivalent to `x`.
 #' @export
-#'
-#' @examples
-#' to_int(1:10)
-#' to_int("1")
-#' to_int(1 + 0i)
-#' to_int(NULL)
-#' try(to_int(c(1, 2, 3.1, 4, 5.2)))
-#' try(to_int("1", coerce_character = FALSE))
-#' try(to_int(c("1", "2", "3.1", "4", "5.2")))
+#' @rdname stabilize_int
 to_int <- function(x,
                    allow_null = TRUE,
                    coerce_character = TRUE,

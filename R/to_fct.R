@@ -1,29 +1,5 @@
-#' Coerce an argument to a factor
-#'
-#' If a value can be coerced to a factor without losing information, do so
-#' silently. Otherwise throw an informative error.
-#'
-#' This function has important differences from [base::as.factor()] and
-#' [base::factor()]:
-#'
-#' - Values are never silently coerced to `NA` unless they are explicitly
-#' supplied in the `to_na` argument.
-#' - `NULL` values can be rejected as part of the call to this function (with
-#' `allow_null = FALSE`).
-#'
-#' @inheritParams .coerce-params
-#' @param levels Character. Expected levels. If `NULL` (default), the levels
-#'   will be computed by [base::factor()].
-#' @param to_na Character. Values to coerce to `NA`.
-#'
-#' @return A factor equivalent to `x`.
 #' @export
-#'
-#' @examples
-#' to_fct("a")
-#' to_fct(1:10)
-#' to_fct(NULL)
-#' try(to_fct(letters[1:5], levels = c("a", "c"), to_na = "b"))
+#' @rdname stabilize_fct
 to_fct <- function(x,
                    allow_null = TRUE,
                    levels = NULL,

@@ -1,29 +1,5 @@
-#' Coerce an argument to character
-#'
-#' If a value can be coerced to a character without losing information, do so
-#' silently. Otherwise throw an informative error.
-#'
-#' This function has two important differences from [base::as.character()]:
-#'
-#' - `list`s and `data.frame`s are *not* coerced to character. In base R, such
-#'   objects are coerced to character representations of their elements. For
-#'   example, `as.character(list(letters))` returns "1:10". In the unlikely
-#'   event that this is the expected behavior, use `as.character()` instead.
-#' - `NULL` values can be rejected as part of the call to this function (with
-#'   `allow_null = FALSE`).
-#'
-#' @inheritParams .coerce-params
-#'
-#' @return A character equivalent to `x`.
 #' @export
-#'
-#' @examples
-#' to_chr("a")
-#' to_chr(letters)
-#' to_chr(1:10)
-#' to_chr(1 + 0i)
-#' to_chr(NULL)
-#' try(to_chr(NULL, allow_null = FALSE))
+#' @rdname stabilize_chr
 to_chr <- function(x,
                    allow_null = TRUE,
                    x_arg = caller_arg(x),

@@ -1,20 +1,5 @@
-#' Ensure an integer argument meets expectations and is length-1
-#'
-#' This function is equivalent to [stabilize_int()], but it is optimized to
-#' check for length-1 integers.
-#'
-#' @inheritParams stabilize_int
-#' @inheritParams .coerce-params
-#'
-#' @return `x`, unless one of the checks fails.
 #' @export
-#'
-#' @examples
-#' stabilize_int_scalar(1L)
-#' stabilize_int_scalar("1")
-#' try(stabilize_int_scalar(1:10))
-#' stabilize_int_scalar(NULL)
-#' try(stabilize_int_scalar(NULL, allow_null = FALSE))
+#' @rdname stabilize_int
 stabilize_int_scalar <- function(x,
                                  ...,
                                  allow_null = TRUE,

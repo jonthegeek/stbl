@@ -1,18 +1,5 @@
-#' Ensure a factor argument meets expectations and is length-1
-#'
-#' This function is equivalent to [stabilize_fct()], but it is optimized to
-#' check for length-1 factors.
-#'
-#' @inheritParams stabilize_fct
-#' @inheritParams .coerce-params
-#'
-#' @return `x`, unless one of the checks fails.
 #' @export
-#'
-#' @examples
-#' stabilize_fct_scalar("a")
-#' try(stabilize_fct_scalar(letters))
-#' try(stabilize_fct_scalar("c", levels = c("a", "b")))
+#' @rdname stabilize_fct
 stabilize_fct_scalar <- function(x,
                                  ...,
                                  allow_null = TRUE,

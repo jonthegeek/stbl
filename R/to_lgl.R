@@ -1,23 +1,5 @@
-#' Coerce an argument to logical
-#'
-#' If a value can be coerced to a logical without losing information, do so
-#' silently. Otherwise throw an informative error. This function is equivalent
-#' to [stabilize_lgl()] with all of the additional arguments set to their
-#' default values, but should be faster.
-#'
-#' @inheritParams .coerce-params
-#'
-#' @return A logical vector equivalent to `x`.
 #' @export
-#'
-#' @examples
-#' to_lgl(TRUE)
-#' to_lgl("TRUE")
-#' to_lgl(1:10)
-#' to_lgl(NULL)
-#' try(to_lgl(NULL, allow_null = FALSE))
-#' try(to_lgl(letters))
-#' try(to_lgl(list(TRUE)))
+#' @rdname stabilize_lgl
 to_lgl <- function(x,
                    allow_null = TRUE,
                    x_arg = caller_arg(x),

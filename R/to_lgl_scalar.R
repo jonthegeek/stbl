@@ -1,17 +1,5 @@
-#' Coerce an argument to a length-1 logical vector
-#'
-#' This function wraps [to_lgl()], adding a quick check to confirm that the
-#' input contains a single value.
-#'
-#' @inheritParams to_lgl
-#' @inheritParams .coerce-params
-#'
-#' @return A logical vector equivalent to `x`.
 #' @export
-#'
-#' @examples
-#' to_lgl_scalar("TRUE")
-#' try(to_lgl_scalar(c(TRUE, FALSE)))
+#' @rdname stabilize_lgl
 to_lgl_scalar <- function(x,
                           allow_null = TRUE,
                           allow_zero_length = TRUE,

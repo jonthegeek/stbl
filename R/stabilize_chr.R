@@ -1,12 +1,26 @@
 #' Ensure a character argument meets expectations
 #'
-#' Check a character argument to ensure that it meets expectations, coercing it
-#' to character where possible. If the argument does not meet the requirements,
-#' the user will receive an informative error message. Note that [to_chr()] is a
-#' faster version of this function with fewer options.
+#' @description `to_chr()` checks whether an argument can be coerced to
+#'   character without losing information, returning it silently if so.
+#'   Otherwise an informative error message is signaled.
+#'
+#'   `stabilize_chr()` can check more details about the argument, but is slower
+#'   than `to_chr()`.
+#'
+#'   `stabilize_chr_scalar()` and `to_chr_scalar()` are optimized to check for
+#'   length-1 character vectors.
+#'
+#' @details These functions have two important differences from
+#'   [base::as.character()]:
+#'
+#' - `list`s and `data.frame`s are *not* coerced to character. In base R, such
+#'   objects are coerced to character representations of their elements. For
+#'   example, `as.character(list(1:3))` returns "1:10". In the unlikely event
+#'   that this is the expected behavior, use `as.character()` instead.
+#' - `NULL` values can be rejected as part of the call to this function (with
+#'   `allow_null = FALSE`).
 #'
 #' @inheritParams .coerce-params
-#' @inheritParams to_chr
 #' @param regex Character scalar. An optional regex pattern to compare the
 #'   value(s) of `x` against. If a complex regex pattern throws an error, try
 #'   installing the stringi package with `install.packages("stringi")`.
@@ -15,6 +29,19 @@
 #' @export
 #'
 #' @examples
+#' # to_chr()
+#' to_chr("a")
+#' to_chr(letters)
+#' to_chr(1:10)
+#' to_chr(1 + 0i)
+#' to_chr(NULL)
+#' try(to_chr(NULL, allow_null = FALSE))
+#'
+#' # to_chr_scalar()
+#' to_chr_scalar("a")
+#' try(to_chr_scalar(letters))
+#'
+#' # stabilize_chr()
 #' stabilize_chr(letters)
 #' stabilize_chr(1:10)
 #' stabilize_chr(NULL)
@@ -23,6 +50,13 @@
 #' try(stabilize_chr(letters, min_size = 50))
 #' try(stabilize_chr(letters, max_size = 20))
 #' try(stabilize_chr(c("hide", "find", "find", "hide"), regex = "hide"))
+#'
+#' # stabilize_chr_scalar()
+#' stabilize_chr_scalar(TRUE)
+#' stabilize_chr_scalar("TRUE")
+#' try(stabilize_chr_scalar(c(TRUE, FALSE, TRUE)))
+#' stabilize_chr_scalar(NULL)
+#' try(stabilize_chr_scalar(NULL, allow_null = FALSE))
 stabilize_chr <- function(x,
                           ...,
                           allow_null = TRUE,

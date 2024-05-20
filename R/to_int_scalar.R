@@ -1,17 +1,5 @@
-#' Coerce an argument to a length-1 integer
-#'
-#' This function wraps [to_int()], adding a quick check to confirm that the
-#' input contains a single value.
-#'
-#' @inheritParams to_int
-#' @inheritParams .coerce-params
-#'
-#' @return An integer equivalent to `x`.
 #' @export
-#'
-#' @examples
-#' to_int_scalar("1")
-#' try(to_int_scalar(1:10))
+#' @rdname stabilize_int
 to_int_scalar <- function(x,
                           allow_null = TRUE,
                           allow_zero_length = TRUE,

@@ -1,9 +1,12 @@
 #' Ensure an argument meets expectations
 #'
-#' This function is used by other functions such as [stabilize_int()]. Use
+#' @description
+#' `stabilize_arg()` is used by other functions such as [stabilize_int()]. Use
 #' `stabilize_arg()` if the type-specific functions will not work for your use
 #' case, but you would still like to check things like size or whether the
 #' argument is NULL.
+#'
+#' `stabilize_arg_scalar()` is optimized to check for length-1 vectors.
 #'
 #' @inheritParams .coerce-params
 #'
@@ -21,6 +24,9 @@
 #' try(wrapper(NA, allow_na = FALSE))
 #' try(wrapper(1, min_size = 2))
 #' try(wrapper(1:10, max_size = 5))
+#' stabilize_arg_scalar("a")
+#' stabilize_arg_scalar(1L)
+#' try(stabilize_arg_scalar(1:10))
 stabilize_arg <- function(x,
                           ...,
                           allow_null = TRUE,
