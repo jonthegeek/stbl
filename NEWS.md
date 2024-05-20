@@ -1,3 +1,3 @@
-# stbl (development version)
+# stbl 0.1.0
 
 * Initial CRAN submission.
