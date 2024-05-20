@@ -24,6 +24,8 @@
 #' try(to_int(c(1, 2, 3.1, 4, 5.2)))
 #' try(to_int("1", coerce_character = FALSE))
 #' try(to_int(c("1", "2", "3.1", "4", "5.2")))
+#' to_int_scalar("1")
+#' try(to_int_scalar(1:10))
 to_int <- function(x,
                    allow_null = TRUE,
                    coerce_character = TRUE,

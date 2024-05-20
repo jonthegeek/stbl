@@ -1,9 +1,11 @@
 #' Ensure a factor argument meets expectations
 #'
-#' Check a factor argument to ensure that it meets expectations, coercing it
+#' @description `stabilize_fct()` checks a factor argument to ensure that it meets expectations, coercing it
 #' to factor where possible. If the argument does not meet the requirements,
 #' the user will receive an informative error message. Note that [to_fct()] is a
 #' faster version of this function with fewer options.
+#'
+#' `stabilize_fct_scalar()` is optimized to check for length-1 factors.
 #'
 #' @inheritParams .coerce-params
 #' @inheritParams to_fct
@@ -17,6 +19,9 @@
 #' try(stabilize_fct(c("a", NA), allow_na = FALSE))
 #' try(stabilize_fct(c("a", "b", "c"), min_size = 5))
 #' try(stabilize_fct(c("a", "b", "c"), max_size = 2))
+#' stabilize_fct_scalar("a")
+#' try(stabilize_fct_scalar(letters))
+#' try(stabilize_fct_scalar("c", levels = c("a", "b")))
 stabilize_fct <- function(x,
                           ...,
                           allow_null = TRUE,

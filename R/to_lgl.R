@@ -18,6 +18,8 @@
 #' try(to_lgl(NULL, allow_null = FALSE))
 #' try(to_lgl(letters))
 #' try(to_lgl(list(TRUE)))
+#' to_lgl_scalar("TRUE")
+#' try(to_lgl_scalar(c(TRUE, FALSE)))
 to_lgl <- function(x,
                    allow_null = TRUE,
                    x_arg = caller_arg(x),

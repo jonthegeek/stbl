@@ -1,9 +1,12 @@
 #' Ensure an integer argument meets expectations
 #'
-#' Check an integer argument to ensure that it meets expectations, coercing it
-#' to integer where possible. If the argument does not meet the requirements,
-#' the user will receive an informative error message. Note that [to_int()] is a
-#' faster version of this function with fewer options.
+#' @description `stabilize_int()` checks an integer argument to ensure that it
+#'   meets expectations, coercing it to integer where possible. If the argument
+#'   does not meet the requirements, the user will receive an informative error
+#'   message. Note that [to_int()] is a faster version of this function with
+#'   fewer options.
+#'
+#' `stabilize_int_scalar()` is optimized to check for length-1 integers vectors.
 #'
 #' @inheritParams .coerce-params
 #' @inheritParams to_int

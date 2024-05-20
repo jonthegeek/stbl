@@ -1,20 +1,5 @@
-#' Ensure a character argument meets expectations and is length-1
-#'
-#' This function is equivalent to [stabilize_chr()], but it is optimized to
-#' check for length-1 character vectors.
-#'
-#' @inheritParams stabilize_chr
-#' @inheritParams .coerce-params
-#'
-#' @return `x`, unless one of the checks fails.
 #' @export
-#'
-#' @examples
-#' stabilize_chr_scalar(TRUE)
-#' stabilize_chr_scalar("TRUE")
-#' try(stabilize_chr_scalar(c(TRUE, FALSE, TRUE)))
-#' stabilize_chr_scalar(NULL)
-#' try(stabilize_chr_scalar(NULL, allow_null = FALSE))
+#' @rdname stabilize_chr
 stabilize_chr_scalar <- function(x,
                                  ...,
                                  allow_null = TRUE,

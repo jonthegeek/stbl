@@ -1,20 +1,5 @@
-#' Ensure a logical argument meets expectations and is length-1
-#'
-#' This function is equivalent to [stabilize_lgl()], but it is optimized to
-#' check for length-1 logical vectors.
-#'
-#' @inheritParams stabilize_lgl
-#' @inheritParams .coerce-params
-#'
-#' @return `x`, unless one of the checks fails.
 #' @export
-#'
-#' @examples
-#' stabilize_lgl_scalar(TRUE)
-#' stabilize_lgl_scalar("TRUE")
-#' try(stabilize_lgl_scalar(c(TRUE, FALSE, TRUE)))
-#' stabilize_lgl_scalar(NULL)
-#' try(stabilize_lgl_scalar(NULL, allow_null = FALSE))
+#' @rdname stabilize_lgl
 stabilize_lgl_scalar <- function(x,
                                  ...,
                                  allow_null = TRUE,

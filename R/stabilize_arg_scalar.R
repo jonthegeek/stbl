@@ -1,18 +1,5 @@
-#' Ensure an argument meets expectations and is length-1
-#'
-#' This function is equivalent to [stabilize_arg()], but it is optimized to
-#' check for length-1 vectors.
-#'
-#' @inheritParams stabilize_arg
-#' @inheritParams .coerce-params
-#'
-#' @return `x`, unless one of the checks fails.
+#' @rdname stabilize_arg
 #' @export
-#'
-#' @examples
-#' stabilize_arg_scalar("a")
-#' stabilize_arg_scalar(1L)
-#' try(stabilize_arg_scalar(1:10))
 stabilize_arg_scalar <- function(x,
                                  ...,
                                  allow_null = TRUE,

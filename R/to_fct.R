@@ -3,7 +3,7 @@
 #' If a value can be coerced to a factor without losing information, do so
 #' silently. Otherwise throw an informative error.
 #'
-#' This function has important differences from [base::as.factor()] and
+#' These functions have important differences from [base::as.factor()] and
 #' [base::factor()]:
 #'
 #' - Values are never silently coerced to `NA` unless they are explicitly
@@ -24,6 +24,8 @@
 #' to_fct(1:10)
 #' to_fct(NULL)
 #' try(to_fct(letters[1:5], levels = c("a", "c"), to_na = "b"))
+#' to_fct_scalar("a")
+#' try(to_fct_scalar(letters))
 to_fct <- function(x,
                    allow_null = TRUE,
                    levels = NULL,

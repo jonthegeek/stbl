@@ -1,9 +1,12 @@
 #' Ensure a logical argument meets expectations
 #'
-#' Check a logical argument to ensure that it meets expectations, coercing it
-#' to logical where possible. If the argument does not meet the requirements,
-#' the user will receive an informative error message. Note that [to_lgl()] is a
-#' faster version of this function with fewer options.
+#' @description `stabilize_lgl()` checks a logical argument to ensure that it
+#'   meets expectations, coercing it to logical where possible. If the argument
+#'   does not meet the requirements, the user will receive an informative error
+#'   message. Note that [to_lgl()] is a faster version of this function with
+#'   fewer options.
+#'
+#' `stabilize_lgl_scalar()` is optimized to check for length-1 logical vectors.
 #'
 #' @inheritParams .coerce-params
 #' @inheritParams to_lgl
@@ -20,6 +23,11 @@
 #' try(stabilize_lgl(letters))
 #' try(stabilize_lgl(c(TRUE, FALSE, TRUE), min_size = 5))
 #' try(stabilize_lgl(c(TRUE, FALSE, TRUE), max_size = 2))
+#' stabilize_lgl_scalar(TRUE)
+#' stabilize_lgl_scalar("TRUE")
+#' try(stabilize_lgl_scalar(c(TRUE, FALSE, TRUE)))
+#' stabilize_lgl_scalar(NULL)
+#' try(stabilize_lgl_scalar(NULL, allow_null = FALSE))
 stabilize_lgl <- function(x,
                           ...,
                           allow_null = TRUE,

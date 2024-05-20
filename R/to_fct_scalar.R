@@ -1,17 +1,5 @@
-#' Coerce an argument to a length-1 factor
-#'
-#' This function wraps [to_fct()], adding a quick check to confirm that the
-#' input contains a single value.
-#'
-#' @inheritParams to_fct
-#' @inheritParams .coerce-params
-#'
-#' @return A factor equivalent to `x`.
 #' @export
-#'
-#' @examples
-#' to_fct_scalar("a")
-#' try(to_fct_scalar(letters))
+#' @rdname to_fct
 to_fct_scalar <- function(x,
                           allow_null = TRUE,
                           allow_zero_length = TRUE,

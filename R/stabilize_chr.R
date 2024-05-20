@@ -1,9 +1,13 @@
 #' Ensure a character argument meets expectations
 #'
-#' Check a character argument to ensure that it meets expectations, coercing it
-#' to character where possible. If the argument does not meet the requirements,
-#' the user will receive an informative error message. Note that [to_chr()] is a
-#' faster version of this function with fewer options.
+#' @description `stabilize_chr()` checks a character argument to ensure that it
+#' meets expectations, coercing it to character where possible. If the argument
+#' does not meet the requirements, the user will receive an informative error
+#' message. Note that [to_chr()] is a faster version of this function with fewer
+#' options.
+#'
+#' `stabilize_chr_scalar()` is optimized to check for length-1 character
+#' vectors.
 #'
 #' @inheritParams .coerce-params
 #' @inheritParams to_chr
@@ -23,6 +27,11 @@
 #' try(stabilize_chr(letters, min_size = 50))
 #' try(stabilize_chr(letters, max_size = 20))
 #' try(stabilize_chr(c("hide", "find", "find", "hide"), regex = "hide"))
+#' stabilize_chr_scalar(TRUE)
+#' stabilize_chr_scalar("TRUE")
+#' try(stabilize_chr_scalar(c(TRUE, FALSE, TRUE)))
+#' stabilize_chr_scalar(NULL)
+#' try(stabilize_chr_scalar(NULL, allow_null = FALSE))
 stabilize_chr <- function(x,
                           ...,
                           allow_null = TRUE,
