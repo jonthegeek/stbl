@@ -1,20 +1,35 @@
 #' Ensure a logical argument meets expectations
 #'
-#' @description `stabilize_lgl()` checks a logical argument to ensure that it
-#'   meets expectations, coercing it to logical where possible. If the argument
-#'   does not meet the requirements, the user will receive an informative error
-#'   message. Note that [to_lgl()] is a faster version of this function with
-#'   fewer options.
+#' @description `to_lgl()` checks whether an argument can be coerced to
+#'   logical without losing information, returning it silently if so.
+#'   Otherwise an informative error message is signaled.
 #'
-#' `stabilize_lgl_scalar()` is optimized to check for length-1 logical vectors.
+#'   `stabilize_lgl()` can check more details about the argument, but is slower
+#'   than `to_lgl()`.
+#'
+#'   `stabilize_lgl_scalar()` and `to_lgl_scalar()` are optimized to check for
+#'   length-1 logical vectors.
 #'
 #' @inheritParams .coerce-params
-#' @inheritParams to_lgl
 #'
 #' @return The argument as a logical vector.
 #' @export
 #'
 #' @examples
+#' # to_lgl
+#' to_lgl(TRUE)
+#' to_lgl("TRUE")
+#' to_lgl(1:10)
+#' to_lgl(NULL)
+#' try(to_lgl(NULL, allow_null = FALSE))
+#' try(to_lgl(letters))
+#' try(to_lgl(list(TRUE)))
+#'
+#' # to_lgl_scalar
+#' to_lgl_scalar("TRUE")
+#' try(to_lgl_scalar(c(TRUE, FALSE)))
+#'
+#' # stabilize_lgl
 #' stabilize_lgl(c(TRUE, FALSE, TRUE))
 #' stabilize_lgl("true")
 #' stabilize_lgl(NULL)
@@ -23,6 +38,8 @@
 #' try(stabilize_lgl(letters))
 #' try(stabilize_lgl(c(TRUE, FALSE, TRUE), min_size = 5))
 #' try(stabilize_lgl(c(TRUE, FALSE, TRUE), max_size = 2))
+#'
+#' # stabilize_lgl_scalar
 #' stabilize_lgl_scalar(TRUE)
 #' stabilize_lgl_scalar("TRUE")
 #' try(stabilize_lgl_scalar(c(TRUE, FALSE, TRUE)))

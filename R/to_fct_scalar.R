@@ -1,5 +1,5 @@
 #' @export
-#' @rdname to_fct
+#' @rdname stabilize_fct
 to_fct_scalar <- function(x,
                           allow_null = TRUE,
                           allow_zero_length = TRUE,

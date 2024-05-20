@@ -1,15 +1,22 @@
 #' Ensure an integer argument meets expectations
 #'
-#' @description `stabilize_int()` checks an integer argument to ensure that it
-#'   meets expectations, coercing it to integer where possible. If the argument
-#'   does not meet the requirements, the user will receive an informative error
-#'   message. Note that [to_int()] is a faster version of this function with
-#'   fewer options.
+#' @description `to_int()` checks whether an argument can be coerced to
+#'   integer without losing information, returning it silently if so.
+#'   Otherwise an informative error message is signaled.
 #'
-#' `stabilize_int_scalar()` is optimized to check for length-1 integers vectors.
+#'   `stabilize_int()` can check more details about the argument, but is slower
+#'   than `to_int()`.
+#'
+#'   `stabilize_int_scalar()` and `to_int_scalar()` are optimized to check for
+#'   length-1 integer vectors.
 #'
 #' @inheritParams .coerce-params
-#' @inheritParams to_int
+#' @param coerce_character Logical. Should character vectors such as "1" and
+#'   "2.0" be coerced to integer?
+#' @param coerce_factor Logical. Should factors with values such as "1" and
+#'   "2.0" be coerced to integer? Note that this function uses the character
+#'   value from the factor, while [as.integer()] uses the integer index of the
+#'   factor.
 #' @param min_value Integer scalar. The lowest allowed value for `x`. If `NULL`
 #'   (default) values are not checked.
 #' @param max_value Integer scalar. The highest allowed value for `x`. If `NULL`
@@ -19,6 +26,20 @@
 #' @export
 #'
 #' @examples
+#' # to_int
+#' to_int(1:10)
+#' to_int("1")
+#' to_int(1 + 0i)
+#' to_int(NULL)
+#' try(to_int(c(1, 2, 3.1, 4, 5.2)))
+#' try(to_int("1", coerce_character = FALSE))
+#' try(to_int(c("1", "2", "3.1", "4", "5.2")))
+#'
+#' # to_int_scalar
+#' to_int_scalar("1")
+#' try(to_int_scalar(1:10))
+#'
+#' # stabilize_int
 #' stabilize_int(1:10)
 #' stabilize_int("1")
 #' stabilize_int(1 + 0i)
@@ -31,6 +52,13 @@
 #' try(stabilize_int(factor("1"), coerce_factor = FALSE))
 #' try(stabilize_int(1:10, min_value = 3))
 #' try(stabilize_int(1:10, max_value = 7))
+#'
+#' # stabilize_int_scalar
+#' stabilize_int_scalar(1L)
+#' stabilize_int_scalar("1")
+#' try(stabilize_int_scalar(1:10))
+#' stabilize_int_scalar(NULL)
+#' try(stabilize_int_scalar(NULL, allow_null = FALSE))
 stabilize_int <- function(x,
                           ...,
                           allow_null = TRUE,

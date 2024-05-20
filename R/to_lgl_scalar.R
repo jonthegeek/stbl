@@ -1,5 +1,5 @@
 #' @export
-#' @rdname to_lgl
+#' @rdname stabilize_lgl
 to_lgl_scalar <- function(x,
                           allow_null = TRUE,
                           allow_zero_length = TRUE,

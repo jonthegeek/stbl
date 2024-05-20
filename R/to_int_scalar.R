@@ -1,5 +1,5 @@
 #' @export
-#' @rdname to_int
+#' @rdname stabilize_int
 to_int_scalar <- function(x,
                           allow_null = TRUE,
                           allow_zero_length = TRUE,

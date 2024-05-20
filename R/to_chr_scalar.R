@@ -1,5 +1,5 @@
 #' @export
-#' @rdname to_chr
+#' @rdname stabilize_chr
 to_chr_scalar <- function(x,
                           allow_null = TRUE,
                           allow_zero_length = TRUE,

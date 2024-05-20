@@ -1,11 +1,22 @@
 #' Ensure a factor argument meets expectations
 #'
-#' @description `stabilize_fct()` checks a factor argument to ensure that it meets expectations, coercing it
-#' to factor where possible. If the argument does not meet the requirements,
-#' the user will receive an informative error message. Note that [to_fct()] is a
-#' faster version of this function with fewer options.
+#' @description `to_fct()` checks whether an argument can be coerced to
+#'   a factor without losing information, returning it silently if so.
+#'   Otherwise an informative error message is signaled.
 #'
-#' `stabilize_fct_scalar()` is optimized to check for length-1 factors.
+#'   `stabilize_fct()` can check more details about the argument, but is slower
+#'   than `to_fct()`.
+#'
+#'   `stabilize_fct_scalar()` and `to_fct_scalar()` are optimized to check for
+#'   length-1 factors.
+#'
+#' @details These functions have important differences from [base::as.factor()] and
+#' [base::factor()]:
+#'
+#' - Values are never silently coerced to `NA` unless they are explicitly
+#' supplied in the `to_na` argument.
+#' - `NULL` values can be rejected as part of the call to this function (with
+#' `allow_null = FALSE`).
 #'
 #' @inheritParams .coerce-params
 #' @inheritParams to_fct
@@ -14,11 +25,24 @@
 #' @export
 #'
 #' @examples
+#' # to_fct
+#' to_fct("a")
+#' to_fct(1:10)
+#' to_fct(NULL)
+#' try(to_fct(letters[1:5], levels = c("a", "c"), to_na = "b"))
+#'
+#' # to_fct_scalar
+#' to_fct_scalar("a")
+#' try(to_fct_scalar(letters))
+#'
+#' # stabilize_fct
 #' stabilize_fct(letters)
 #' try(stabilize_fct(NULL, allow_null = FALSE))
 #' try(stabilize_fct(c("a", NA), allow_na = FALSE))
 #' try(stabilize_fct(c("a", "b", "c"), min_size = 5))
 #' try(stabilize_fct(c("a", "b", "c"), max_size = 2))
+#'
+#' # stabilize_fct_scalar
 #' stabilize_fct_scalar("a")
 #' try(stabilize_fct_scalar(letters))
 #' try(stabilize_fct_scalar("c", levels = c("a", "b")))
