@@ -4,7 +4,6 @@
 ## usethis namespace: start
 #' @importFrom cli cli_abort
 #' @importFrom cli no
-#' @importFrom fastmatch %fin%
 #' @importFrom glue glue
 #' @importFrom rlang %||%
 #' @importFrom rlang check_dots_empty0
