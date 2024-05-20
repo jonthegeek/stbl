@@ -6,7 +6,7 @@
 \alias{stbl-package}
 \title{stbl: Stabilize Function Arguments}
 \description{
-A set of consistent functions to quickly check function arguments, coerce them to the desired configuration, or deliver informative error messages when that is not possible.
+A set of consistent, opinionated functions to quickly check function arguments, coerce them to the desired configuration, or deliver informative error messages when that is not possible.
 }
 \seealso{
 Useful links:

@@ -127,7 +127,7 @@ to_fct.default <- function(x,
 .coerce_fct_to_na <- function(x, to_na, call = caller_env()) {
   to_na <- to_chr(to_na, call = call)
   if (length(to_na)) {
-    x[x %fin% to_na] <- NA
+    x[x %in% to_na] <- NA
   }
   return(x)
 }
