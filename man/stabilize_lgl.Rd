@@ -91,7 +91,6 @@ than \code{to_lgl()}.
 length-1 logical vectors.
 }
 \examples{
-# to_lgl
 to_lgl(TRUE)
 to_lgl("TRUE")
 to_lgl(1:10)
@@ -100,11 +99,9 @@ try(to_lgl(NULL, allow_null = FALSE))
 try(to_lgl(letters))
 try(to_lgl(list(TRUE)))
 
-# to_lgl_scalar
 to_lgl_scalar("TRUE")
 try(to_lgl_scalar(c(TRUE, FALSE)))
 
-# stabilize_lgl
 stabilize_lgl(c(TRUE, FALSE, TRUE))
 stabilize_lgl("true")
 stabilize_lgl(NULL)
@@ -114,7 +111,6 @@ try(stabilize_lgl(letters))
 try(stabilize_lgl(c(TRUE, FALSE, TRUE), min_size = 5))
 try(stabilize_lgl(c(TRUE, FALSE, TRUE), max_size = 2))
 
-# stabilize_lgl_scalar
 stabilize_lgl_scalar(TRUE)
 stabilize_lgl_scalar("TRUE")
 try(stabilize_lgl_scalar(c(TRUE, FALSE, TRUE)))

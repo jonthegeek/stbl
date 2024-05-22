@@ -26,7 +26,6 @@
 #' @export
 #'
 #' @examples
-#' # to_int
 #' to_int(1:10)
 #' to_int("1")
 #' to_int(1 + 0i)
@@ -35,11 +34,9 @@
 #' try(to_int("1", coerce_character = FALSE))
 #' try(to_int(c("1", "2", "3.1", "4", "5.2")))
 #'
-#' # to_int_scalar
 #' to_int_scalar("1")
 #' try(to_int_scalar(1:10))
 #'
-#' # stabilize_int
 #' stabilize_int(1:10)
 #' stabilize_int("1")
 #' stabilize_int(1 + 0i)
@@ -53,7 +50,6 @@
 #' try(stabilize_int(1:10, min_value = 3))
 #' try(stabilize_int(1:10, max_value = 7))
 #'
-#' # stabilize_int_scalar
 #' stabilize_int_scalar(1L)
 #' stabilize_int_scalar("1")
 #' try(stabilize_int_scalar(1:10))

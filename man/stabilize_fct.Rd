@@ -114,24 +114,20 @@ supplied in the \code{to_na} argument.
 }
 }
 \examples{
-# to_fct
 to_fct("a")
 to_fct(1:10)
 to_fct(NULL)
 try(to_fct(letters[1:5], levels = c("a", "c"), to_na = "b"))
 
-# to_fct_scalar
 to_fct_scalar("a")
 try(to_fct_scalar(letters))
 
-# stabilize_fct
 stabilize_fct(letters)
 try(stabilize_fct(NULL, allow_null = FALSE))
 try(stabilize_fct(c("a", NA), allow_na = FALSE))
 try(stabilize_fct(c("a", "b", "c"), min_size = 5))
 try(stabilize_fct(c("a", "b", "c"), max_size = 2))
 
-# stabilize_fct_scalar
 stabilize_fct_scalar("a")
 try(stabilize_fct_scalar(letters))
 try(stabilize_fct_scalar("c", levels = c("a", "b")))
