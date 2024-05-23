@@ -22,7 +22,7 @@ length-1 factors."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
     
     <a class="navbar-brand me-2" href="../index.html">stbl</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -193,8 +193,7 @@ supplied in the <code>to_na</code> argument.</p></li>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># to_fct</span></span></span>
-<span class="r-in"><span><span class="fu">to_fct</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">to_fct</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] a</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Levels: a</span>
 <span class="r-in"><span><span class="fu">to_fct</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></span>
@@ -207,7 +206,6 @@ supplied in the <code>to_na</code> argument.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   All values of `letters[1:5]` must be present in `levels` or `to_na`.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Bad values: d and e.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># to_fct_scalar</span></span></span>
 <span class="r-in"><span><span class="fu">to_fct_scalar</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] a</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Levels: a</span>
@@ -216,7 +214,6 @@ supplied in the <code>to_na</code> argument.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   `letters` must be a single <span style="color: #0000BB;">&lt;factor&gt;</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> `letters` has 26 values.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># stabilize_fct</span></span></span>
 <span class="r-in"><span><span class="fu">stabilize_fct</span><span class="op">(</span><span class="va">letters</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] a b c d e f g h i j k l m n o p q r s t u v w x y z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Levels: a b c d e f g h i j k l m n o p q r s t u v w x y z</span>
@@ -236,7 +233,6 @@ supplied in the <code>to_na</code> argument.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   `c("a", "b", "c")` must have size &lt;= 2.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> 3 is too big.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># stabilize_fct_scalar</span></span></span>
 <span class="r-in"><span><span class="fu">stabilize_fct_scalar</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] a</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Levels: a</span>

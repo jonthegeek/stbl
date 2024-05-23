@@ -22,7 +22,7 @@ length-1 character vectors."><!-- mathjax --><script src="https://cdnjs.cloudfla
     
     <a class="navbar-brand me-2" href="../index.html">stbl</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,8 +186,7 @@ that this is the expected behavior, use <code><a href="https://rdrr.io/r/base/ch
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># to_chr()</span></span></span>
-<span class="r-in"><span><span class="fu">to_chr</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">to_chr</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a"</span>
 <span class="r-in"><span><span class="fu">to_chr</span><span class="op">(</span><span class="va">letters</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"</span>
@@ -202,7 +201,6 @@ that this is the expected behavior, use <code><a href="https://rdrr.io/r/base/ch
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir, enclos) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   `NULL` must not be <span style="color: #0000BB;">&lt;NULL&gt;</span>.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># to_chr_scalar()</span></span></span>
 <span class="r-in"><span><span class="fu">to_chr_scalar</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a"</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">to_chr_scalar</span><span class="op">(</span><span class="va">letters</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -210,7 +208,6 @@ that this is the expected behavior, use <code><a href="https://rdrr.io/r/base/ch
 <span class="r-out co"><span class="r-pr">#&gt;</span>   `letters` must be a single <span style="color: #0000BB;">&lt;character&gt;</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> `letters` has 26 values.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># stabilize_chr()</span></span></span>
 <span class="r-in"><span><span class="fu">stabilize_chr</span><span class="op">(</span><span class="va">letters</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [20] "t" "u" "v" "w" "x" "y" "z"</span>
@@ -240,7 +237,6 @@ that this is the expected behavior, use <code><a href="https://rdrr.io/r/base/ch
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Some values do not match.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Locations: 2 and 3</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># stabilize_chr_scalar()</span></span></span>
 <span class="r-in"><span><span class="fu">stabilize_chr_scalar</span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "TRUE"</span>
 <span class="r-in"><span><span class="fu">stabilize_chr_scalar</span><span class="op">(</span><span class="st">"TRUE"</span><span class="op">)</span></span></span>

@@ -22,7 +22,7 @@ length-1 integer vectors."><!-- mathjax --><script src="https://cdnjs.cloudflare
     
     <a class="navbar-brand me-2" href="../index.html">stbl</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -202,8 +202,7 @@ but want the error message to match the original class.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># to_int</span></span></span>
-<span class="r-in"><span><span class="fu">to_int</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">to_int</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  1  2  3  4  5  6  7  8  9 10</span>
 <span class="r-in"><span><span class="fu">to_int</span><span class="op">(</span><span class="st">"1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
@@ -225,7 +224,6 @@ but want the error message to match the original class.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Can't convert some values due to loss of precision.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Locations: 3 and 5</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># to_int_scalar</span></span></span>
 <span class="r-in"><span><span class="fu">to_int_scalar</span><span class="op">(</span><span class="st">"1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">to_int_scalar</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -233,7 +231,6 @@ but want the error message to match the original class.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   `1:10` must be a single <span style="color: #0000BB;">&lt;integer&gt;</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> `1:10` has 10 values.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># stabilize_int</span></span></span>
 <span class="r-in"><span><span class="fu">stabilize_int</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  1  2  3  4  5  6  7  8  9 10</span>
 <span class="r-in"><span><span class="fu">stabilize_int</span><span class="op">(</span><span class="st">"1"</span><span class="op">)</span></span></span>
@@ -275,7 +272,6 @@ but want the error message to match the original class.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BBBB00;">!</span> Values of `1:10` must be &lt;= 7.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Values are too high at locations 8, 9, and 10.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># stabilize_int_scalar</span></span></span>
 <span class="r-in"><span><span class="fu">stabilize_int_scalar</span><span class="op">(</span><span class="fl">1L</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 <span class="r-in"><span><span class="fu">stabilize_int_scalar</span><span class="op">(</span><span class="st">"1"</span><span class="op">)</span></span></span>
