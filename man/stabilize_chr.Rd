@@ -109,7 +109,6 @@ that this is the expected behavior, use \code{as.character()} instead.
 }
 }
 \examples{
-# to_chr()
 to_chr("a")
 to_chr(letters)
 to_chr(1:10)
@@ -117,11 +116,9 @@ to_chr(1 + 0i)
 to_chr(NULL)
 try(to_chr(NULL, allow_null = FALSE))
 
-# to_chr_scalar()
 to_chr_scalar("a")
 try(to_chr_scalar(letters))
 
-# stabilize_chr()
 stabilize_chr(letters)
 stabilize_chr(1:10)
 stabilize_chr(NULL)
@@ -131,7 +128,6 @@ try(stabilize_chr(letters, min_size = 50))
 try(stabilize_chr(letters, max_size = 20))
 try(stabilize_chr(c("hide", "find", "find", "hide"), regex = "hide"))
 
-# stabilize_chr_scalar()
 stabilize_chr_scalar(TRUE)
 stabilize_chr_scalar("TRUE")
 try(stabilize_chr_scalar(c(TRUE, FALSE, TRUE)))

@@ -1,17 +1,16 @@
 Package: stbl
 Title: Stabilize Function Arguments
-Version: 0.0.0.9001
-Authors@R: 
-    person("Jon", "Harmon", , "jonthegeek@gmail.com", role = c("aut", "cre", "cph"),
-           comment = c(ORCID = "0000-0003-4781-4346"))
-Description: A set of consistent, opinionated functions to quickly check 
-    function arguments, coerce them to the desired configuration, or deliver 
-    informative error messages when that is not possible.
+Version: 0.1.1
+Authors@R: person("Jon", "Harmon", , "jonthegeek@gmail.com", role = c("aut", "cre", "cph"),
+    comment = c(ORCID = "0000-0003-4781-4346"))
+Description: A set of consistent, opinionated functions to quickly check
+    function arguments, coerce them to the desired configuration, or
+    deliver informative error messages when that is not possible.
 License: MIT + file LICENSE
 URL: https://github.com/jonthegeek/stbl,
     https://jonthegeek.github.io/stbl/
 BugReports: https://github.com/jonthegeek/stbl/issues
-Imports: 
+Imports:
     cli,
     glue,
     rlang (>= 1.1.0),
