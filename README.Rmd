@@ -29,18 +29,18 @@ The purpose of stbl is to allow programmers to specify what they want, and to th
 
 ## Installation
 
-::: .pkgdown-release
+::: {.pkgdown-release}
 Install the released version of stbl from [CRAN](https://cran.r-project.org/):
 
-```{r, eval = FALSE}
+``` r
 install.packages("stbl")
 ```
 :::
 
-::: .pkgdown-devel
+::: {.pkgdown-devel}
 Install the development version of stbl from [GitHub](https://github.com/):
 
-```{r, eval = FALSE}
+``` r
 # install.packages("pak")
 pak::pak("jonthegeek/stbl")
 ```

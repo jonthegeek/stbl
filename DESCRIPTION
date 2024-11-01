@@ -1,14 +1,15 @@
 Package: stbl
 Title: Stabilize Function Arguments
 Version: 0.1.1.9000
-Authors@R: person("Jon", "Harmon", , "jonthegeek@gmail.com", role = c("aut", "cre", "cph"),
-    comment = c(ORCID = "0000-0003-4781-4346"))
+Authors@R: 
+    person("Jon", "Harmon", , "jonthegeek@gmail.com", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0003-4781-4346"))
 Description: A set of consistent, opinionated functions to quickly check
     function arguments, coerce them to the desired configuration, or
     deliver informative error messages when that is not possible.
 License: MIT + file LICENSE
-URL: https://github.com/jonthegeek/stbl,
-    https://jonthegeek.github.io/stbl/
+URL: https://jonthegeek.github.io/stbl/,
+    https://github.com/jonthegeek/stbl
 BugReports: https://github.com/jonthegeek/stbl/issues
 Imports:
     cli,
@@ -22,4 +23,4 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2

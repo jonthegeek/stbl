@@ -24,7 +24,7 @@ and to then see if what the user supplied can work for that purpose.
 
 ## Installation
 
-<div class=".pkgdown-release">
+<div class="pkgdown-release">
 
 Install the released version of stbl from
 [CRAN](https://cran.r-project.org/):
@@ -35,7 +35,7 @@ install.packages("stbl")
 
 </div>
 
-<div class=".pkgdown-devel">
+<div class="pkgdown-devel">
 
 Install the development version of stbl from
 [GitHub](https://github.com/):
