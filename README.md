@@ -19,14 +19,24 @@ classes, and arguments of the “wrong” class don’t cause errors until
 they explicitly fail at some point in the call stack. It would be
 helpful to keep that flexibility from a user standpoint, but to error
 informatively and quickly if the inputs will not work for a computation.
-The purpose of stbl is to allow programmers to specify what they want,
+The purpose of {stbl} is to allow programmers to specify what they want,
 and to then see if what the user supplied can work for that purpose.
+
+This approach aligns with [Postel’s
+Law](https://en.wikipedia.org/wiki/Robustness_principle):
+
+> “Be conservative in what you send. Be liberal in what you accept from
+> others.”
+
+{stbl} is liberal about what it accepts (by coercing when safe) and
+conservative about what it returns (by ensuring that inputs have the
+classes and other features that are expected).
 
 ## Installation
 
 <div class="pkgdown-release">
 
-Install the released version of stbl from
+Install the released version of {stbl} from
 [CRAN](https://cran.r-project.org/):
 
 ``` r
@@ -37,7 +47,7 @@ install.packages("stbl")
 
 <div class="pkgdown-devel">
 
-Install the development version of stbl from
+Install the development version of {stbl} from
 [GitHub](https://github.com/):
 
 ``` r
@@ -55,10 +65,10 @@ classes.
 For example, perhaps you would like to protect against the case where
 data is not properly translated from character on load.
 
-### Without stbl:
+### Without {stbl}:
 
-Without the argument-stabilizers provided in stbl, error messages can be
-cryptic, and errors trigger when you might not want them to.
+Without the argument-stabilizers provided in {stbl}, error messages can
+be cryptic, and errors trigger when you might not want them to.
 
 ``` r
 my_old_fun <- function(my_arg_name) {
@@ -68,9 +78,9 @@ my_old_fun("1")
 #> Error in my_arg_name + 1: non-numeric argument to binary operator
 ```
 
-### With stbl:
+### With {stbl}:
 
-stbl helps to ensure that arguments are what you expect them to be.
+{stbl} helps to ensure that arguments are what you expect them to be.
 
 ``` r
 my_fun <- function(my_arg_name) {
@@ -100,6 +110,24 @@ my_fun(c("1", "2", "3.1", "4", "5.2"))
 #> ✖ Can't convert some values due to loss of precision.
 #> • Locations: 3 and 5
 ```
+
+## Similar Packages
+
+Other packages perform functions similar to {stbl}, but with different
+approaches:
+
+- **{checkmate} and related assertion packages:** {stbl} is designed to
+  coerce when possible, rather than merely check. Where {checkmate}
+  might throw an error if a value is not of the expected class, {stbl}
+  attempts to convert it to something usable, and only errors if that
+  coercion fails. This makes {stbl} a better fit for user-facing
+  functions where flexibility is important and coercion is safe.
+- **{vctrs}:** {vctrs} provides strict, low-level tools for coercion and
+  type consistency, especially useful in package internals and base-type
+  enforcement. {stbl} is more tolerant and higher-level, optimized for
+  use in functions that accept flexible user inputs (e.g. letting a
+  version number 1.1 be passed in as numeric or character and handling
+  both gracefully).
 
 ## Code of Conduct
 
