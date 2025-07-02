@@ -50,3 +50,11 @@
       x Can't convert some values due to incompatible values.
       * Locations: 1
 
+# to_null() errors informatively for missing value
+
+    Code
+      to_null()
+    Condition
+      Error:
+      ! `unknown arg` must not be missing.
+
