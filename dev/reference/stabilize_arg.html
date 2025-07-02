@@ -88,25 +88,25 @@ argument is NULL.</p>
 
 
 <dt id="arg-allow-null">allow_null<a class="anchor" aria-label="anchor" href="#arg-allow-null"></a></dt>
-<dd><p>Logical. Is NULL an acceptable value?</p></dd>
+<dd><p><code>(length-1 logical)</code> Is NULL an acceptable value?</p></dd>
 
 
 <dt id="arg-allow-na">allow_na<a class="anchor" aria-label="anchor" href="#arg-allow-na"></a></dt>
-<dd><p>Logical. Are NA values ok?</p></dd>
+<dd><p><code>(length-1 logical)</code> Are NA values ok?</p></dd>
 
 
 <dt id="arg-min-size">min_size<a class="anchor" aria-label="anchor" href="#arg-min-size"></a></dt>
-<dd><p>Integer. The minimum size of the object. Object size will be
+<dd><p><code>(length-1 integer)</code> The minimum size of the object. Object size will be
 tested using <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vctrs::vec_size()</a></code>.</p></dd>
 
 
 <dt id="arg-max-size">max_size<a class="anchor" aria-label="anchor" href="#arg-max-size"></a></dt>
-<dd><p>Integer. The maximum size of the object. Object size will be
+<dd><p><code>(length-1 integer)</code> The maximum size of the object. Object size will be
 tested using <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vctrs::vec_size()</a></code>.</p></dd>
 
 
 <dt id="arg-x-arg">x_arg<a class="anchor" aria-label="anchor" href="#arg-x-arg"></a></dt>
-<dd><p>Character. An argument name for x. The automatic value will work
+<dd><p><code>(length-1 character)</code> An argument name for x. The automatic value will work
 in most cases, or pass it through from higher-level functions to make error
 messages clearer in unexported functions.</p></dd>
 
@@ -117,13 +117,13 @@ messages clearer in unexported functions.</p></dd>
 
 
 <dt id="arg-x-class">x_class<a class="anchor" aria-label="anchor" href="#arg-x-class"></a></dt>
-<dd><p>Character. The class name of <code>x</code> to use in error messages. Use
+<dd><p><code>(length-1 character)</code> The class name of <code>x</code> to use in error messages. Use
 this if you remove a special class from <code>x</code> before checking its coercion,
 but want the error message to match the original class.</p></dd>
 
 
 <dt id="arg-allow-zero-length">allow_zero_length<a class="anchor" aria-label="anchor" href="#arg-allow-zero-length"></a></dt>
-<dd><p>Logical. Are zero-length vectors acceptable?</p></dd>
+<dd><p><code>(length-1 logical)</code> Are zero-length vectors acceptable?</p></dd>
 
 </dl></div>
     <div class="section level2">
