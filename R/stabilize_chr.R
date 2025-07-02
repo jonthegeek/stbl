@@ -20,10 +20,7 @@
 #' - `NULL` values can be rejected as part of the call to this function (with
 #'   `allow_null = FALSE`).
 #'
-#' @inheritParams .coerce-params
-#' @param regex Character scalar. An optional regex pattern to compare the
-#'   value(s) of `x` against. If a complex regex pattern throws an error, try
-#'   installing the stringi package with `install.packages("stringi")`.
+#' @inheritParams .shared-params
 #'
 #' @return The argument as a character vector.
 #' @export
@@ -79,6 +76,37 @@ stabilize_chr <- function(x,
   )
 }
 
+#' @export
+#' @rdname stabilize_chr
+stabilize_chr_scalar <- function(x,
+                                 ...,
+                                 allow_null = TRUE,
+                                 allow_zero_length = TRUE,
+                                 allow_na = TRUE,
+                                 regex = NULL,
+                                 x_arg = caller_arg(x),
+                                 call = caller_env(),
+                                 x_class = object_type(x)) {
+  .stabilize_cls_scalar(
+    x,
+    to_cls_scalar_fn = to_chr_scalar,
+    check_cls_value_fn = .check_value_chr,
+    check_cls_value_fn_args = list(regex = regex),
+    allow_null = allow_null,
+    allow_zero_length = allow_zero_length,
+    allow_na = allow_na,
+    x_arg = x_arg,
+    call = call,
+    x_class = x_class,
+    ...
+  )
+}
+
+#' Check character values against a regex pattern
+#'
+#' @inheritParams .shared-params
+#' @return `NULL`, invisibly, if `x` passes the check.
+#' @keywords internal
 .check_value_chr <- function(x,
                              regex,
                              x_arg = caller_arg(x),
@@ -87,25 +115,49 @@ stabilize_chr <- function(x,
     return(invisible(NULL))
   }
   regex <- to_chr_scalar(regex, call = call)
+
   success <- .has_regex_pattern(x, regex)
   if (all(success)) {
     return(invisible(NULL))
   }
   locations <- which(!success)
   .stop_must(
-    msg = "must match the provided regex pattern.",
+    msg = names(regex) %||% names(regex_must_match(regex)),
     x_arg = x_arg,
-    additional_msg = c(
-      x = "Some values do not match.",
-      "*" = "Locations: {locations}"
-    ),
+    additional_msg = .describe_failure_chr(x),
     call = call
   )
 }
 
+#' Detect a regex pattern in a character vector
+#'
+#' A wrapper around [stringi::stri_detect_regex()] and [base::grepl()] that
+#' prefers the `stringi` implementation if the package is available.
+#'
+#' @inheritParams .shared-params
+#' @return A logical vector of matches in `x` to `regex`.
+#' @keywords internal
 .has_regex_pattern <- function(x, regex) {
   if (requireNamespace("stringi", quietly = TRUE)) {
     return(stringi::stri_detect_regex(x, regex))
   }
   return(grepl(regex, x)) # nocov
+}
+
+#' Describe a character-based validation failure
+#'
+#' @inheritParams .shared-params
+#'
+#' @return A named character vector to be used as `additional_msg` in
+#'   [.stop_must()].
+#' @keywords internal
+.describe_failure_chr <- function(x) {
+  if (length(x) == 1) {
+    return(c(x = "{.val {x}} does not match."))
+  }
+  c(
+    x = "Some values do not match.",
+    "*" = "Locations: {locations}",
+    "*" = "Values: {x[locations]}"
+  )
 }

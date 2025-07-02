@@ -8,7 +8,7 @@
 #'
 #' `stabilize_arg_scalar()` is optimized to check for length-1 vectors.
 #'
-#' @inheritParams .coerce-params
+#' @inheritParams .shared-params
 #'
 #' @return `x`, unless one of the checks fails.
 #' @export

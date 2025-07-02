@@ -6,6 +6,17 @@ rlang::caller_arg
 #' @export
 rlang::caller_env
 
+#' Abort with a standardized "must" message
+#'
+#' @param msg `(character)` The core error message describing the requirement.
+#' @param additional_msg `(character)` Optional, additional cli-formatted
+#'   messages.
+#' @param class `(character)` The specific error class to assign.
+#' @inheritParams .shared-params
+#'
+#' @return This function is called for its side effect of throwing an error and
+#'   does not return a value.
+#' @keywords internal
 .stop_must <- function(msg,
                        x_arg,
                        call,
@@ -20,6 +31,17 @@ rlang::caller_env
   )
 }
 
+#' Abort with a standardized "can't coerce" message
+#'
+#' @param from_class `(length-1 character)` The class of the object that failed coercion.
+#' @param to_class `(length-1 character)` The target class for the coercion.
+#' @param additional_msg `(length-1 character)` Optional, additional cli-formatted
+#'   messages.
+#' @inheritParams .shared-params
+#'
+#' @return This function is called for its side effect of throwing an error and
+#'   does not return a value.
+#' @keywords internal
 .stop_cant_coerce <- function(from_class,
                               to_class,
                               x_arg,
@@ -37,6 +59,13 @@ rlang::caller_env
   )
 }
 
+#' Abort because an argument must not be NULL
+#'
+#' @inheritParams .shared-params
+#'
+#' @return This function is called for its side effect of throwing an error and
+#'   does not return a value.
+#' @keywords internal
 .stop_null <- function(x_arg, call) {
   .stop_must(
     "must not be {.cls NULL}.",
@@ -46,6 +75,17 @@ rlang::caller_env
   )
 }
 
+#' Abort with an "incompatible type" message
+#'
+#' @param to The target object for the coercion.
+#' @param failures `(logical)` A logical vector indicating which elements
+#'   failed.
+#' @param due_to `(length-1 character)` A string describing the reason for the failure.
+#' @inheritParams .shared-params
+#'
+#' @return This function is called for its side effect of throwing an error and
+#'   does not return a value.
+#' @keywords internal
 .stop_incompatible <- function(x_class,
                                to,
                                failures,

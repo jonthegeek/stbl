@@ -1,8 +1,8 @@
 #' Ensure a factor argument meets expectations
 #'
-#' @description `to_fct()` checks whether an argument can be coerced to
-#'   a factor without losing information, returning it silently if so.
-#'   Otherwise an informative error message is signaled.
+#' @description `to_fct()` checks whether an argument can be coerced to a factor
+#'   without losing information, returning it silently if so. Otherwise an
+#'   informative error message is signaled.
 #'
 #'   `stabilize_fct()` can check more details about the argument, but is slower
 #'   than `to_fct()`.
@@ -10,18 +10,18 @@
 #'   `stabilize_fct_scalar()` and `to_fct_scalar()` are optimized to check for
 #'   length-1 factors.
 #'
-#' @details These functions have important differences from [base::as.factor()] and
-#' [base::factor()]:
+#' @details These functions have important differences from [base::as.factor()]
+#'   and [base::factor()]:
 #'
 #' - Values are never silently coerced to `NA` unless they are explicitly
-#' supplied in the `to_na` argument.
+#'   supplied in the `to_na` argument.
 #' - `NULL` values can be rejected as part of the call to this function (with
-#' `allow_null = FALSE`).
+#'   `allow_null = FALSE`).
 #'
-#' @inheritParams .coerce-params
-#' @param levels Character. Expected levels. If `NULL` (default), the levels
+#' @inheritParams .shared-params
+#' @param levels `(character)` Expected levels. If `NULL` (default), the levels
 #'   will be computed by [base::factor()].
-#' @param to_na Character. Values to coerce to `NA`.
+#' @param to_na `(character)` Values to coerce to `NA`.
 #'
 #' @return The argument as a factor.
 #' @export
