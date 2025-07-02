@@ -10,7 +10,7 @@
 #'   `stabilize_lgl_scalar()` and `to_lgl_scalar()` are optimized to check for
 #'   length-1 logical vectors.
 #'
-#' @inheritParams .coerce-params
+#' @inheritParams .shared-params
 #'
 #' @return The argument as a logical vector.
 #' @export

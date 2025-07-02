@@ -33,28 +33,28 @@ stabilize_arg_scalar(
 
 \item{...}{These dots are for future extensions and should be empty.}
 
-\item{allow_null}{Logical. Is NULL an acceptable value?}
+\item{allow_null}{\verb{(length-1 logical)} Is NULL an acceptable value?}
 
-\item{allow_na}{Logical. Are NA values ok?}
+\item{allow_na}{\verb{(length-1 logical)} Are NA values ok?}
 
-\item{min_size}{Integer. The minimum size of the object. Object size will be
+\item{min_size}{\verb{(length-1 integer)} The minimum size of the object. Object size will be
 tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
-\item{max_size}{Integer. The maximum size of the object. Object size will be
+\item{max_size}{\verb{(length-1 integer)} The maximum size of the object. Object size will be
 tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
-\item{x_arg}{Character. An argument name for x. The automatic value will work
+\item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic value will work
 in most cases, or pass it through from higher-level functions to make error
 messages clearer in unexported functions.}
 
 \item{call}{The execution environment of the call. See the \code{call} argument of
 \code{rlang::abort()} for more information.}
 
-\item{x_class}{Character. The class name of \code{x} to use in error messages. Use
+\item{x_class}{\verb{(length-1 character)} The class name of \code{x} to use in error messages. Use
 this if you remove a special class from \code{x} before checking its coercion,
 but want the error message to match the original class.}
 
-\item{allow_zero_length}{Logical. Are zero-length vectors acceptable?}
+\item{allow_zero_length}{\verb{(length-1 logical)} Are zero-length vectors acceptable?}
 }
 \value{
 \code{x}, unless one of the checks fails.

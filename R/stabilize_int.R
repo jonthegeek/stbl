@@ -1,8 +1,8 @@
 #' Ensure an integer argument meets expectations
 #'
-#' @description `to_int()` checks whether an argument can be coerced to
-#'   integer without losing information, returning it silently if so.
-#'   Otherwise an informative error message is signaled.
+#' @description `to_int()` checks whether an argument can be coerced to integer
+#'   without losing information, returning it silently if so. Otherwise an
+#'   informative error message is signaled.
 #'
 #'   `stabilize_int()` can check more details about the argument, but is slower
 #'   than `to_int()`.
@@ -10,17 +10,17 @@
 #'   `stabilize_int_scalar()` and `to_int_scalar()` are optimized to check for
 #'   length-1 integer vectors.
 #'
-#' @inheritParams .coerce-params
-#' @param coerce_character Logical. Should character vectors such as "1" and
+#' @inheritParams .shared-params
+#' @param coerce_character `(logical)` Should character vectors such as "1" and
 #'   "2.0" be coerced to integer?
-#' @param coerce_factor Logical. Should factors with values such as "1" and
+#' @param coerce_factor `(logical)` Should factors with values such as "1" and
 #'   "2.0" be coerced to integer? Note that this function uses the character
 #'   value from the factor, while [as.integer()] uses the integer index of the
 #'   factor.
-#' @param min_value Integer scalar. The lowest allowed value for `x`. If `NULL`
-#'   (default) values are not checked.
-#' @param max_value Integer scalar. The highest allowed value for `x`. If `NULL`
-#'   (default) values are not checked.
+#' @param min_value `(length-1 integer)` The lowest allowed value for `x`. If
+#'   `NULL` (default) values are not checked.
+#' @param max_value `(length-1 integer)` The highest allowed value for `x`. If
+#'   `NULL` (default) values are not checked.
 #'
 #' @return The argument as an integer.
 #' @export
