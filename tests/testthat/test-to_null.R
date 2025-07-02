@@ -45,3 +45,10 @@ test_that("to_null() errors informatively for weird allow_null values", {
     error = TRUE
   )
 })
+
+test_that("to_null() errors informatively for missing value", {
+  expect_snapshot(
+    to_null(),
+    error = TRUE
+  )
+})
