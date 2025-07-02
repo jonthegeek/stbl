@@ -115,8 +115,8 @@ stabilize_chr_scalar <- function(x,
     return(invisible(NULL))
   }
   regex <- to_chr_scalar(regex, call = call)
+  success <- .has_regex_pattern(x, regex) == !isTRUE(attr(regex, "negate"))
 
-  success <- .has_regex_pattern(x, regex)
   if (all(success)) {
     return(invisible(NULL))
   }

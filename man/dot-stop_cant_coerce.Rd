@@ -11,9 +11,9 @@
 
 \item{to_class}{\verb{(length-1 character)} The target class for the coercion.}
 
-\item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic value will work
-in most cases, or pass it through from higher-level functions to make error
-messages clearer in unexported functions.}
+\item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
+value will work in most cases, or pass it through from higher-level
+functions to make error messages clearer in unexported functions.}
 
 \item{call}{The execution environment of the call. See the \code{call} argument of
 \code{rlang::abort()} for more information.}

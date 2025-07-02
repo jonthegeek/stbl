@@ -58,32 +58,34 @@ to_chr_scalar(
 
 \item{allow_na}{\verb{(length-1 logical)} Are NA values ok?}
 
-\item{min_size}{\verb{(length-1 integer)} The minimum size of the object. Object size will be
-tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
+\item{min_size}{\verb{(length-1 integer)} The minimum size of the object. Object
+size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
-\item{max_size}{\verb{(length-1 integer)} The maximum size of the object. Object size will be
-tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
+\item{max_size}{\verb{(length-1 integer)} The maximum size of the object. Object
+size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
 \item{regex}{\verb{(length-1 character)} An optional regular expression to test
 against the values of \code{x}. The default error message for non-matching
 values will include the pattern itself (see \code{\link[=regex_must_match]{regex_must_match()}}). To
 provide a custom message, supply a named character vector where the value
-is the regex pattern and the name is the message that should be displayed
-instead of "must match the regex pattern \code{{regex}}". If a complex regex
-pattern throws an error, try installing the stringi package.}
+is the regex pattern and the name is the message that should be displayed.
+To check that a pattern is \emph{not} matched, attach a \code{negate} attribute set
+to \code{TRUE}. If a complex regex pattern throws an error, try installing the
+stringi package.}
 
-\item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic value will work
-in most cases, or pass it through from higher-level functions to make error
-messages clearer in unexported functions.}
+\item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
+value will work in most cases, or pass it through from higher-level
+functions to make error messages clearer in unexported functions.}
 
 \item{call}{The execution environment of the call. See the \code{call} argument of
 \code{rlang::abort()} for more information.}
 
-\item{x_class}{\verb{(length-1 character)} The class name of \code{x} to use in error messages. Use
-this if you remove a special class from \code{x} before checking its coercion,
-but want the error message to match the original class.}
+\item{x_class}{\verb{(length-1 character)} The class name of \code{x} to use in error
+messages. Use this if you remove a special class from \code{x} before checking
+its coercion, but want the error message to match the original class.}
 
-\item{allow_zero_length}{\verb{(length-1 logical)} Are zero-length vectors acceptable?}
+\item{allow_zero_length}{\verb{(length-1 logical)} Are zero-length vectors
+acceptable?}
 }
 \value{
 The argument as a character vector.

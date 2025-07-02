@@ -13,9 +13,10 @@
 against the values of \code{x}. The default error message for non-matching
 values will include the pattern itself (see \code{\link[=regex_must_match]{regex_must_match()}}). To
 provide a custom message, supply a named character vector where the value
-is the regex pattern and the name is the message that should be displayed
-instead of "must match the regex pattern \code{{regex}}". If a complex regex
-pattern throws an error, try installing the stringi package.}
+is the regex pattern and the name is the message that should be displayed.
+To check that a pattern is \emph{not} matched, attach a \code{negate} attribute set
+to \code{TRUE}. If a complex regex pattern throws an error, try installing the
+stringi package.}
 }
 \value{
 A logical vector of matches in \code{x} to \code{regex}.

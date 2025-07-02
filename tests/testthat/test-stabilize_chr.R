@@ -95,3 +95,19 @@ test_that("stabilize_chr_scalar() works with regex that contains braces", {
     error = TRUE
   )
 })
+
+test_that("stabilize_chr() accepts negated regex args", {
+  given <- c("a", "b")
+  regex <- "c"
+  attr(regex, "negate") <- TRUE
+  expect_identical(
+    stabilize_chr(given, regex = regex),
+    given
+  )
+
+  given <- c("a", "b", "c")
+  expect_snapshot(
+    stabilize_chr(given, regex = regex),
+    error = TRUE
+  )
+})
