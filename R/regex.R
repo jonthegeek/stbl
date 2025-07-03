@@ -28,7 +28,7 @@ regex_must_match <- function(regex) {
 
   rlang::set_names(
     regex,
-    paste(verb, "the regex pattern", .cli_escape(regex))
+    paste(verb, "the regex pattern", .cli_mark(.cli_escape(regex), "val"))
   )
 }
 
