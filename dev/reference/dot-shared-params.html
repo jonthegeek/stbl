@@ -58,17 +58,18 @@ make them easier to import and to find.</p>
 
 
 <dt id="arg-allow-zero-length">allow_zero_length<a class="anchor" aria-label="anchor" href="#arg-allow-zero-length"></a></dt>
-<dd><p><code>(length-1 logical)</code> Are zero-length vectors acceptable?</p></dd>
+<dd><p><code>(length-1 logical)</code> Are zero-length vectors
+acceptable?</p></dd>
 
 
 <dt id="arg-min-size">min_size<a class="anchor" aria-label="anchor" href="#arg-min-size"></a></dt>
-<dd><p><code>(length-1 integer)</code> The minimum size of the object. Object size will be
-tested using <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vctrs::vec_size()</a></code>.</p></dd>
+<dd><p><code>(length-1 integer)</code> The minimum size of the object. Object
+size will be tested using <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vctrs::vec_size()</a></code>.</p></dd>
 
 
 <dt id="arg-max-size">max_size<a class="anchor" aria-label="anchor" href="#arg-max-size"></a></dt>
-<dd><p><code>(length-1 integer)</code> The maximum size of the object. Object size will be
-tested using <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vctrs::vec_size()</a></code>.</p></dd>
+<dd><p><code>(length-1 integer)</code> The maximum size of the object. Object
+size will be tested using <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vctrs::vec_size()</a></code>.</p></dd>
 
 
 <dt id="arg-regex">regex<a class="anchor" aria-label="anchor" href="#arg-regex"></a></dt>
@@ -76,9 +77,10 @@ tested using <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" cla
 against the values of <code>x</code>. The default error message for non-matching
 values will include the pattern itself (see <code><a href="regex_must_match.html">regex_must_match()</a></code>). To
 provide a custom message, supply a named character vector where the value
-is the regex pattern and the name is the message that should be displayed
-instead of "must match the regex pattern <code>{regex}</code>". If a complex regex
-pattern throws an error, try installing the stringi package.</p></dd>
+is the regex pattern and the name is the message that should be displayed.
+To check that a pattern is <em>not</em> matched, attach a <code>negate</code> attribute set
+to <code>TRUE</code>. If a complex regex pattern throws an error, try installing the
+stringi package.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
@@ -86,15 +88,15 @@ pattern throws an error, try installing the stringi package.</p></dd>
 
 
 <dt id="arg-x-arg">x_arg<a class="anchor" aria-label="anchor" href="#arg-x-arg"></a></dt>
-<dd><p><code>(length-1 character)</code> An argument name for x. The automatic value will work
-in most cases, or pass it through from higher-level functions to make error
-messages clearer in unexported functions.</p></dd>
+<dd><p><code>(length-1 character)</code> An argument name for x. The automatic
+value will work in most cases, or pass it through from higher-level
+functions to make error messages clearer in unexported functions.</p></dd>
 
 
 <dt id="arg-x-class">x_class<a class="anchor" aria-label="anchor" href="#arg-x-class"></a></dt>
-<dd><p><code>(length-1 character)</code> The class name of <code>x</code> to use in error messages. Use
-this if you remove a special class from <code>x</code> before checking its coercion,
-but want the error message to match the original class.</p></dd>
+<dd><p><code>(length-1 character)</code> The class name of <code>x</code> to use in error
+messages. Use this if you remove a special class from <code>x</code> before checking
+its coercion, but want the error message to match the original class.</p></dd>
 
 
 <dt id="arg-call">call<a class="anchor" aria-label="anchor" href="#arg-call"></a></dt>
