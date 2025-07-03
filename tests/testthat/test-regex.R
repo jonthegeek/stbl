@@ -36,6 +36,6 @@ test_that("regex_must_not_match() doesn't freak out about pre-set negation", {
   rule <- regex_must_not_match(regex)
   expect_type(rule, "character")
   expect_named(rule, "must not match the regex pattern ^a")
-  expect_equal(rule, "^a", ignore_attr = TRUE)
+  expect_equal(rule, regex, ignore_attr = TRUE)
   expect_true(attr(rule, "negate"))
 })
