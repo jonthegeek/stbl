@@ -31,6 +31,17 @@
   gsub("}", "}}", msg, fixed = TRUE)
 }
 
+#' Wrap text in cli markup
+#'
+#' @param x `(character)` The string to wrap.
+#' @param tag `(character)` The cli class to apply (e.g., "val", "var").
+#'
+#' @return A character vector the same length as `x` with cli markup.
+#' @keywords internal
+.cli_mark <- function(x, tag) {
+  paste0("{.", tag, " ", x, "}")
+}
+
 #' NULL-coalescing-like operator
 #'
 #' If the left-hand side is not `NULL`, returns the right-hand side. Otherwise,
