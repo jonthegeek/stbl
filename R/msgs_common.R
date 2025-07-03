@@ -6,6 +6,17 @@ rlang::caller_arg
 #' @export
 rlang::caller_env
 
+#' Define the main error message for a "must" error
+#'
+#' @inheritParams .shared-params
+#' @param msg `(character)` The core error message describing the requirement.
+#'
+#' @return A character string.
+#' @keywords internal
+.define_main_msg <- function(x_arg, msg) {
+  .glue2("{.arg [x_arg]} [msg]")
+}
+
 #' Abort with a standardized "must" message
 #'
 #' @param msg `(character)` The core error message describing the requirement.
@@ -22,7 +33,7 @@ rlang::caller_env
                        call,
                        additional_msg = NULL,
                        class = "stbl_error_must") {
-  main_msg <- .glue2("{.arg [x_arg]} [msg]")
+  main_msg <- .define_main_msg(x_arg, msg)
   cli_abort(
     c(main_msg, additional_msg),
     call = call,

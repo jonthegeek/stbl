@@ -4,10 +4,15 @@
 \alias{.describe_failure_chr}
 \title{Describe a character-based validation failure}
 \usage{
-.describe_failure_chr(x)
+.describe_failure_chr(x, success, negate = FALSE)
 }
 \arguments{
 \item{x}{The argument to stabilize.}
+
+\item{success}{A logical vector indicating which elements of \code{x} passed the
+check.}
+
+\item{negate}{\code{(logical)} Was the check a negative one?}
 }
 \value{
 A named character vector to be used as \code{additional_msg} in

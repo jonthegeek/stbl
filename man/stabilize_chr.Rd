@@ -64,14 +64,14 @@ size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 \item{max_size}{\verb{(length-1 integer)} The maximum size of the object. Object
 size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
-\item{regex}{\verb{(length-1 character)} An optional regular expression to test
-against the values of \code{x}. The default error message for non-matching
-values will include the pattern itself (see \code{\link[=regex_must_match]{regex_must_match()}}). To
-provide a custom message, supply a named character vector where the value
-is the regex pattern and the name is the message that should be displayed.
-To check that a pattern is \emph{not} matched, attach a \code{negate} attribute set
-to \code{TRUE}. If a complex regex pattern throws an error, try installing the
-stringi package.}
+\item{regex}{\verb{(character or list of characters)} One or more optional regular
+expressions to test against the values of \code{x}. The default error message
+for non-matching values will include the pattern itself (see
+\code{\link[=regex_must_match]{regex_must_match()}}). To provide a custom message, supply a named
+character vector where the value is the regex pattern and the name is the
+message that should be displayed. To check that a pattern is \emph{not} matched,
+attach a \code{negate} attribute set to \code{TRUE}. If a complex regex pattern
+throws an error, try installing the stringi package.}
 
 \item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
 value will work in most cases, or pass it through from higher-level

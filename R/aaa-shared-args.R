@@ -12,14 +12,14 @@
 #'   size will be tested using [vctrs::vec_size()].
 #' @param max_size `(length-1 integer)` The maximum size of the object. Object
 #'   size will be tested using [vctrs::vec_size()].
-#' @param regex `(length-1 character)` An optional regular expression to test
-#'   against the values of `x`. The default error message for non-matching
-#'   values will include the pattern itself (see [regex_must_match()]). To
-#'   provide a custom message, supply a named character vector where the value
-#'   is the regex pattern and the name is the message that should be displayed.
-#'   To check that a pattern is *not* matched, attach a `negate` attribute set
-#'   to `TRUE`. If a complex regex pattern throws an error, try installing the
-#'   stringi package.
+#' @param regex `(character or list of characters)` One or more optional regular
+#'   expressions to test against the values of `x`. The default error message
+#'   for non-matching values will include the pattern itself (see
+#'   [regex_must_match()]). To provide a custom message, supply a named
+#'   character vector where the value is the regex pattern and the name is the
+#'   message that should be displayed. To check that a pattern is *not* matched,
+#'   attach a `negate` attribute set to `TRUE`. If a complex regex pattern
+#'   throws an error, try installing the stringi package.
 #' @param x The argument to stabilize.
 #' @param x_arg `(length-1 character)` An argument name for x. The automatic
 #'   value will work in most cases, or pass it through from higher-level
