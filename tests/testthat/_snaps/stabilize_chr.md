@@ -113,3 +113,36 @@
       * Locations: 2 and 3
       * Values: banana and boat
 
+# stabilize_chr() works with stringr pattern modifiers
+
+    Code
+      stabilize_chr(c("a.b", "acb"), regex = stringr::fixed("a.b"))
+    Condition
+      Error:
+      ! `c("a.b", "acb")` must match the regex pattern "a.b"
+      x Some values do not match.
+      * Locations: 2
+      * Values: acb
+
+---
+
+    Code
+      stabilize_chr(c("a", "A"), regex = stringr::coll("a"))
+    Condition
+      Error:
+      ! `c("a", "A")` must match the regex pattern "a"
+      x Some values do not match.
+      * Locations: 2
+      * Values: A
+
+---
+
+    Code
+      stabilize_chr(c("A", "B"), regex = stringr::regex("a", ignore_case = TRUE))
+    Condition
+      Error:
+      ! `c("A", "B")` must match the regex pattern "a"
+      x Some values do not match.
+      * Locations: 2
+      * Values: B
+

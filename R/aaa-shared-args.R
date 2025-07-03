@@ -12,9 +12,11 @@
 #'   size will be tested using [vctrs::vec_size()].
 #' @param max_size `(length-1 integer)` The maximum size of the object. Object
 #'   size will be tested using [vctrs::vec_size()].
-#' @param regex `(character or list of characters)` One or more optional regular
-#'   expressions to test against the values of `x`. The default error message
-#'   for non-matching values will include the pattern itself (see
+#' @param regex `(character, list, or stringr_pattern)` One or more optional
+#'   regular expressions to test against the values of `x`. This can be a
+#'   character vector, a list of character vectors, or a pattern object from the
+#'   \{stringr\} package (e.g., `stringr::fixed("a.b")`). The default error
+#'   message for non-matching values will include the pattern itself (see
 #'   [regex_must_match()]). To provide a custom message, supply a named
 #'   character vector where the value is the regex pattern and the name is the
 #'   message that should be displayed. To check that a pattern is *not* matched,

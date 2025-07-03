@@ -9,9 +9,11 @@
 \arguments{
 \item{x}{The argument to stabilize.}
 
-\item{regex}{\verb{(character or list of characters)} One or more optional regular
-expressions to test against the values of \code{x}. The default error message
-for non-matching values will include the pattern itself (see
+\item{regex}{\verb{(character, list, or stringr_pattern)} One or more optional
+regular expressions to test against the values of \code{x}. This can be a
+character vector, a list of character vectors, or a pattern object from the
+\{stringr\} package (e.g., \code{stringr::fixed("a.b")}). The default error
+message for non-matching values will include the pattern itself (see
 \code{\link[=regex_must_match]{regex_must_match()}}). To provide a custom message, supply a named
 character vector where the value is the regex pattern and the name is the
 message that should be displayed. To check that a pattern is \emph{not} matched,
