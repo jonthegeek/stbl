@@ -87,3 +87,14 @@
       ! `"b"` must match the regex pattern a{1,3}
       x "b" does not match.
 
+# stabilize_chr() accepts negated regex args
+
+    Code
+      stabilize_chr(given, regex = regex)
+    Condition
+      Error:
+      ! `given` must not match the regex pattern c
+      x Some values do not match.
+      * Locations: 3
+      * Values: c
+

@@ -2,7 +2,7 @@
 % Please edit documentation in R/regex.R
 \name{regex_must_match}
 \alias{regex_must_match}
-\title{Create a 'must match' regex rule}
+\title{Create a regex matching rule}
 \usage{
 regex_must_match(regex)
 }
@@ -10,14 +10,21 @@ regex_must_match(regex)
 \item{regex}{\code{(character)} The regular expression pattern.}
 }
 \value{
-The \code{regex} value with \code{\link[=names]{names()}} specifying that the pattern must be
-matched.
+The \code{regex} value with \code{\link[=names]{names()}} equal to the generated error
+message.
 }
 \description{
-Attach a standardized error message to a \code{regex} argument, including the
-regex pattern itself. This error message can be used with \code{\link[=stabilize_chr]{stabilize_chr()}}
-and \code{\link[=stabilize_chr_scalar]{stabilize_chr_scalar()}}.
+Attach a standardized error message to a \code{regex} argument. By default, the
+message will be "must match the regex pattern \{regex\}". If the input
+\code{regex} has a \code{negate} attribute set to \code{TRUE}, the message will instead be
+"must not match...". This message can be used with \code{\link[=stabilize_chr]{stabilize_chr()}} and
+\code{\link[=stabilize_chr_scalar]{stabilize_chr_scalar()}}.
 }
 \examples{
 regex_must_match("[aeiou]")
+
+# With negation:
+regex <- "[aeiou]"
+attr(regex, "negate") <- TRUE
+regex_must_match(regex)
 }

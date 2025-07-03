@@ -13,13 +13,14 @@
 against the values of \code{x}. The default error message for non-matching
 values will include the pattern itself (see \code{\link[=regex_must_match]{regex_must_match()}}). To
 provide a custom message, supply a named character vector where the value
-is the regex pattern and the name is the message that should be displayed
-instead of "must match the regex pattern \code{{regex}}". If a complex regex
-pattern throws an error, try installing the stringi package.}
+is the regex pattern and the name is the message that should be displayed.
+To check that a pattern is \emph{not} matched, attach a \code{negate} attribute set
+to \code{TRUE}. If a complex regex pattern throws an error, try installing the
+stringi package.}
 
-\item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic value will work
-in most cases, or pass it through from higher-level functions to make error
-messages clearer in unexported functions.}
+\item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
+value will work in most cases, or pass it through from higher-level
+functions to make error messages clearer in unexported functions.}
 
 \item{call}{The execution environment of the call. See the \code{call} argument of
 \code{rlang::abort()} for more information.}
