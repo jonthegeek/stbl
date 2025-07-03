@@ -2,21 +2,21 @@
 % Please edit documentation in R/stabilize_chr.R
 \name{.check_value_chr}
 \alias{.check_value_chr}
-\title{Check character values against a regex pattern}
+\title{Check character values against one or more regex patterns}
 \usage{
 .check_value_chr(x, regex, x_arg = caller_arg(x), call = caller_env())
 }
 \arguments{
 \item{x}{The argument to stabilize.}
 
-\item{regex}{\verb{(length-1 character)} An optional regular expression to test
-against the values of \code{x}. The default error message for non-matching
-values will include the pattern itself (see \code{\link[=regex_must_match]{regex_must_match()}}). To
-provide a custom message, supply a named character vector where the value
-is the regex pattern and the name is the message that should be displayed.
-To check that a pattern is \emph{not} matched, attach a \code{negate} attribute set
-to \code{TRUE}. If a complex regex pattern throws an error, try installing the
-stringi package.}
+\item{regex}{\verb{(character or list of characters)} One or more optional regular
+expressions to test against the values of \code{x}. The default error message
+for non-matching values will include the pattern itself (see
+\code{\link[=regex_must_match]{regex_must_match()}}). To provide a custom message, supply a named
+character vector where the value is the regex pattern and the name is the
+message that should be displayed. To check that a pattern is \emph{not} matched,
+attach a \code{negate} attribute set to \code{TRUE}. If a complex regex pattern
+throws an error, try installing the stringi package.}
 
 \item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
 value will work in most cases, or pass it through from higher-level
@@ -26,9 +26,9 @@ functions to make error messages clearer in unexported functions.}
 \code{rlang::abort()} for more information.}
 }
 \value{
-\code{NULL}, invisibly, if \code{x} passes the check.
+\code{NULL}, invisibly, if \code{x} passes all checks.
 }
 \description{
-Check character values against a regex pattern
+Check character values against one or more regex patterns
 }
 \keyword{internal}

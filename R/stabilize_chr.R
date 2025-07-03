@@ -102,10 +102,10 @@ stabilize_chr_scalar <- function(x,
   )
 }
 
-#' Check character values against a regex pattern
+#' Check character values against one or more regex patterns
 #'
 #' @inheritParams .shared-params
-#' @return `NULL`, invisibly, if `x` passes the check.
+#' @return `NULL`, invisibly, if `x` passes all checks.
 #' @keywords internal
 .check_value_chr <- function(x,
                              regex,
@@ -114,19 +114,51 @@ stabilize_chr_scalar <- function(x,
   if (is.null(regex)) {
     return(invisible(NULL))
   }
-  regex <- to_chr_scalar(regex, call = call)
-  success <- .has_regex_pattern(x, regex) == !isTRUE(attr(regex, "negate"))
 
-  if (all(success)) {
-    return(invisible(NULL))
-  }
-  locations <- which(!success)
-  .stop_must(
-    msg = names(regex) %||% names(regex_must_match(regex)),
+  rules <- if (is.list(regex)) regex else list(regex)
+
+  error_msgs <- lapply(
+    X = rules,
+    FUN = .apply_regex_rule,
+    x = x,
     x_arg = x_arg,
-    additional_msg = .describe_failure_chr(x),
     call = call
   )
+
+  error_msgs <- unlist(error_msgs)
+
+  if (length(error_msgs)) {
+    cli_abort(error_msgs, call = call, class = "stbl_error_must")
+  }
+
+  invisible(NULL)
+}
+
+#' Apply a single regex rule to a character vector
+#'
+#' @param rule `(length-1 character)` A regex rule (possibly with a `name` and
+#'   `negate` attribute).
+#' @inheritParams .shared-params
+#'
+#' @return A character vector of error messages if the rule fails, otherwise
+#'   `NULL`.
+#' @keywords internal
+.apply_regex_rule <- function(rule, x, x_arg, call) {
+  rule <- to_chr_scalar(rule, call = call)
+  negate <- isTRUE(attr(rule, "negate"))
+  success <- .has_regex_pattern(x, rule) == !negate
+
+  if (all(success)) {
+    return(NULL)
+  }
+
+  main_msg <- .define_main_msg(
+    x_arg,
+    names(rule) %||% names(regex_must_match(rule))
+  )
+  additional_msg <- .describe_failure_chr(x, success, negate)
+
+  c(main_msg, additional_msg)
 }
 
 #' Detect a regex pattern in a character vector
@@ -147,17 +179,25 @@ stabilize_chr_scalar <- function(x,
 #' Describe a character-based validation failure
 #'
 #' @inheritParams .shared-params
+#' @param success A logical vector indicating which elements of `x` passed the
+#'   check.
+#' @param negate `(logical)` Was the check a negative one?
 #'
 #' @return A named character vector to be used as `additional_msg` in
 #'   [.stop_must()].
 #' @keywords internal
-.describe_failure_chr <- function(x) {
+.describe_failure_chr <- function(x, success, negate = FALSE) {
+  locations <- which(!success)
+
   if (length(x) == 1) {
-    return(c(x = "{.val {x}} does not match."))
+    verb <- if (negate) "matches" else "does not match"
+    return(c(x = cli::format_inline("{.val {x}} {verb}.")))
   }
+
+  verb <- if (negate) "match" else "do not match"
   c(
-    x = "Some values do not match.",
-    "*" = "Locations: {locations}",
-    "*" = "Values: {x[locations]}"
+    x = glue("Some values {verb}."),
+    "*" = cli::format_inline("Locations: {locations}"),
+    "*" = cli::format_inline("Values: {x[locations]}")
   )
 }

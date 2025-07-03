@@ -69,6 +69,22 @@ test_that("stabilize_chr() works with regex that contains braces", {
   )
 })
 
+test_that("stabilize_chr() accepts negated regex args", {
+  given <- c("a", "b")
+  regex <- "c"
+  attr(regex, "negate") <- TRUE
+  expect_identical(
+    stabilize_chr(given, regex = regex),
+    given
+  )
+
+  given <- c("a", "b", "c")
+  expect_snapshot(
+    stabilize_chr(given, regex = regex),
+    error = TRUE
+  )
+})
+
 test_that("stabilize_chr_scalar() allows length-1 chrs through", {
   expect_identical(stabilize_chr_scalar("a"), "a")
 })
@@ -96,18 +112,19 @@ test_that("stabilize_chr_scalar() works with regex that contains braces", {
   )
 })
 
-test_that("stabilize_chr() accepts negated regex args", {
-  given <- c("a", "b")
-  regex <- "c"
-  attr(regex, "negate") <- TRUE
+test_that("stabilize_chr() accepts multiple regex rules", {
+  rules <- list(
+    regex_must_match("a"),
+    regex_must_not_match("b")
+  )
+  given <- c("apple", "avocado")
   expect_identical(
-    stabilize_chr(given, regex = regex),
+    stabilize_chr(given, regex = rules),
     given
   )
-
-  given <- c("a", "b", "c")
+  given <- c("apple", "banana", "boat", "plum")
   expect_snapshot(
-    stabilize_chr(given, regex = regex),
+    stabilize_chr(given, regex = rules),
     error = TRUE
   )
 })
