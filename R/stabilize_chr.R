@@ -170,6 +170,11 @@ stabilize_chr_scalar <- function(x,
 #' @return A logical vector of matches in `x` to `regex`.
 #' @keywords internal
 .has_regex_pattern <- function(x, regex) {
+  if (inherits(regex, "stringr_pattern")) {
+    rlang::check_installed("stringr", "to apply a stringr-style regex pattern.")
+    return(stringr::str_detect(x, regex))
+  }
+
   if (requireNamespace("stringi", quietly = TRUE)) {
     return(stringi::stri_detect_regex(x, regex))
   }

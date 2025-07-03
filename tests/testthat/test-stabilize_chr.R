@@ -128,3 +128,37 @@ test_that("stabilize_chr() accepts multiple regex rules", {
     error = TRUE
   )
 })
+
+test_that("stabilize_chr() works with stringr pattern modifiers", {
+  skip_if_not_installed("stringr")
+
+  # fixed()
+  expect_identical(
+    stabilize_chr("a.b", regex = stringr::fixed("a.b")),
+    "a.b"
+  )
+  expect_snapshot(
+    stabilize_chr(c("a.b", "acb"), regex = stringr::fixed("a.b")),
+    error = TRUE
+  )
+
+  # coll()
+  expect_identical(
+    stabilize_chr("A", regex = stringr::coll("a", ignore_case = TRUE)),
+    "A"
+  )
+  expect_snapshot(
+    stabilize_chr(c("a", "A"), regex = stringr::coll("a")),
+    error = TRUE
+  )
+
+  # regex()
+  expect_identical(
+    stabilize_chr("A", regex = stringr::regex("a", ignore_case = TRUE)),
+    "A"
+  )
+  expect_snapshot(
+    stabilize_chr(c("A", "B"), regex = stringr::regex("a", ignore_case = TRUE)),
+    error = TRUE
+  )
+})
