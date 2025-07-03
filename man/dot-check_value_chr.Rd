@@ -2,7 +2,7 @@
 % Please edit documentation in R/stabilize_chr.R
 \name{.check_value_chr}
 \alias{.check_value_chr}
-\title{Check character values against a regex pattern}
+\title{Check character values against one or more regex patterns}
 \usage{
 .check_value_chr(x, regex, x_arg = caller_arg(x), call = caller_env())
 }
@@ -26,9 +26,9 @@ functions to make error messages clearer in unexported functions.}
 \code{rlang::abort()} for more information.}
 }
 \value{
-\code{NULL}, invisibly, if \code{x} passes the check.
+\code{NULL}, invisibly, if \code{x} passes all checks.
 }
 \description{
-Check character values against a regex pattern
+Check character values against one or more regex patterns
 }
 \keyword{internal}

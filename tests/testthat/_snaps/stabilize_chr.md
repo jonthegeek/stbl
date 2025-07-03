@@ -60,6 +60,17 @@
       * Locations: 1
       * Values: b
 
+# stabilize_chr() accepts negated regex args
+
+    Code
+      stabilize_chr(given, regex = regex)
+    Condition
+      Error:
+      ! `given` must not match the regex pattern "c"
+      x Some values match.
+      * Locations: 3
+      * Values: c
+
 # stabilize_chr_scalar() provides informative error messages
 
     Code
@@ -87,14 +98,18 @@
       ! `"b"` must match the regex pattern "a{1,3}"
       x "b" does not match.
 
-# stabilize_chr() accepts negated regex args
+# stabilize_chr() accepts multiple regex rules
 
     Code
-      stabilize_chr(given, regex = regex)
+      stabilize_chr(given, regex = rules)
     Condition
       Error:
-      ! `given` must not match the regex pattern "c"
+      ! `given` must match the regex pattern "a"
       x Some values do not match.
-      * Locations: 3
-      * Values: c
+      * Locations: 4
+      * Values: plum
+      `given` must not match the regex pattern "b"
+      x Some values match.
+      * Locations: 2 and 3
+      * Values: banana and boat
 
