@@ -222,7 +222,7 @@ that this is the expected behavior, use <code><a href="https://rdrr.io/r/base/ch
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> 26 is too big.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">stabilize_chr</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hide"</span>, <span class="st">"find"</span>, <span class="st">"find"</span>, <span class="st">"hide"</span><span class="op">)</span>, regex <span class="op">=</span> <span class="st">"hide"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   `c("hide", "find", "find", "hide")` must match the regex pattern hide</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   `c("hide", "find", "find", "hide")` must match the regex pattern <span style="color: #0000BB;">"hide"</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Some values do not match.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Locations: 2 and 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Values: find and find</span>
