@@ -131,14 +131,14 @@ size will be tested using <code><a href="https://vctrs.r-lib.org/reference/vec_s
 
 
 <dt id="arg-regex">regex<a class="anchor" aria-label="anchor" href="#arg-regex"></a></dt>
-<dd><p><code>(length-1 character)</code> An optional regular expression to test
-against the values of <code>x</code>. The default error message for non-matching
-values will include the pattern itself (see <code><a href="regex_must_match.html">regex_must_match()</a></code>). To
-provide a custom message, supply a named character vector where the value
-is the regex pattern and the name is the message that should be displayed.
-To check that a pattern is <em>not</em> matched, attach a <code>negate</code> attribute set
-to <code>TRUE</code>. If a complex regex pattern throws an error, try installing the
-stringi package.</p></dd>
+<dd><p><code>(character or list of characters)</code> One or more optional regular
+expressions to test against the values of <code>x</code>. The default error message
+for non-matching values will include the pattern itself (see
+<code><a href="regex_must_match.html">regex_must_match()</a></code>). To provide a custom message, supply a named
+character vector where the value is the regex pattern and the name is the
+message that should be displayed. To check that a pattern is <em>not</em> matched,
+attach a <code>negate</code> attribute set to <code>TRUE</code>. If a complex regex pattern
+throws an error, try installing the stringi package.</p></dd>
 
 
 <dt id="arg-x-arg">x_arg<a class="anchor" aria-label="anchor" href="#arg-x-arg"></a></dt>

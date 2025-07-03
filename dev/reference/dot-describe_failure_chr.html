@@ -39,7 +39,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.describe_failure_chr</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.describe_failure_chr</span><span class="op">(</span><span class="va">x</span>, <span class="va">success</span>, negate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -48,6 +48,15 @@
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>The argument to stabilize.</p></dd>
+
+
+<dt id="arg-success">success<a class="anchor" aria-label="anchor" href="#arg-success"></a></dt>
+<dd><p>A logical vector indicating which elements of <code>x</code> passed the
+check.</p></dd>
+
+
+<dt id="arg-negate">negate<a class="anchor" aria-label="anchor" href="#arg-negate"></a></dt>
+<dd><p><code>(logical)</code> Was the check a negative one?</p></dd>
 
 </dl></div>
     <div class="section level2">
