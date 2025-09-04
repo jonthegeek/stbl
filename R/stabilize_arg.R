@@ -10,7 +10,7 @@
 #'
 #' @inheritParams .shared-params
 #'
-#' @return `x`, unless one of the checks fails.
+#' @returns `x`, unless one of the checks fails.
 #' @export
 #'
 #' @examples
@@ -27,15 +27,17 @@
 #' stabilize_arg_scalar("a")
 #' stabilize_arg_scalar(1L)
 #' try(stabilize_arg_scalar(1:10))
-stabilize_arg <- function(x,
-                          ...,
-                          allow_null = TRUE,
-                          allow_na = TRUE,
-                          min_size = NULL,
-                          max_size = NULL,
-                          x_arg = caller_arg(x),
-                          call = caller_env(),
-                          x_class = object_type(x)) {
+stabilize_arg <- function(
+  x,
+  ...,
+  allow_null = TRUE,
+  allow_na = TRUE,
+  min_size = NULL,
+  max_size = NULL,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   check_dots_empty0(..., call = call)
 
   if (is.null(x)) {

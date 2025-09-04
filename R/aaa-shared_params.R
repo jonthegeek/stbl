@@ -10,8 +10,12 @@
 #'   acceptable?
 #' @param min_size `(length-1 integer)` The minimum size of the object. Object
 #'   size will be tested using [vctrs::vec_size()].
+#' @param min_value `(length-1 integer)` The lowest allowed value for `x`. If
+#'   `NULL` (default) values are not checked.
 #' @param max_size `(length-1 integer)` The maximum size of the object. Object
 #'   size will be tested using [vctrs::vec_size()].
+#' @param max_value `(length-1 integer)` The highest allowed value for `x`. If
+#'   `NULL` (default) values are not checked.
 #' @param regex `(character, list, or stringr_pattern)` One or more optional
 #'   regular expressions to test against the values of `x`. This can be a
 #'   character vector, a list of character vectors, or a pattern object from the

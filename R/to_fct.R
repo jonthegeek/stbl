@@ -1,51 +1,61 @@
 #' @export
 #' @rdname stabilize_fct
-to_fct <- function(x,
-                   allow_null = TRUE,
-                   levels = NULL,
-                   to_na = character(),
-                   x_arg = caller_arg(x),
-                   call = caller_env(),
-                   x_class = object_type(x)) {
+to_fct <- function(
+  x,
+  allow_null = TRUE,
+  levels = NULL,
+  to_na = character(),
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   UseMethod("to_fct")
 }
 
 #' @export
-to_fct.factor <- function(x,
-                          ...,
-                          levels = NULL,
-                          to_na = character(),
-                          x_arg = caller_arg(x),
-                          call = caller_env()) {
+to_fct.factor <- function(
+  x,
+  ...,
+  levels = NULL,
+  to_na = character(),
+  x_arg = caller_arg(x),
+  call = caller_env()
+) {
   levels <- levels %||% levels(x)
   return(.coerce_fct_levels(x, levels, to_na, x_arg, call))
 }
 
 #' @export
-to_fct.character <- function(x,
-                             ...,
-                             levels = NULL,
-                             to_na = character(),
-                             x_arg = caller_arg(x),
-                             call = caller_env()) {
+to_fct.character <- function(
+  x,
+  ...,
+  levels = NULL,
+  to_na = character(),
+  x_arg = caller_arg(x),
+  call = caller_env()
+) {
   return(.coerce_fct_levels(x, levels, to_na, x_arg, call))
 }
 
 #' @export
-to_fct.NULL <- function(x,
-                        ...,
-                        allow_null = TRUE,
-                        x_arg = caller_arg(x),
-                        call = caller_env()) {
+to_fct.NULL <- function(
+  x,
+  ...,
+  allow_null = TRUE,
+  x_arg = caller_arg(x),
+  call = caller_env()
+) {
   to_null(x, allow_null = allow_null, x_arg = x_arg, call = call)
 }
 
 #' @export
-to_fct.data.frame <- function(x,
-                              ...,
-                              x_arg = caller_arg(x),
-                              call = caller_env(),
-                              x_class = object_type(x)) {
+to_fct.data.frame <- function(
+  x,
+  ...,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   .stop_cant_coerce(
     from_class = x_class,
     to_class = "factor",
@@ -55,11 +65,13 @@ to_fct.data.frame <- function(x,
 }
 
 #' @export
-to_fct.list <- function(x,
-                        ...,
-                        x_arg = caller_arg(x),
-                        call = caller_env(),
-                        x_class = object_type(x)) {
+to_fct.list <- function(
+  x,
+  ...,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   .stop_cant_coerce(
     from_class = x_class,
     to_class = "factor",
@@ -69,15 +81,19 @@ to_fct.list <- function(x,
 }
 
 #' @export
-to_fct.default <- function(x,
-                           ...,
-                           levels = NULL,
-                           to_na = character(),
-                           x_arg = caller_arg(x),
-                           call = caller_env(),
-                           x_class = object_type(x)) {
+to_fct.default <- function(
+  x,
+  ...,
+  levels = NULL,
+  to_na = character(),
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   try_fetch(
-    {x <- as.factor(x)},
+    {
+      x <- as.factor(x)
+    },
     error = function(cnd) {
       .stop_cant_coerce(
         from_class = x_class,
@@ -90,11 +106,13 @@ to_fct.default <- function(x,
   return(.coerce_fct_levels(x, levels, to_na, x_arg, call))
 }
 
-.coerce_fct_levels <- function(x,
-                               levels,
-                               to_na,
-                               x_arg = caller_arg(x),
-                               call = caller_env()) {
+.coerce_fct_levels <- function(
+  x,
+  levels,
+  to_na,
+  x_arg = caller_arg(x),
+  call = caller_env()
+) {
   x <- .coerce_fct_to_na(x, to_na, call)
   x <- .coerce_fct_levels_impl(x, levels, x_arg, call)
   return(x)
@@ -108,10 +126,12 @@ to_fct.default <- function(x,
   return(x)
 }
 
-.coerce_fct_levels_impl <- function(x,
-                                    levels,
-                                    x_arg = caller_arg(x),
-                                    call = caller_env()) {
+.coerce_fct_levels_impl <- function(
+  x,
+  levels,
+  x_arg = caller_arg(x),
+  call = caller_env()
+) {
   levels <- to_chr(levels)
   if (length(levels)) {
     was_na <- is.na(x)

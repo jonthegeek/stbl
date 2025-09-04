@@ -7,7 +7,7 @@
 #'
 #' @param x An object to test.
 #'
-#' @return A length-1 character vector describing the class of the object.
+#' @returns A length-1 character vector describing the class of the object.
 #' @export
 #'
 #' @examples
@@ -33,10 +33,6 @@ object_type <- function(x) {
   # specificity.
   type <- typeof(x)
   return(
-    switch(type,
-      language = "call",
-      closure = "function",
-      type
-    )
+    switch(type, language = "call", closure = "function", type)
   )
 }

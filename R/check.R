@@ -1,7 +1,9 @@
-.check_na <- function(x,
-                      allow_na = TRUE,
-                      x_arg = caller_arg(x),
-                      call = caller_env()) {
+.check_na <- function(
+  x,
+  allow_na = TRUE,
+  x_arg = caller_arg(x),
+  call = caller_env()
+) {
   allow_na <- to_lgl_scalar(allow_na, allow_null = FALSE, call = call)
   if (allow_na) {
     return(invisible(NULL))
@@ -21,11 +23,13 @@
   return(invisible(NULL))
 }
 
-.check_size <- function(x,
-                        min_size,
-                        max_size,
-                        x_arg = caller_arg(x),
-                        call = caller_env()) {
+.check_size <- function(
+  x,
+  min_size,
+  max_size,
+  x_arg = caller_arg(x),
+  call = caller_env()
+) {
   if (is.null(min_size) && is.null(max_size)) {
     return(invisible(NULL))
   }
@@ -62,12 +66,14 @@
   )
 }
 
-.check_scalar <- function(x,
-                          allow_null = TRUE,
-                          allow_zero_length = TRUE,
-                          x_arg = caller_arg(x),
-                          call = caller_env(),
-                          x_class = object_type(x)) {
+.check_scalar <- function(
+  x,
+  allow_null = TRUE,
+  allow_zero_length = TRUE,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   error_class <- "stbl_error_non_scalar"
   if (!length(x)) {
     if (is.null(x)) {
@@ -106,18 +112,18 @@
   )
 }
 
-.is_allowed_null <- function(x,
-                             allow_null = TRUE,
-                             call = caller_env()) {
+.is_allowed_null <- function(x, allow_null = TRUE, call = caller_env()) {
   allow_null <- to_lgl_scalar(allow_null, allow_null = FALSE, call = call)
   return(is.null(x) && allow_null)
 }
 
-.check_x_no_more_than_y <- function(x,
-                                    y,
-                                    x_arg = caller_arg(x),
-                                    y_arg = caller_arg(y),
-                                    call = caller_env()) {
+.check_x_no_more_than_y <- function(
+  x,
+  y,
+  x_arg = caller_arg(x),
+  y_arg = caller_arg(y),
+  call = caller_env()
+) {
   if (!is.null(x) && !is.null(y) && x > y) {
     cli_abort(
       c(

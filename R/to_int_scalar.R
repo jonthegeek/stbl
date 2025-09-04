@@ -1,13 +1,15 @@
 #' @export
 #' @rdname stabilize_int
-to_int_scalar <- function(x,
-                          allow_null = TRUE,
-                          allow_zero_length = TRUE,
-                          coerce_character = TRUE,
-                          coerce_factor = TRUE,
-                          x_arg = caller_arg(x),
-                          call = caller_env(),
-                          x_class = object_type(x)) {
+to_int_scalar <- function(
+  x,
+  allow_null = TRUE,
+  allow_zero_length = TRUE,
+  coerce_character = TRUE,
+  coerce_factor = TRUE,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   .to_cls_scalar(
     x,
     is_rlang_cls_scalar = is_scalar_integer,

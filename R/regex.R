@@ -8,7 +8,7 @@
 #'
 #' @param regex `(character)` The regular expression pattern.
 #'
-#' @return The `regex` value with [names()] equal to the generated error
+#' @returns The `regex` value with [names()] equal to the generated error
 #'   message.
 #' @export
 #'
@@ -40,7 +40,7 @@ regex_must_match <- function(regex) {
 #'
 #' @inheritParams regex_must_match
 #'
-#' @return The `regex` value with a `negate` attribute and with [names()] equal
+#' @returns The `regex` value with a `negate` attribute and with [names()] equal
 #'   to the generated "must not match" error message.
 #' @export
 #'
