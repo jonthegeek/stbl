@@ -1,13 +1,15 @@
 #' @export
 #' @rdname stabilize_lgl
-stabilize_lgl_scalar <- function(x,
-                                 ...,
-                                 allow_null = TRUE,
-                                 allow_zero_length = TRUE,
-                                 allow_na = TRUE,
-                                 x_arg = caller_arg(x),
-                                 call = caller_env(),
-                                 x_class = object_type(x)) {
+stabilize_lgl_scalar <- function(
+  x,
+  ...,
+  allow_null = TRUE,
+  allow_zero_length = TRUE,
+  allow_na = TRUE,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   .stabilize_cls_scalar(
     x,
     to_cls_scalar_fn = to_lgl_scalar,

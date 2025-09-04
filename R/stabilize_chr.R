@@ -22,7 +22,7 @@
 #'
 #' @inheritParams .shared-params
 #'
-#' @return The argument as a character vector.
+#' @returns The argument as a character vector.
 #' @export
 #'
 #' @examples
@@ -50,16 +50,18 @@
 #' try(stabilize_chr_scalar(c(TRUE, FALSE, TRUE)))
 #' stabilize_chr_scalar(NULL)
 #' try(stabilize_chr_scalar(NULL, allow_null = FALSE))
-stabilize_chr <- function(x,
-                          ...,
-                          allow_null = TRUE,
-                          allow_na = TRUE,
-                          min_size = NULL,
-                          max_size = NULL,
-                          regex = NULL,
-                          x_arg = caller_arg(x),
-                          call = caller_env(),
-                          x_class = object_type(x)) {
+stabilize_chr <- function(
+  x,
+  ...,
+  allow_null = TRUE,
+  allow_na = TRUE,
+  min_size = NULL,
+  max_size = NULL,
+  regex = NULL,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   .stabilize_cls(
     x,
     to_cls_fn = to_chr,
@@ -78,15 +80,17 @@ stabilize_chr <- function(x,
 
 #' @export
 #' @rdname stabilize_chr
-stabilize_chr_scalar <- function(x,
-                                 ...,
-                                 allow_null = TRUE,
-                                 allow_zero_length = TRUE,
-                                 allow_na = TRUE,
-                                 regex = NULL,
-                                 x_arg = caller_arg(x),
-                                 call = caller_env(),
-                                 x_class = object_type(x)) {
+stabilize_chr_scalar <- function(
+  x,
+  ...,
+  allow_null = TRUE,
+  allow_zero_length = TRUE,
+  allow_na = TRUE,
+  regex = NULL,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   .stabilize_cls_scalar(
     x,
     to_cls_scalar_fn = to_chr_scalar,
@@ -105,12 +109,14 @@ stabilize_chr_scalar <- function(x,
 #' Check character values against one or more regex patterns
 #'
 #' @inheritParams .shared-params
-#' @return `NULL`, invisibly, if `x` passes all checks.
+#' @returns `NULL`, invisibly, if `x` passes all checks.
 #' @keywords internal
-.check_value_chr <- function(x,
-                             regex,
-                             x_arg = caller_arg(x),
-                             call = caller_env()) {
+.check_value_chr <- function(
+  x,
+  regex,
+  x_arg = caller_arg(x),
+  call = caller_env()
+) {
   if (is.null(regex)) {
     return(invisible(NULL))
   }
@@ -140,7 +146,7 @@ stabilize_chr_scalar <- function(x,
 #'   `negate` attribute).
 #' @inheritParams .shared-params
 #'
-#' @return A character vector of error messages if the rule fails, otherwise
+#' @returns A character vector of error messages if the rule fails, otherwise
 #'   `NULL`.
 #' @keywords internal
 .apply_regex_rule <- function(rule, x, x_arg, call) {
@@ -167,7 +173,7 @@ stabilize_chr_scalar <- function(x,
 #' prefers the `stringi` implementation if the package is available.
 #'
 #' @inheritParams .shared-params
-#' @return A logical vector of matches in `x` to `regex`.
+#' @returns A logical vector of matches in `x` to `regex`.
 #' @keywords internal
 .has_regex_pattern <- function(x, regex) {
   if (inherits(regex, "stringr_pattern")) {
@@ -188,7 +194,7 @@ stabilize_chr_scalar <- function(x,
 #'   check.
 #' @param negate `(logical)` Was the check a negative one?
 #'
-#' @return A named character vector to be used as `additional_msg` in
+#' @returns A named character vector to be used as `additional_msg` in
 #'   [.stop_must()].
 #' @keywords internal
 .describe_failure_chr <- function(x, success, negate = FALSE) {

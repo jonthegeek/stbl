@@ -1,7 +1,9 @@
-to_null <- function(x,
-                    allow_null = TRUE,
-                    x_arg = caller_arg(x),
-                    call = caller_env()) {
+to_null <- function(
+  x,
+  allow_null = TRUE,
+  x_arg = caller_arg(x),
+  call = caller_env()
+) {
   if (missing(x)) {
     .stop_must("must not be missing.", x_arg = "unknown arg", call = call)
   }

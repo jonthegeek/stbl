@@ -23,7 +23,7 @@
 #'   will be computed by [base::factor()].
 #' @param to_na `(character)` Values to coerce to `NA`.
 #'
-#' @return The argument as a factor.
+#' @returns The argument as a factor.
 #' @export
 #'
 #' @examples
@@ -44,17 +44,19 @@
 #' stabilize_fct_scalar("a")
 #' try(stabilize_fct_scalar(letters))
 #' try(stabilize_fct_scalar("c", levels = c("a", "b")))
-stabilize_fct <- function(x,
-                          ...,
-                          allow_null = TRUE,
-                          allow_na = TRUE,
-                          min_size = NULL,
-                          max_size = NULL,
-                          levels = NULL,
-                          to_na = character(),
-                          x_arg = caller_arg(x),
-                          call = caller_env(),
-                          x_class = object_type(x)) {
+stabilize_fct <- function(
+  x,
+  ...,
+  allow_null = TRUE,
+  allow_na = TRUE,
+  min_size = NULL,
+  max_size = NULL,
+  levels = NULL,
+  to_na = character(),
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   .stabilize_cls(
     x,
     to_cls_fn = to_fct,

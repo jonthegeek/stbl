@@ -10,7 +10,7 @@
 #'   are acceptable.
 #' @param env The environment in which to evaluate the expressions.
 #'
-#' @return A character string with evaluated expressions.
+#' @returns A character string with evaluated expressions.
 #' @keywords internal
 .glue2 <- function(..., env = caller_env()) {
   glue(..., .envir = env, .open = "[", .close = "]")
@@ -24,7 +24,7 @@
 #'
 #' @param msg `(character)` The messages to escape.
 #'
-#' @return The messages with curly braces escaped.
+#' @returns The messages with curly braces escaped.
 #' @keywords internal
 .cli_escape <- function(msg) {
   msg <- gsub("{", "{{", msg, fixed = TRUE)
@@ -36,7 +36,7 @@
 #' @param x `(character)` The string to wrap.
 #' @param tag `(character)` The cli class to apply (e.g., "val", "var").
 #'
-#' @return A character vector the same length as `x` with cli markup.
+#' @returns A character vector the same length as `x` with cli markup.
 #' @keywords internal
 .cli_mark <- function(x, tag) {
   paste0("{.", tag, " ", x, "}")
@@ -52,7 +52,7 @@
 #' @param x The object to check for `NULL`.
 #' @param y The value to return if `x` is not `NULL`.
 #'
-#' @return `NULL` or the value of `y`.
+#' @returns `NULL` or the value of `y`.
 #' @keywords internal
 `%&&%` <- function(x, y) {
   if (is.null(x)) {
@@ -71,7 +71,7 @@
 #'   `NULL`, the check is skipped.
 #' @param check_fn The function to use for checking.
 #'
-#' @return An integer vector of failure locations, or `NULL` if there are no
+#' @returns An integer vector of failure locations, or `NULL` if there are no
 #'   failures or the check is skipped.
 #' @keywords internal
 .find_failures <- function(x, check_value, check_fn) {

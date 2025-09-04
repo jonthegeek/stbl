@@ -12,7 +12,7 @@
 #'
 #' @inheritParams .shared-params
 #'
-#' @return The argument as a logical vector.
+#' @returns The argument as a logical vector.
 #' @export
 #'
 #' @examples
@@ -41,15 +41,17 @@
 #' try(stabilize_lgl_scalar(c(TRUE, FALSE, TRUE)))
 #' stabilize_lgl_scalar(NULL)
 #' try(stabilize_lgl_scalar(NULL, allow_null = FALSE))
-stabilize_lgl <- function(x,
-                          ...,
-                          allow_null = TRUE,
-                          allow_na = TRUE,
-                          min_size = NULL,
-                          max_size = NULL,
-                          x_arg = caller_arg(x),
-                          call = caller_env(),
-                          x_class = object_type(x)) {
+stabilize_lgl <- function(
+  x,
+  ...,
+  allow_null = TRUE,
+  allow_na = TRUE,
+  min_size = NULL,
+  max_size = NULL,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   .stabilize_cls(
     x,
     to_cls_fn = to_lgl,

@@ -1,15 +1,17 @@
 #' @export
 #' @rdname stabilize_fct
-stabilize_fct_scalar <- function(x,
-                                 ...,
-                                 allow_null = TRUE,
-                                 allow_zero_length = TRUE,
-                                 allow_na = TRUE,
-                                 levels = NULL,
-                                 to_na = character(),
-                                 x_arg = caller_arg(x),
-                                 call = caller_env(),
-                                 x_class = object_type(x)) {
+stabilize_fct_scalar <- function(
+  x,
+  ...,
+  allow_null = TRUE,
+  allow_zero_length = TRUE,
+  allow_na = TRUE,
+  levels = NULL,
+  to_na = character(),
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
   .stabilize_cls_scalar(
     x,
     to_cls_scalar_fn = to_fct_scalar,
