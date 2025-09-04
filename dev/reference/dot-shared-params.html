@@ -9,7 +9,7 @@ make them easier to import and to find."><meta name="robots" content="noindex"><
 
     <a class="navbar-brand me-2" href="../index.html">stbl</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.1.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.1.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@ make them easier to import and to find."><meta name="robots" content="noindex"><
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Shared parameters</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jonthegeek/stbl/blob/main/R/aaa-shared-args.R" class="external-link"><code>R/aaa-shared-args.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jonthegeek/stbl/blob/main/R/aaa-shared_params.R" class="external-link"><code>R/aaa-shared_params.R</code></a></small>
       <div class="d-none name"><code>dot-shared-params.Rd</code></div>
     </div>
 
@@ -67,9 +67,19 @@ acceptable?</p></dd>
 size will be tested using <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vctrs::vec_size()</a></code>.</p></dd>
 
 
+<dt id="arg-min-value">min_value<a class="anchor" aria-label="anchor" href="#arg-min-value"></a></dt>
+<dd><p><code>(length-1 integer)</code> The lowest allowed value for <code>x</code>. If
+<code>NULL</code> (default) values are not checked.</p></dd>
+
+
 <dt id="arg-max-size">max_size<a class="anchor" aria-label="anchor" href="#arg-max-size"></a></dt>
 <dd><p><code>(length-1 integer)</code> The maximum size of the object. Object
 size will be tested using <code><a href="https://vctrs.r-lib.org/reference/vec_size.html" class="external-link">vctrs::vec_size()</a></code>.</p></dd>
+
+
+<dt id="arg-max-value">max_value<a class="anchor" aria-label="anchor" href="#arg-max-value"></a></dt>
+<dd><p><code>(length-1 integer)</code> The highest allowed value for <code>x</code>. If
+<code>NULL</code> (default) values are not checked.</p></dd>
 
 
 <dt id="arg-regex">regex<a class="anchor" aria-label="anchor" href="#arg-regex"></a></dt>
