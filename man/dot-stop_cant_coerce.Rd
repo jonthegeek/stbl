@@ -39,9 +39,6 @@ evaluate variables in error messages.}
 
 \item{...}{Additional parameters passed to \code{\link[cli:cli_abort]{cli::cli_abort()}} and on to
 \code{\link[rlang:abort]{rlang::abort()}}.}
-
-\item{subclass}{(\code{character}) Class(es) to assign to the error. Will be
-prefixed by "stbl-error-coerce-".}
 }
 \value{
 This function is called for its side effect of throwing an error and

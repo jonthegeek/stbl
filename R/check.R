@@ -17,7 +17,8 @@
       x_arg = x_arg,
       additional_msg = c("*" = "NA locations: {locations}"),
       call = call,
-      class = "stbl_error_bad_na"
+      subclass = "bad_na",
+      message_env = rlang::current_env()
     )
   }
   return(invisible(NULL))
@@ -53,7 +54,8 @@
       x_arg = x_arg,
       additional_msg = c(x = "{x_size} is too small."),
       call = call,
-      class = "stbl_error_size_too_small"
+      subclass = "size_too_small",
+      message_env = rlang::current_env()
     )
   }
 
@@ -62,7 +64,8 @@
     x_arg = x_arg,
     additional_msg = c(x = "{x_size} is too big."),
     call = call,
-    class = "stbl_error_size_too_large"
+    subclass = "size_too_large",
+    message_env = rlang::current_env()
   )
 }
 
@@ -74,7 +77,7 @@
   call = caller_env(),
   x_class = object_type(x)
 ) {
-  error_class <- "stbl_error_non_scalar"
+  subclass <- "non_scalar"
   if (!length(x)) {
     if (is.null(x)) {
       if (.is_allowed_null(x, allow_null = allow_null, call = call)) {
@@ -90,7 +93,7 @@
         return(invisible(NULL)) # nocov (may not be possible to get here)
       }
       x_class <- paste(x_class, "(non-empty)")
-      error_class <- "stbl_error_bad_empty"
+      subclass <- "bad_empty"
     }
   }
 
@@ -108,7 +111,8 @@
     x_arg = x_arg,
     call = call,
     additional_msg = c(x = "{.arg {x_arg}} has {no(x_size)} values."),
-    class = error_class
+    subclass = subclass,
+    message_env = rlang::current_env()
   )
 }
 
@@ -125,14 +129,15 @@
   call = caller_env()
 ) {
   if (!is.null(x) && !is.null(y) && x > y) {
-    cli_abort(
-      c(
+    .stbl_abort(
+      message = c(
         "{.arg {x_arg}} can't be larger than {.arg {y_arg}}.",
         "*" = "{.arg {x_arg}} = {x}",
         "*" = "{.arg {y_arg}} = {y}"
       ),
       call = call,
-      class = "stbl_error_size_x_vs_y"
+      subclass = "size_x_vs_y",
+      message_env = rlang::current_env()
     )
   }
 }

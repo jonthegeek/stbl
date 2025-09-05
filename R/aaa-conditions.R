@@ -56,8 +56,6 @@ rlang::caller_env
 #' @param to_class `(length-1 character)` The target class for the coercion.
 #' @param additional_msg `(length-1 character)` Optional, additional
 #'   cli-formatted messages.
-#' @param subclass (`character`) Class(es) to assign to the error. Will be
-#'   prefixed by "stbl-error-coerce-".
 #' @inheritParams .stbl_abort
 #' @inheritParams .shared-params
 #'

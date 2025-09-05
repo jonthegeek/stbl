@@ -4,17 +4,26 @@ test_that("to_fct errors for things that can't", {
   }
 
   given <- mean
-  expect_error(to_fct(given), class = "stbl_error_coerce_factor")
+  expect_error(
+    to_fct(given),
+    class = .compile_error_class("stbl", "error", "coerce", "factor")
+  )
   expect_snapshot(to_fct(given), error = TRUE)
   expect_snapshot(wrapper(given), error = TRUE)
 
   given <- mtcars
-  expect_error(to_fct(given), class = "stbl_error_coerce_factor")
+  expect_error(
+    to_fct(given),
+    class = .compile_error_class("stbl", "error", "coerce", "factor")
+  )
   expect_snapshot(to_fct(given), error = TRUE)
   expect_snapshot(wrapper(given), error = TRUE)
 
   given <- list(a = 1, b = 1:5)
-  expect_error(to_fct(given), class = "stbl_error_coerce_factor")
+  expect_error(
+    to_fct(given),
+    class = .compile_error_class("stbl", "error", "coerce", "factor")
+  )
   expect_snapshot(to_chr(given), error = TRUE)
   expect_snapshot(wrapper(given), error = TRUE)
 })
@@ -39,7 +48,7 @@ test_that("to_fct() throws errors for bad levels", {
   }
   expect_error(
     to_fct(letters[1:5], levels = c("a", "c"), to_na = "b"),
-    class = "stbl_error_fct_levels"
+    class = .compile_error_class("stbl", "error", "fct_levels")
   )
   expect_snapshot(
     to_fct(letters[1:5], levels = c("a", "c"), to_na = "b"),
@@ -47,7 +56,7 @@ test_that("to_fct() throws errors for bad levels", {
   )
   expect_error(
     wrapper(letters[1:5], levels = c("a", "c"), to_na = "b"),
-    class = "stbl_error_fct_levels"
+    class = .compile_error_class("stbl", "error", "fct_levels")
   )
 })
 
@@ -70,11 +79,11 @@ test_that("to_fct() works for NULL", {
   expect_identical(wrapper(given), given)
   expect_error(
     to_fct(given, allow_null = FALSE),
-    class = "stbl_error_bad_null"
+    class = .compile_error_class("stbl", "error", "bad_null")
   )
   expect_error(
     wrapper(given, allow_null = FALSE),
-    class = "stbl_error_bad_null"
+    class = .compile_error_class("stbl", "error", "bad_null")
   )
 })
 

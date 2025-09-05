@@ -1,3 +1,11 @@
+#' Ensure an argument is NULL
+#'
+#' If `allow_null` is `TRUE`, coerce `x` to `NULL`. Otherwise throw an
+#' informative error.
+#'
+#' @inheritParams .shared-params
+#' @returns `NULL` or an error.
+#' @keywords internal
 to_null <- function(
   x,
   allow_null = TRUE,
