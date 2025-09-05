@@ -134,7 +134,12 @@ stabilize_chr_scalar <- function(
   error_msgs <- unlist(error_msgs)
 
   if (length(error_msgs)) {
-    cli_abort(error_msgs, call = call, class = "stbl_error_must")
+    .stbl_abort(
+      message = error_msgs,
+      subclass = "must",
+      call = call,
+      message_env = rlang::current_env()
+    )
   }
 
   invisible(NULL)

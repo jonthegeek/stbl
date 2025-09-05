@@ -149,12 +149,13 @@ to_fct.default <- function(
 
 .stop_bad_levels <- function(x, bad_casts, x_arg, call) {
   bad_values <- x[bad_casts]
-  cli_abort(
-    c(
+  .stbl_abort(
+    message = c(
       "All values of {.arg {x_arg}} must be present in {.arg levels} or {.arg to_na}.",
       "*" = "Bad values: {bad_values}."
     ),
-    class = "stbl_error_fct_levels",
-    call = call
+    subclass = "fct_levels",
+    call = call,
+    message_env = rlang::current_env()
   )
 }

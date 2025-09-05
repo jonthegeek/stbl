@@ -2,7 +2,6 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom cli cli_abort
 #' @importFrom cli no
 #' @importFrom glue glue
 #' @importFrom rlang %||%

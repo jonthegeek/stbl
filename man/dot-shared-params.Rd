@@ -13,6 +13,12 @@
 \item{allow_zero_length}{\verb{(length-1 logical)} Are zero-length vectors
 acceptable?}
 
+\item{call}{\code{(environment)} The execution environment to mention as the
+source of error messages.}
+
+\item{message_env}{(\code{environment}) The execution environment to use to
+evaluate variables in error messages.}
+
 \item{min_size}{\verb{(length-1 integer)} The minimum size of the object. Object
 size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
@@ -25,6 +31,9 @@ size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 \item{max_value}{\verb{(length-1 integer)} The highest allowed value for \code{x}. If
 \code{NULL} (default) values are not checked.}
 
+\item{parent}{A parent condition, as you might create during a
+\code{\link[rlang:try_fetch]{rlang::try_fetch()}}. See \code{\link[rlang:abort]{rlang::abort()}} for additional information.}
+
 \item{regex}{\verb{(character, list, or stringr_pattern)} One or more optional
 regular expressions to test against the values of \code{x}. This can be a
 character vector, a list of character vectors, or a pattern object from the
@@ -36,6 +45,9 @@ message that should be displayed. To check that a pattern is \emph{not} matched,
 attach a \code{negate} attribute set to \code{TRUE}. If a complex regex pattern
 throws an error, try installing the stringi package.}
 
+\item{subclass}{(\code{character}) Class(es) to assign to the error. Will be
+prefixed by "stbl-error-".}
+
 \item{x}{The argument to stabilize.}
 
 \item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
@@ -45,9 +57,6 @@ functions to make error messages clearer in unexported functions.}
 \item{x_class}{\verb{(length-1 character)} The class name of \code{x} to use in error
 messages. Use this if you remove a special class from \code{x} before checking
 its coercion, but want the error message to match the original class.}
-
-\item{call}{The execution environment of the call. See the \code{call} argument of
-\code{rlang::abort()} for more information.}
 }
 \description{
 These parameters are used in multiple functions. They are defined here to

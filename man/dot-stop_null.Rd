@@ -4,15 +4,21 @@
 \alias{.stop_null}
 \title{Abort because an argument must not be NULL}
 \usage{
-.stop_null(x_arg, call)
+.stop_null(x_arg, call, parent = NULL, ...)
 }
 \arguments{
 \item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
 value will work in most cases, or pass it through from higher-level
 functions to make error messages clearer in unexported functions.}
 
-\item{call}{The execution environment of the call. See the \code{call} argument of
-\code{rlang::abort()} for more information.}
+\item{call}{\code{(environment)} The execution environment to mention as the
+source of error messages.}
+
+\item{parent}{A parent condition, as you might create during a
+\code{\link[rlang:try_fetch]{rlang::try_fetch()}}. See \code{\link[rlang:abort]{rlang::abort()}} for additional information.}
+
+\item{...}{Additional parameters passed to \code{\link[cli:cli_abort]{cli::cli_abort()}} and on to
+\code{\link[rlang:abort]{rlang::abort()}}.}
 }
 \value{
 This function is called for its side effect of throwing an error and

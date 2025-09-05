@@ -2,7 +2,7 @@
 
     Code
       stabilize_int(given, min_value = 11)
-    Condition <stbl-error-outside_range>
+    Condition
       Error:
       ! Values of `given` must be >= 11.
       x Values are too low at locations 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10.
@@ -11,7 +11,7 @@
 
     Code
       wrapper(given, min_value = 11)
-    Condition <stbl-error-outside_range>
+    Condition
       Error in `wrapper()`:
       ! Values of `wrapper_val` must be >= 11.
       x Values are too low at locations 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10.
@@ -20,7 +20,7 @@
 
     Code
       stabilize_int(given, max_value = 4)
-    Condition <stbl-error-outside_range>
+    Condition
       Error:
       ! Values of `given` must be <= 4.
       x Values are too high at locations 5, 6, 7, 8, 9, and 10.
@@ -29,7 +29,7 @@
 
     Code
       wrapper(given, max_value = 4)
-    Condition <stbl-error-outside_range>
+    Condition
       Error in `wrapper()`:
       ! Values of `wrapper_val` must be <= 4.
       x Values are too high at locations 5, 6, 7, 8, 9, and 10.
@@ -38,7 +38,7 @@
 
     Code
       stabilize_int_scalar(given)
-    Condition <stbl_error_non_scalar>
+    Condition
       Error:
       ! `given` must be a single <integer>.
       x `given` has 10 values.
@@ -47,7 +47,7 @@
 
     Code
       wrapper(given)
-    Condition <stbl_error_non_scalar>
+    Condition
       Error in `wrapper()`:
       ! `wrapper_val` must be a single <integer>.
       x `wrapper_val` has 10 values.

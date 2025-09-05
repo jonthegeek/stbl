@@ -25,7 +25,7 @@ test_that("stabilize_arg() rejects NULLs when asked", {
   given <- NULL
   expect_error(
     stabilize_arg(given, allow_null = FALSE),
-    class = "stbl_error_bad_null"
+    class = .compile_error_class("stbl", "error", "bad_null")
   )
   expect_snapshot(
     stabilize_arg(given, allow_null = FALSE),
@@ -47,7 +47,7 @@ test_that("stabilize_arg() checks NAs", {
   given[c(4, 7)] <- NA
   expect_error(
     stabilize_arg(given, allow_na = FALSE),
-    class = "stbl_error_bad_na"
+    class = .compile_error_class("stbl", "error", "bad_na")
   )
   expect_snapshot(
     stabilize_arg(given, allow_na = FALSE),
@@ -69,7 +69,7 @@ test_that("stabilize_arg() checks size args", {
 
   expect_error(
     stabilize_arg(given, min_size = 2, max_size = 1),
-    class = "stbl_error_size_x_vs_y"
+    class = .compile_error_class("stbl", "error", "size_x_vs_y")
   )
   expect_snapshot(
     stabilize_arg(given, min_size = 2, max_size = 1),
@@ -77,7 +77,7 @@ test_that("stabilize_arg() checks size args", {
   )
   expect_error(
     wrapper(given, min_size = 2, max_size = 1),
-    class = "stbl_error_size_x_vs_y"
+    class = .compile_error_class("stbl", "error", "size_x_vs_y")
   )
   expect_snapshot(
     wrapper(given, min_size = 2, max_size = 1),
@@ -94,7 +94,7 @@ test_that("stabilize_arg() checks size", {
 
   expect_error(
     stabilize_arg(given, min_size = 11),
-    class = "stbl_error_size_too_small"
+    class = .compile_error_class("stbl", "error", "size_too_small")
   )
   expect_snapshot(
     stabilize_arg(given, min_size = 11),
@@ -105,7 +105,7 @@ test_that("stabilize_arg() checks size", {
   }
   expect_error(
     wrapper(given, min_size = 11),
-    class = "stbl_error_size_too_small"
+    class = .compile_error_class("stbl", "error", "size_too_small")
   )
   expect_snapshot(
     wrapper(given, min_size = 11),
@@ -113,10 +113,57 @@ test_that("stabilize_arg() checks size", {
   )
   expect_error(
     stabilize_arg(given, max_size = 2),
-    class = "stbl_error_size_too_large"
+    class = .compile_error_class("stbl", "error", "size_too_large")
   )
   expect_snapshot(
     stabilize_arg(given, max_size = 2),
+    error = TRUE
+  )
+})
+
+test_that("stabilize_arg_scalar() allows length-1 args through", {
+  given <- 1L
+  expect_identical(stabilize_arg_scalar(given), given)
+})
+
+test_that("stabilize_arg_scalar() provides informative error messages", {
+  given <- 1:10
+  expect_error(
+    stabilize_arg_scalar(given),
+    class = .compile_error_class("stbl", "error", "non_scalar")
+  )
+  expect_snapshot(
+    stabilize_arg_scalar(given),
+    error = TRUE
+  )
+
+  wrapper <- function(wrapper_val, ...) {
+    return(stabilize_arg_scalar(wrapper_val, ...))
+  }
+  expect_snapshot(
+    wrapper(given),
+    error = TRUE
+  )
+
+  given <- NULL
+  expect_error(
+    stabilize_arg_scalar(given, allow_null = FALSE),
+    class = .compile_error_class("stbl", "error", "non_scalar")
+  )
+  expect_snapshot(
+    stabilize_arg_scalar(given, allow_null = FALSE),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapper(given, allow_null = FALSE),
+    error = TRUE
+  )
+})
+
+test_that("stabilize_arg_scalar() deals with weird values", {
+  given <- NULL
+  expect_snapshot(
+    stabilize_arg_scalar(given, allow_null = c(TRUE, FALSE)),
     error = TRUE
   )
 })
