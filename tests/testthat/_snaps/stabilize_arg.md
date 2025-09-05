@@ -1,4 +1,4 @@
-# stabilize_arg() fails and complains about weird args
+# stabilize_arg() complains about weird args
 
     Code
       stabilize_arg(1L, new_arg = "red")
@@ -11,9 +11,9 @@
 ---
 
     Code
-      wrapper(1L, new_arg = "red")
+      wrapped_stabilize_arg(1L, new_arg = "red")
     Condition
-      Error in `wrapper()`:
+      Error in `wrapped_stabilize_arg()`:
       ! `...` must be empty.
       x Problematic argument:
       * new_arg = "red"
@@ -29,10 +29,10 @@
 ---
 
     Code
-      wrapper(given, allow_null = FALSE)
+      wrapped_stabilize_arg(given, allow_null = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! `x` must not be <NULL>.
+      Error in `wrapped_stabilize_arg()`:
+      ! `val` must not be <NULL>.
 
 # stabilize_arg() checks NAs
 
@@ -46,10 +46,10 @@
 ---
 
     Code
-      wrapper(given, allow_na = FALSE)
+      wrapped_stabilize_arg(given, allow_na = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! `x` must not contain NA values.
+      Error in `wrapped_stabilize_arg()`:
+      ! `val` must not contain NA values.
       * NA locations: 4 and 7
 
 # stabilize_arg() checks size args
@@ -65,14 +65,14 @@
 ---
 
     Code
-      wrapper(given, min_size = 2, max_size = 1)
+      wrapped_stabilize_arg(given, min_size = 2, max_size = 1)
     Condition
-      Error in `wrapper()`:
+      Error in `wrapped_stabilize_arg()`:
       ! `min_size` can't be larger than `max_size`.
       * `min_size` = 2
       * `max_size` = 1
 
-# stabilize_arg() checks size
+# stabilize_arg() checks min_size
 
     Code
       stabilize_arg(given, min_size = 11)
@@ -84,13 +84,13 @@
 ---
 
     Code
-      wrapper(given, min_size = 11)
+      wrapped_stabilize_arg(given, min_size = 11)
     Condition
-      Error in `wrapper()`:
-      ! `x` must have size >= 11.
+      Error in `wrapped_stabilize_arg()`:
+      ! `val` must have size >= 11.
       x 3 is too small.
 
----
+# stabilize_arg() checks max_size
 
     Code
       stabilize_arg(given, max_size = 2)
@@ -99,7 +99,16 @@
       ! `given` must have size <= 2.
       x 3 is too big.
 
-# stabilize_arg_scalar() provides informative error messages
+---
+
+    Code
+      wrapped_stabilize_arg(given, max_size = 2)
+    Condition
+      Error in `wrapped_stabilize_arg()`:
+      ! `val` must have size <= 2.
+      x 3 is too big.
+
+# stabilize_arg_scalar() errors for non-scalars
 
     Code
       stabilize_arg_scalar(given)
@@ -111,13 +120,13 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_stabilize_arg_scalar(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must be a single <integer>.
-      x `wrapper_val` has 10 values.
+      Error in `wrapped_stabilize_arg_scalar()`:
+      ! `val` must be a single <integer>.
+      x `val` has 10 values.
 
----
+# stabilize_arg_scalar() respects allow_null
 
     Code
       stabilize_arg_scalar(given, allow_null = FALSE)
@@ -129,13 +138,13 @@
 ---
 
     Code
-      wrapper(given, allow_null = FALSE)
+      wrapped_stabilize_arg_scalar(given, allow_null = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must be a single <non-NULL>.
-      x `wrapper_val` has no values.
+      Error in `wrapped_stabilize_arg_scalar()`:
+      ! `val` must be a single <non-NULL>.
+      x `val` has no values.
 
-# stabilize_arg_scalar() deals with weird values
+# stabilize_arg_scalar() errors on weird internal arg values
 
     Code
       stabilize_arg_scalar(given, allow_null = c(TRUE, FALSE))

@@ -1,0 +1,36 @@
+# stabilize_fct() throws errors for bad levels
+
+    Code
+      stabilize_fct(letters[1:5], levels = c("a", "c"), to_na = "b")
+    Condition
+      Error:
+      ! All values of `letters[1:5]` must be present in `levels` or `to_na`.
+      * Bad values: d and e.
+
+---
+
+    Code
+      wrapped_stabilize_fct(letters[1:5], levels = c("a", "c"), to_na = "b")
+    Condition
+      Error in `wrapped_stabilize_fct()`:
+      ! All values of `val` must be present in `levels` or `to_na`.
+      * Bad values: d and e.
+
+# stabilize_fct_scalar() errors for non-scalars
+
+    Code
+      stabilize_fct_scalar(given)
+    Condition
+      Error:
+      ! `given` must be a single <factor>.
+      x `given` has 26 values.
+
+---
+
+    Code
+      wrapped_stabilize_fct_scalar(given)
+    Condition
+      Error in `wrapped_stabilize_fct_scalar()`:
+      ! `val` must be a single <factor>.
+      x `val` has 26 values.
+
