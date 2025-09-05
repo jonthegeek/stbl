@@ -1,4 +1,4 @@
-# stabilize_chr() checks values
+# stabilize_chr() errors for bad regex matches
 
     Code
       stabilize_chr(given, regex = pattern)
@@ -12,10 +12,10 @@
 ---
 
     Code
-      wrapper(given, regex = pattern)
+      wrapped_stabilize_chr(given, regex = pattern)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must match the regex pattern "^\\d{5}(?:[-\\s]\\d{4})?$"
+      Error in `wrapped_stabilize_chr()`:
+      ! `val` must match the regex pattern "^\\d{5}(?:[-\\s]\\d{4})?$"
       x Some values do not match.
       * Locations: 1
       * Values: 123456789
@@ -71,33 +71,6 @@
       * Locations: 3
       * Values: c
 
-# stabilize_chr_scalar() provides informative error messages
-
-    Code
-      stabilize_chr_scalar(given)
-    Condition
-      Error:
-      ! `given` must be a single <character>.
-      x `given` has 26 values.
-
----
-
-    Code
-      wrapper(given)
-    Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must be a single <character>.
-      x `wrapper_val` has 26 values.
-
-# stabilize_chr_scalar() works with regex that contains braces
-
-    Code
-      stabilize_chr_scalar("b", regex = "a{1,3}")
-    Condition
-      Error:
-      ! `"b"` must match the regex pattern "a{1,3}"
-      x "b" does not match.
-
 # stabilize_chr() accepts multiple regex rules
 
     Code
@@ -113,7 +86,7 @@
       * Locations: 2 and 3
       * Values: banana and boat
 
-# stabilize_chr() works with stringr pattern modifiers
+# stabilize_chr() works with stringr::fixed()
 
     Code
       stabilize_chr(c("a.b", "acb"), regex = stringr::fixed("a.b"))
@@ -124,7 +97,7 @@
       * Locations: 2
       * Values: acb
 
----
+# stabilize_chr() works with stringr::coll()
 
     Code
       stabilize_chr(c("a", "A"), regex = stringr::coll("a"))
@@ -135,7 +108,7 @@
       * Locations: 2
       * Values: A
 
----
+# stabilize_chr() works with stringr::regex()
 
     Code
       stabilize_chr(c("A", "B"), regex = stringr::regex("a", ignore_case = TRUE))
@@ -145,4 +118,31 @@
       x Some values do not match.
       * Locations: 2
       * Values: B
+
+# stabilize_chr_scalar() errors for non-scalars
+
+    Code
+      stabilize_chr_scalar(given)
+    Condition
+      Error:
+      ! `given` must be a single <character>.
+      x `given` has 26 values.
+
+---
+
+    Code
+      wrapped_stabilize_chr_scalar(given)
+    Condition
+      Error in `wrapped_stabilize_chr_scalar()`:
+      ! `val` must be a single <character>.
+      x `val` has 26 values.
+
+# stabilize_chr_scalar() works with regex that contains braces
+
+    Code
+      stabilize_chr_scalar("b", regex = "a{1,3}")
+    Condition
+      Error:
+      ! `"b"` must match the regex pattern "a{1,3}"
+      x "b" does not match.
 

@@ -1,4 +1,4 @@
-test_that("stabilize_chr() checks values", {
+test_that("stabilize_chr() works on happy path", {
   expect_identical(stabilize_chr("a"), "a")
 
   given <- "12345-6789"
@@ -10,38 +10,21 @@ test_that("stabilize_chr() checks values", {
     ),
     given
   )
+})
 
+test_that("stabilize_chr() errors for bad regex matches", {
   given <- c("123456789", "12345-6789")
+  pattern <- r"(^\d{5}(?:[-\s]\d{4})?$)"
   expect_error(
-    stabilize_chr(
-      given,
-      regex = pattern
-    ),
+    stabilize_chr(given, regex = pattern),
     class = .compile_error_class("stbl", "error", "must")
   )
   expect_snapshot(
-    stabilize_chr(
-      given,
-      regex = pattern
-    ),
+    stabilize_chr(given, regex = pattern),
     error = TRUE
   )
-
-  wrapper <- function(wrapper_val, ...) {
-    return(stabilize_chr(wrapper_val, ...))
-  }
-  expect_error(
-    wrapper(
-      given,
-      regex = pattern
-    ),
-    class = .compile_error_class("stbl", "error", "must")
-  )
   expect_snapshot(
-    wrapper(
-      given,
-      regex = pattern
-    ),
+    wrapped_stabilize_chr(given, regex = pattern),
     error = TRUE
   )
 })
@@ -121,37 +104,6 @@ test_that("stabilize_chr() accepts negated regex args", {
   )
 })
 
-test_that("stabilize_chr_scalar() allows length-1 chrs through", {
-  expect_identical(stabilize_chr_scalar("a"), "a")
-})
-
-test_that("stabilize_chr_scalar() provides informative error messages", {
-  given <- letters
-  expect_snapshot(
-    stabilize_chr_scalar(given),
-    error = TRUE
-  )
-
-  wrapper <- function(wrapper_val, ...) {
-    return(stabilize_chr_scalar(wrapper_val, ...))
-  }
-  expect_snapshot(
-    wrapper(given),
-    error = TRUE
-  )
-})
-
-test_that("stabilize_chr_scalar() works with regex that contains braces", {
-  expect_error(
-    stabilize_chr_scalar("b", regex = "a{1,3}"),
-    class = .compile_error_class("stbl", "error", "must")
-  )
-  expect_snapshot(
-    stabilize_chr_scalar("b", regex = "a{1,3}"),
-    error = TRUE
-  )
-})
-
 test_that("stabilize_chr() accepts multiple regex rules", {
   rules <- list(
     regex_must_match("a"),
@@ -173,10 +125,8 @@ test_that("stabilize_chr() accepts multiple regex rules", {
   )
 })
 
-test_that("stabilize_chr() works with stringr pattern modifiers", {
+test_that("stabilize_chr() works with stringr::fixed()", {
   skip_if_not_installed("stringr")
-
-  # fixed()
   expect_identical(
     stabilize_chr("a.b", regex = stringr::fixed("a.b")),
     "a.b"
@@ -189,8 +139,10 @@ test_that("stabilize_chr() works with stringr pattern modifiers", {
     stabilize_chr(c("a.b", "acb"), regex = stringr::fixed("a.b")),
     error = TRUE
   )
+})
 
-  # coll()
+test_that("stabilize_chr() works with stringr::coll()", {
+  skip_if_not_installed("stringr")
   expect_identical(
     stabilize_chr("A", regex = stringr::coll("a", ignore_case = TRUE)),
     "A"
@@ -203,8 +155,10 @@ test_that("stabilize_chr() works with stringr pattern modifiers", {
     stabilize_chr(c("a", "A"), regex = stringr::coll("a")),
     error = TRUE
   )
+})
 
-  # regex()
+test_that("stabilize_chr() works with stringr::regex()", {
+  skip_if_not_installed("stringr")
   expect_identical(
     stabilize_chr("A", regex = stringr::regex("a", ignore_case = TRUE)),
     "A"
@@ -215,6 +169,37 @@ test_that("stabilize_chr() works with stringr pattern modifiers", {
   )
   expect_snapshot(
     stabilize_chr(c("A", "B"), regex = stringr::regex("a", ignore_case = TRUE)),
+    error = TRUE
+  )
+})
+
+test_that("stabilize_chr_scalar() allows length-1 chrs through", {
+  expect_identical(stabilize_chr_scalar("a"), "a")
+})
+
+test_that("stabilize_chr_scalar() errors for non-scalars", {
+  given <- letters
+  expect_error(
+    stabilize_chr_scalar(given),
+    class = .compile_error_class("stbl", "error", "non_scalar")
+  )
+  expect_snapshot(
+    stabilize_chr_scalar(given),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapped_stabilize_chr_scalar(given),
+    error = TRUE
+  )
+})
+
+test_that("stabilize_chr_scalar() works with regex that contains braces", {
+  expect_error(
+    stabilize_chr_scalar("b", regex = "a{1,3}"),
+    class = .compile_error_class("stbl", "error", "must")
+  )
+  expect_snapshot(
+    stabilize_chr_scalar("b", regex = "a{1,3}"),
     error = TRUE
   )
 })

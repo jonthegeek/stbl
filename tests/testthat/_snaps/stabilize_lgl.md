@@ -1,4 +1,4 @@
-# stabilize_lgl() checks values
+# stabilize_lgl() checks NAs
 
     Code
       stabilize_lgl(given, allow_na = FALSE)
@@ -10,13 +10,13 @@
 ---
 
     Code
-      wrapper(given, allow_na = FALSE)
+      wrapped_stabilize_lgl(given, allow_na = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must not contain NA values.
+      Error in `wrapped_stabilize_lgl()`:
+      ! `val` must not contain NA values.
       * NA locations: 2
 
----
+# stabilize_lgl() checks min_size
 
     Code
       stabilize_lgl(given, min_size = 5)
@@ -28,13 +28,13 @@
 ---
 
     Code
-      wrapper(given, min_size = 5)
+      wrapped_stabilize_lgl(given, min_size = 5)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must have size >= 5.
+      Error in `wrapped_stabilize_lgl()`:
+      ! `val` must have size >= 5.
       x 4 is too small.
 
----
+# stabilize_lgl() checks max_size
 
     Code
       stabilize_lgl(given, max_size = 3)
@@ -46,13 +46,13 @@
 ---
 
     Code
-      wrapper(given, max_size = 3)
+      wrapped_stabilize_lgl(given, max_size = 3)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must have size <= 3.
+      Error in `wrapped_stabilize_lgl()`:
+      ! `val` must have size <= 3.
       x 4 is too big.
 
-# stabilize_lgl_scalar() provides informative error messages
+# stabilize_lgl_scalar() errors on non-scalars
 
     Code
       stabilize_lgl_scalar(given)
@@ -64,9 +64,9 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_stabilize_lgl_scalar(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must be a single <logical>.
-      x `wrapper_val` has 3 values.
+      Error in `wrapped_stabilize_lgl_scalar()`:
+      ! `val` must be a single <logical>.
+      x `val` has 3 values.
 

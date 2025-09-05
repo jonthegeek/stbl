@@ -1,4 +1,4 @@
-# to_chr() works for NULL
+# to_chr() respects allow_null
 
     Code
       to_chr(given, allow_null = FALSE)
@@ -9,10 +9,10 @@
 ---
 
     Code
-      wrapper(given, allow_null = FALSE)
+      wrapped_to_chr(given, allow_null = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must not be <NULL>.
+      Error in `wrapped_to_chr()`:
+      ! `val` must not be <NULL>.
 
 # to_chr() fails gracefully for weird cases
 
@@ -25,10 +25,10 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_chr(given)
     Condition
-      Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` <function> to <character>.
+      Error in `wrapped_to_chr()`:
+      ! Can't coerce `val` <function> to <character>.
 
 ---
 
@@ -41,10 +41,10 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_chr(given)
     Condition
-      Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` <data.frame> to <character>.
+      Error in `wrapped_to_chr()`:
+      ! Can't coerce `val` <data.frame> to <character>.
 
 ---
 
@@ -57,12 +57,12 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_chr(given)
     Condition
-      Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` <list> to <character>.
+      Error in `wrapped_to_chr()`:
+      ! Can't coerce `val` <list> to <character>.
 
-# to_chr_scalar() provides informative error messages
+# to_chr_scalar() errors for non-scalars
 
     Code
       to_chr_scalar(given)
@@ -74,13 +74,13 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_chr_scalar(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must be a single <character>.
-      x `wrapper_val` has 26 values.
+      Error in `wrapped_to_chr_scalar()`:
+      ! `val` must be a single <character>.
+      x `val` has 26 values.
 
----
+# to_chr_scalar() errors for uncoerceable types
 
     Code
       to_chr_scalar(given)
@@ -91,12 +91,12 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_chr_scalar(given)
     Condition
-      Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` <list> to <character>.
+      Error in `wrapped_to_chr_scalar()`:
+      ! Can't coerce `val` <list> to <character>.
 
----
+# to_chr_scalar() respects allow_null
 
     Code
       to_chr_scalar(given, allow_null = FALSE)
@@ -107,12 +107,12 @@
 ---
 
     Code
-      wrapper(given, allow_null = FALSE)
+      wrapped_to_chr_scalar(given, allow_null = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must not be <NULL>.
+      Error in `wrapped_to_chr_scalar()`:
+      ! `val` must not be <NULL>.
 
-# to_chr_scalar rejects length-0 chrs when told to do so
+# to_chr_scalar respects allow_zero_length
 
     Code
       to_chr_scalar(given, allow_zero_length = FALSE)

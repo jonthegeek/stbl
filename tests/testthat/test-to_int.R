@@ -6,15 +6,20 @@ test_that("to_int() works for ints", {
 test_that("to_int() works for NULL", {
   given <- NULL
   expect_identical(to_int(given), given)
+})
+
+test_that("to_int() respects allow_null", {
+  given <- NULL
+  expect_error(
+    to_int(given, allow_null = FALSE),
+    class = .compile_error_class("stbl", "error", "bad_null")
+  )
   expect_snapshot(
     to_int(given, allow_null = FALSE),
     error = TRUE
   )
-  wrapper <- function(wrapper_val, ...) {
-    return(to_int(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given, allow_null = FALSE),
+    wrapped_to_int(given, allow_null = FALSE),
     error = TRUE
   )
 })
@@ -29,16 +34,20 @@ test_that("to_int() works for dbls", {
   expected <- 1:10
   given <- as.double(expected)
   expect_identical(to_int(given), expected)
+})
 
+test_that("to_int() errors for dbls that would lose precision", {
+  # These errors are from vctrs, so just watch for that error class
+  given <- as.double(1:10)
   given[[4]] <- 1.1
-  expect_snapshot(
+  expect_error(
     to_int(given),
-    error = TRUE
+    class = "vctrs_error_cast_lossy"
   )
   given[[4]] <- Inf
-  expect_snapshot(
+  expect_error(
     to_int(given),
-    error = TRUE
+    class = "vctrs_error_cast_lossy"
   )
 })
 
@@ -46,30 +55,52 @@ test_that("to_int() works for chrs", {
   expected <- 1:10
   given <- as.character(expected)
   expect_identical(to_int(given), expected)
+})
+
+test_that("to_int() respects coerce_character", {
+  expected <- 1:10
+  given <- as.character(expected)
+  expect_error(
+    to_int(given, coerce_character = FALSE),
+    class = .compile_error_class("stbl", "error", "coerce", "integer")
+  )
   expect_snapshot(
     to_int(given, coerce_character = FALSE),
     error = TRUE
   )
-  wrapper <- function(wrapper_val, ...) {
-    return(to_int(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given, coerce_character = FALSE),
+    wrapped_to_int(given, coerce_character = FALSE),
+    error = TRUE
+  )
+})
+
+test_that("to_int() errors informatively for bad chrs", {
+  given <- as.character(1:10)
+  given[[4]] <- "1.1"
+  expect_error(
+    to_int(given),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
+  expect_snapshot(
+    to_int(given),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapped_to_int(given),
     error = TRUE
   )
 
-  given[[4]] <- "1.1"
-  expect_snapshot(
-    to_int(given),
-    error = TRUE
-  )
-  expect_snapshot(
-    wrapper(given),
-    error = TRUE
-  )
   given[[4]] <- "a"
+  expect_error(
+    to_int(given),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
   expect_snapshot(
     to_int(given),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapped_to_int(given),
     error = TRUE
   )
 })
@@ -78,16 +109,21 @@ test_that("to_int() works for complexes", {
   expected <- 1:10
   given <- as.complex(expected)
   expect_identical(to_int(given), expected)
+})
+
+test_that("to_int() errors informatively for bad complexes", {
+  given <- as.complex(1:10)
   given[[4]] <- 1 + 1i
+  expect_error(
+    to_int(given),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
   expect_snapshot(
     to_int(given),
     error = TRUE
   )
-  wrapper <- function(wrapper_val, ...) {
-    return(to_int(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given),
+    wrapped_to_int(given),
     error = TRUE
   )
 })
@@ -96,46 +132,46 @@ test_that("to_int() works for factors", {
   expected <- c(1L, 3L, 5L, 7L)
   given <- factor(expected)
   expect_identical(to_int(given), expected)
+})
+
+test_that("to_int() respects coerce_factor", {
+  expected <- c(1L, 3L, 5L, 7L)
+  given <- factor(expected)
+  expect_error(
+    to_int(given, coerce_factor = FALSE),
+    class = .compile_error_class("stbl", "error", "coerce", "integer")
+  )
   expect_snapshot(
     to_int(given, coerce_factor = FALSE),
     error = TRUE
   )
-  wrapper <- function(wrapper_val, ...) {
-    return(to_int(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given, coerce_factor = FALSE),
-    error = TRUE
-  )
-  given <- factor(letters)
-  expect_snapshot(
-    to_int(given),
-    error = TRUE
-  )
-  expect_snapshot(
-    wrapper(given),
+    wrapped_to_int(given, coerce_factor = FALSE),
     error = TRUE
   )
 })
 
-test_that("to_int() errors properly for raw, etc", {
-  given <- as.raw(1:10)
+test_that("to_int() errors informatively for bad factors", {
+  given <- factor(letters)
+  expect_error(
+    to_int(given),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
   expect_snapshot(
     to_int(given),
     error = TRUE
   )
-  wrapper <- function(wrapper_val, ...) {
-    return(to_int(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given),
+    wrapped_to_int(given),
     error = TRUE
   )
+})
 
-  expect_snapshot(
-    to_int(mean),
-    error = TRUE
-  )
+test_that("to_int() errors properly for other types", {
+  # These errors are from vctrs, so just watch for that error class
+  given <- as.raw(1:10)
+  expect_error(to_int(given), class = "vctrs_error_cast")
+  expect_error(to_int(mean), class = "vctrs_error_scalar_type")
 })
 
 test_that("to_int_scalar() allows length-1 ints through", {
@@ -145,16 +181,16 @@ test_that("to_int_scalar() allows length-1 ints through", {
 
 test_that("to_int_scalar() provides informative error messages", {
   given <- 1:10
+  expect_error(
+    to_int_scalar(given),
+    class = .compile_error_class("stbl", "error", "non_scalar")
+  )
   expect_snapshot(
     to_int_scalar(given),
     error = TRUE
   )
-
-  wrapper <- function(wrapper_val, ...) {
-    return(to_int_scalar(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given),
+    wrapped_to_int_scalar(given),
     error = TRUE
   )
 })

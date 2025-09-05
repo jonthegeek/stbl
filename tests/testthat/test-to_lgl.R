@@ -8,54 +8,38 @@ test_that("to_lgl() works for lgls", {
     given
   )
 
-  wrapper <- function(wrapper_val, ...) {
-    return(to_lgl(wrapper_val, ...))
-  }
-  expect_identical(
-    wrapper(given),
-    given
-  )
-
   given[[4]] <- NA
   expect_identical(
     to_lgl(given),
     given
   )
-  expect_identical(
-    wrapper(given),
-    given
-  )
 })
 
 test_that("to_lgl() works for NULL", {
-  wrapper <- function(wrapper_val, ...) {
-    return(to_lgl(wrapper_val, ...))
-  }
-
   given <- NULL
   expect_identical(
     to_lgl(given),
     given
   )
-  expect_identical(
-    wrapper(given),
-    given
+})
+
+test_that("to_lgl() respects allow_null", {
+  given <- NULL
+  expect_error(
+    to_lgl(given, allow_null = FALSE),
+    class = .compile_error_class("stbl", "error", "bad_null")
   )
   expect_snapshot(
     to_lgl(given, allow_null = FALSE),
     error = TRUE
   )
   expect_snapshot(
-    wrapper(given, allow_null = FALSE),
+    wrapped_to_lgl(given, allow_null = FALSE),
     error = TRUE
   )
 })
 
 test_that("to_lgl() works for integers", {
-  wrapper <- function(wrapper_val, ...) {
-    return(to_lgl(wrapper_val, ...))
-  }
-
   given <- 1L
   expect_true(to_lgl(given))
   given <- 0L
@@ -71,10 +55,6 @@ test_that("to_lgl() works for integers", {
 })
 
 test_that("to_lgl() works for doubles", {
-  wrapper <- function(wrapper_val, ...) {
-    return(to_lgl(wrapper_val, ...))
-  }
-
   given <- 1
   expect_true(to_lgl(given))
   given <- 0
@@ -123,17 +103,19 @@ test_that("to_lgl works for characters", {
     to_lgl(given),
     c(TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE)
   )
+})
 
+test_that("to_lgl() errors for bad characters", {
+  expect_error(
+    to_lgl(letters),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
   expect_snapshot(
     to_lgl(letters),
     error = TRUE
   )
-
-  wrapper <- function(wrapper_val, ...) {
-    return(to_lgl(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(letters),
+    wrapped_to_lgl(letters),
     error = TRUE
   )
 })
@@ -172,34 +154,36 @@ test_that("to_lgl works for factors", {
     to_lgl(given),
     c(TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE)
   )
+})
 
+test_that("to_lgl errors for bad factors", {
   given <- factor(letters)
+  expect_error(
+    to_lgl(given),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
   expect_snapshot(
     to_lgl(given),
     error = TRUE
   )
-
-  wrapper <- function(wrapper_val, ...) {
-    return(to_lgl(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given),
+    wrapped_to_lgl(given),
     error = TRUE
   )
 })
 
-test_that("to_lgl() errors for other things", {
+test_that("to_lgl() errors for other types", {
   given <- list(1:10)
+  expect_error(
+    to_lgl(given),
+    class = .compile_error_class("stbl", "error", "coerce", "logical")
+  )
   expect_snapshot(
     to_lgl(given),
     error = TRUE
   )
-
-  wrapper <- function(wrapper_val, ...) {
-    return(to_lgl(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given),
+    wrapped_to_lgl(given),
     error = TRUE
   )
 })
@@ -213,38 +197,50 @@ test_that("to_lgl_scalar() allows length-1 lgls through", {
   expect_null(to_lgl_scalar(given))
 })
 
-test_that("to_lgl_scalar() provides informative error messages", {
+test_that("to_lgl_scalar() errors for non-scalars", {
   given <- c(TRUE, FALSE, TRUE)
+  expect_error(
+    to_lgl_scalar(given),
+    class = .compile_error_class("stbl", "error", "non_scalar")
+  )
   expect_snapshot(
     to_lgl_scalar(given),
     error = TRUE
   )
-
-  wrapper <- function(wrapper_val, ...) {
-    return(to_lgl_scalar(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given),
+    wrapped_to_lgl_scalar(given),
     error = TRUE
   )
+})
 
+test_that("to_lgl_scalar() errors for bad characters", {
   given <- "a"
+  expect_error(
+    to_lgl_scalar(given),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
   expect_snapshot(
     to_lgl_scalar(given),
     error = TRUE
   )
   expect_snapshot(
-    wrapper(given),
+    wrapped_to_lgl_scalar(given),
     error = TRUE
   )
+})
 
+test_that("to_lgl_scalar() respects allow_null", {
   given <- NULL
+  expect_error(
+    to_lgl_scalar(given, allow_null = FALSE),
+    class = .compile_error_class("stbl", "error", "bad_null")
+  )
   expect_snapshot(
     to_lgl_scalar(given, allow_null = FALSE),
     error = TRUE
   )
   expect_snapshot(
-    wrapper(given, allow_null = FALSE),
+    wrapped_to_lgl_scalar(given, allow_null = FALSE),
     error = TRUE
   )
 })

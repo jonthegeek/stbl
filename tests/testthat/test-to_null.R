@@ -4,15 +4,16 @@ test_that("to_null() works on the happy path", {
 
 test_that("to_null() errors when NULL isn't allowed", {
   given <- NULL
+  expect_error(
+    to_null(given, allow_null = FALSE),
+    class = .compile_error_class("stbl", "error", "bad_null")
+  )
   expect_snapshot(
     to_null(given, allow_null = FALSE),
     error = TRUE
   )
-  wrapper <- function(wrapper_val, ...) {
-    return(to_null(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given, allow_null = FALSE),
+    wrapped_to_null(given, allow_null = FALSE),
     error = TRUE
   )
 })
@@ -24,29 +25,35 @@ test_that("to_null() coerces anything to NULL", {
   expect_null(to_null(letters))
 })
 
-test_that("to_null() errors informatively for weird allow_null values", {
+test_that("to_null() errors for bad allow_null", {
+  expect_error(
+    to_null(NULL, allow_null = NULL),
+    class = .compile_error_class("stbl", "error", "bad_null")
+  )
   expect_snapshot(
     to_null(NULL, allow_null = NULL),
     error = TRUE
+  )
+
+  expect_error(
+    to_null(NULL, allow_null = "fish"),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
   )
   expect_snapshot(
     to_null(NULL, allow_null = "fish"),
     error = TRUE
   )
-  wrapper <- function(wrapper_val, ...) {
-    return(to_null(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given, allow_null = NULL),
-    error = TRUE
-  )
-  expect_snapshot(
-    wrapper(given, allow_null = "fish"),
+    wrapped_to_null(NULL, allow_null = "fish"),
     error = TRUE
   )
 })
 
 test_that("to_null() errors informatively for missing value", {
+  expect_error(
+    to_null(),
+    class = .compile_error_class("stbl", "error", "must")
+  )
   expect_snapshot(
     to_null(),
     error = TRUE

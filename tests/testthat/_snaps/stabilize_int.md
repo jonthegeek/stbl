@@ -1,4 +1,4 @@
-# stabilize_int() checks values
+# stabilize_int() checks min_value
 
     Code
       stabilize_int(given, min_value = 11)
@@ -10,13 +10,13 @@
 ---
 
     Code
-      wrapper(given, min_value = 11)
+      wrapped_stabilize_int(given, min_value = 11)
     Condition
-      Error in `wrapper()`:
-      ! Values of `wrapper_val` must be >= 11.
+      Error in `wrapped_stabilize_int()`:
+      ! Values of `val` must be >= 11.
       x Values are too low at locations 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10.
 
----
+# stabilize_int() checks max_value
 
     Code
       stabilize_int(given, max_value = 4)
@@ -28,13 +28,13 @@
 ---
 
     Code
-      wrapper(given, max_value = 4)
+      wrapped_stabilize_int(given, max_value = 4)
     Condition
-      Error in `wrapper()`:
-      ! Values of `wrapper_val` must be <= 4.
+      Error in `wrapped_stabilize_int()`:
+      ! Values of `val` must be <= 4.
       x Values are too high at locations 5, 6, 7, 8, 9, and 10.
 
-# stabilize_int_scalar() provides informative error messages
+# stabilize_int_scalar() errors on non-scalars
 
     Code
       stabilize_int_scalar(given)
@@ -46,9 +46,9 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_stabilize_int_scalar(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must be a single <integer>.
-      x `wrapper_val` has 10 values.
+      Error in `wrapped_stabilize_int_scalar()`:
+      ! `val` must be a single <integer>.
+      x `val` has 10 values.
 

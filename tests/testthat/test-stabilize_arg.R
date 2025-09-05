@@ -4,24 +4,23 @@ test_that("stabilize_arg() returns its inputs for default settings", {
   expect_identical(stabilize_arg(NULL), NULL)
 })
 
-test_that("stabilize_arg() fails and complains about weird args", {
-  wrapper <- function(x, ...) {
-    stabilize_arg(x, ...)
-  }
+test_that("stabilize_arg() complains about weird args", {
+  # This error is from rlang, so just watch for that error class
+  expect_error(
+    stabilize_arg(1L, new_arg = "red"),
+    class = "rlib_error_dots_nonempty"
+  )
   expect_snapshot(
     stabilize_arg(1L, new_arg = "red"),
     error = TRUE
   )
   expect_snapshot(
-    wrapper(1L, new_arg = "red"),
+    wrapped_stabilize_arg(1L, new_arg = "red"),
     error = TRUE
   )
 })
 
 test_that("stabilize_arg() rejects NULLs when asked", {
-  wrapper <- function(x, ...) {
-    stabilize_arg(x, ...)
-  }
   given <- NULL
   expect_error(
     stabilize_arg(given, allow_null = FALSE),
@@ -32,15 +31,12 @@ test_that("stabilize_arg() rejects NULLs when asked", {
     error = TRUE
   )
   expect_snapshot(
-    wrapper(given, allow_null = FALSE),
+    wrapped_stabilize_arg(given, allow_null = FALSE),
     error = TRUE
   )
 })
 
 test_that("stabilize_arg() checks NAs", {
-  wrapper <- function(x, ...) {
-    stabilize_arg(x, ...)
-  }
   given <- 1:8
   expect_identical(stabilize_arg(given, allow_na = FALSE), given)
 
@@ -54,16 +50,12 @@ test_that("stabilize_arg() checks NAs", {
     error = TRUE
   )
   expect_snapshot(
-    wrapper(given, allow_na = FALSE),
+    wrapped_stabilize_arg(given, allow_na = FALSE),
     error = TRUE
   )
 })
 
 test_that("stabilize_arg() checks size args", {
-  wrapper <- function(x, ...) {
-    stabilize_arg(x, ...)
-  }
-
   given <- TRUE
   expect_true(stabilize_arg(given, min_size = 1, max_size = 1))
 
@@ -75,17 +67,13 @@ test_that("stabilize_arg() checks size args", {
     stabilize_arg(given, min_size = 2, max_size = 1),
     error = TRUE
   )
-  expect_error(
-    wrapper(given, min_size = 2, max_size = 1),
-    class = .compile_error_class("stbl", "error", "size_x_vs_y")
-  )
   expect_snapshot(
-    wrapper(given, min_size = 2, max_size = 1),
+    wrapped_stabilize_arg(given, min_size = 2, max_size = 1),
     error = TRUE
   )
 })
 
-test_that("stabilize_arg() checks size", {
+test_that("stabilize_arg() checks min_size", {
   given <- 1:3
   expect_identical(
     stabilize_arg(given, min_size = 1, max_size = 10),
@@ -100,17 +88,14 @@ test_that("stabilize_arg() checks size", {
     stabilize_arg(given, min_size = 11),
     error = TRUE
   )
-  wrapper <- function(x, ...) {
-    stabilize_arg(x, ...)
-  }
-  expect_error(
-    wrapper(given, min_size = 11),
-    class = .compile_error_class("stbl", "error", "size_too_small")
-  )
   expect_snapshot(
-    wrapper(given, min_size = 11),
+    wrapped_stabilize_arg(given, min_size = 11),
     error = TRUE
   )
+})
+
+test_that("stabilize_arg() checks max_size", {
+  given <- 1:3
   expect_error(
     stabilize_arg(given, max_size = 2),
     class = .compile_error_class("stbl", "error", "size_too_large")
@@ -119,14 +104,19 @@ test_that("stabilize_arg() checks size", {
     stabilize_arg(given, max_size = 2),
     error = TRUE
   )
+  expect_snapshot(
+    wrapped_stabilize_arg(given, max_size = 2),
+    error = TRUE
+  )
 })
+
 
 test_that("stabilize_arg_scalar() allows length-1 args through", {
   given <- 1L
   expect_identical(stabilize_arg_scalar(given), given)
 })
 
-test_that("stabilize_arg_scalar() provides informative error messages", {
+test_that("stabilize_arg_scalar() errors for non-scalars", {
   given <- 1:10
   expect_error(
     stabilize_arg_scalar(given),
@@ -136,15 +126,13 @@ test_that("stabilize_arg_scalar() provides informative error messages", {
     stabilize_arg_scalar(given),
     error = TRUE
   )
-
-  wrapper <- function(wrapper_val, ...) {
-    return(stabilize_arg_scalar(wrapper_val, ...))
-  }
   expect_snapshot(
-    wrapper(given),
+    wrapped_stabilize_arg_scalar(given),
     error = TRUE
   )
+})
 
+test_that("stabilize_arg_scalar() respects allow_null", {
   given <- NULL
   expect_error(
     stabilize_arg_scalar(given, allow_null = FALSE),
@@ -155,13 +143,17 @@ test_that("stabilize_arg_scalar() provides informative error messages", {
     error = TRUE
   )
   expect_snapshot(
-    wrapper(given, allow_null = FALSE),
+    wrapped_stabilize_arg_scalar(given, allow_null = FALSE),
     error = TRUE
   )
 })
 
-test_that("stabilize_arg_scalar() deals with weird values", {
+test_that("stabilize_arg_scalar() errors on weird internal arg values", {
   given <- NULL
+  expect_error(
+    stabilize_arg_scalar(given, allow_null = c(TRUE, FALSE)),
+    class = .compile_error_class("stbl", "error", "non_scalar")
+  )
   expect_snapshot(
     stabilize_arg_scalar(given, allow_null = c(TRUE, FALSE)),
     error = TRUE

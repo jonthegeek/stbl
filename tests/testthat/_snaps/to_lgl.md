@@ -1,4 +1,4 @@
-# to_lgl() works for NULL
+# to_lgl() respects allow_null
 
     Code
       to_lgl(given, allow_null = FALSE)
@@ -9,12 +9,12 @@
 ---
 
     Code
-      wrapper(given, allow_null = FALSE)
+      wrapped_to_lgl(given, allow_null = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must not be <NULL>.
+      Error in `wrapped_to_lgl()`:
+      ! `val` must not be <NULL>.
 
-# to_lgl works for characters
+# to_lgl() errors for bad characters
 
     Code
       to_lgl(letters)
@@ -27,14 +27,14 @@
 ---
 
     Code
-      wrapper(letters)
+      wrapped_to_lgl(letters)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` <character> must be coercible to <logical>
+      Error in `wrapped_to_lgl()`:
+      ! `val` <character> must be coercible to <logical>
       x Can't convert some values due to incompatible values.
       * Locations: 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ..., 25, and 26
 
-# to_lgl works for factors
+# to_lgl errors for bad factors
 
     Code
       to_lgl(given)
@@ -47,14 +47,14 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_lgl(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` <factor> must be coercible to <logical>
+      Error in `wrapped_to_lgl()`:
+      ! `val` <factor> must be coercible to <logical>
       x Can't convert some values due to incompatible values.
       * Locations: 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ..., 25, and 26
 
-# to_lgl() errors for other things
+# to_lgl() errors for other types
 
     Code
       to_lgl(given)
@@ -65,12 +65,12 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_lgl(given)
     Condition
-      Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` <list> to <logical>.
+      Error in `wrapped_to_lgl()`:
+      ! Can't coerce `val` <list> to <logical>.
 
-# to_lgl_scalar() provides informative error messages
+# to_lgl_scalar() errors for non-scalars
 
     Code
       to_lgl_scalar(given)
@@ -82,13 +82,13 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_lgl_scalar(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must be a single <logical>.
-      x `wrapper_val` has 3 values.
+      Error in `wrapped_to_lgl_scalar()`:
+      ! `val` must be a single <logical>.
+      x `val` has 3 values.
 
----
+# to_lgl_scalar() errors for bad characters
 
     Code
       to_lgl_scalar(given)
@@ -101,14 +101,14 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_lgl_scalar(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` <character> must be coercible to <logical>
+      Error in `wrapped_to_lgl_scalar()`:
+      ! `val` <character> must be coercible to <logical>
       x Can't convert some values due to incompatible values.
       * Locations: 1
 
----
+# to_lgl_scalar() respects allow_null
 
     Code
       to_lgl_scalar(given, allow_null = FALSE)
@@ -119,8 +119,8 @@
 ---
 
     Code
-      wrapper(given, allow_null = FALSE)
+      wrapped_to_lgl_scalar(given, allow_null = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must not be <NULL>.
+      Error in `wrapped_to_lgl_scalar()`:
+      ! `val` must not be <NULL>.
 

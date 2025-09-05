@@ -1,4 +1,4 @@
-# to_int() works for NULL
+# to_int() respects allow_null
 
     Code
       to_int(given, allow_null = FALSE)
@@ -9,30 +9,12 @@
 ---
 
     Code
-      wrapper(given, allow_null = FALSE)
+      wrapped_to_int(given, allow_null = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must not be <NULL>.
+      Error in `wrapped_to_int()`:
+      ! `val` must not be <NULL>.
 
-# to_int() works for dbls
-
-    Code
-      to_int(given)
-    Condition
-      Error:
-      ! Can't convert from `given` <double> to <integer> due to loss of precision.
-      * Locations: 4
-
----
-
-    Code
-      to_int(given)
-    Condition
-      Error:
-      ! Can't convert from `given` <double> to <integer> due to loss of precision.
-      * Locations: 4
-
-# to_int() works for chrs
+# to_int() respects coerce_character
 
     Code
       to_int(given, coerce_character = FALSE)
@@ -43,12 +25,12 @@
 ---
 
     Code
-      wrapper(given, coerce_character = FALSE)
+      wrapped_to_int(given, coerce_character = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` <character> to <integer>.
+      Error in `wrapped_to_int()`:
+      ! Can't coerce `val` <character> to <integer>.
 
----
+# to_int() errors informatively for bad chrs
 
     Code
       to_int(given)
@@ -61,10 +43,10 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_int(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` <character> must be coercible to <integer>
+      Error in `wrapped_to_int()`:
+      ! `val` <character> must be coercible to <integer>
       x Can't convert some values due to loss of precision.
       * Locations: 4
 
@@ -78,7 +60,17 @@
       x Can't convert some values due to incompatible values.
       * Locations: 4
 
-# to_int() works for complexes
+---
+
+    Code
+      wrapped_to_int(given)
+    Condition
+      Error in `wrapped_to_int()`:
+      ! `val` <character> must be coercible to <integer>
+      x Can't convert some values due to incompatible values.
+      * Locations: 4
+
+# to_int() errors informatively for bad complexes
 
     Code
       to_int(given)
@@ -91,14 +83,14 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_int(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` <complex> must be coercible to <integer>
+      Error in `wrapped_to_int()`:
+      ! `val` <complex> must be coercible to <integer>
       x Can't convert some values due to non-zero complex components.
       * Locations: 4
 
-# to_int() works for factors
+# to_int() respects coerce_factor
 
     Code
       to_int(given, coerce_factor = FALSE)
@@ -109,12 +101,12 @@
 ---
 
     Code
-      wrapper(given, coerce_factor = FALSE)
+      wrapped_to_int(given, coerce_factor = FALSE)
     Condition
-      Error in `wrapper()`:
-      ! Can't coerce `wrapper_val` <factor> to <integer>.
+      Error in `wrapped_to_int()`:
+      ! Can't coerce `val` <factor> to <integer>.
 
----
+# to_int() errors informatively for bad factors
 
     Code
       to_int(given)
@@ -127,36 +119,12 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_int(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` <factor> must be coercible to <integer>
+      Error in `wrapped_to_int()`:
+      ! `val` <factor> must be coercible to <integer>
       x Can't convert some values due to incompatible values.
       * Locations: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ..., 25, and 26
-
-# to_int() errors properly for raw, etc
-
-    Code
-      to_int(given)
-    Condition
-      Error:
-      ! Can't convert `given` <raw> to <integer>.
-
----
-
-    Code
-      wrapper(given)
-    Condition
-      Error in `wrapper()`:
-      ! Can't convert `wrapper_val` <raw> to <integer>.
-
----
-
-    Code
-      to_int(mean)
-    Condition
-      Error:
-      ! `mean` must be a vector, not a function.
 
 # to_int_scalar() provides informative error messages
 
@@ -170,9 +138,9 @@
 ---
 
     Code
-      wrapper(given)
+      wrapped_to_int_scalar(given)
     Condition
-      Error in `wrapper()`:
-      ! `wrapper_val` must be a single <integer>.
-      x `wrapper_val` has 10 values.
+      Error in `wrapped_to_int_scalar()`:
+      ! `val` must be a single <integer>.
+      x `val` has 10 values.
 
