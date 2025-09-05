@@ -4,7 +4,16 @@
 \alias{.stop_must}
 \title{Abort with a standardized "must" message}
 \usage{
-.stop_must(msg, x_arg, call, additional_msg = NULL, class = "stbl_error_must")
+.stop_must(
+  msg,
+  x_arg,
+  call,
+  additional_msg = NULL,
+  subclass = NULL,
+  message_env = call,
+  parent = NULL,
+  ...
+)
 }
 \arguments{
 \item{msg}{\code{(character)} The core error message describing the requirement.}
@@ -13,13 +22,23 @@
 value will work in most cases, or pass it through from higher-level
 functions to make error messages clearer in unexported functions.}
 
-\item{call}{The execution environment of the call. See the \code{call} argument of
-\code{rlang::abort()} for more information.}
+\item{call}{\code{(environment)} The execution environment to mention as the
+source of error messages.}
 
 \item{additional_msg}{\code{(character)} Optional, additional cli-formatted
 messages.}
 
-\item{class}{\code{(character)} The specific error class to assign.}
+\item{subclass}{(\code{character}) Class(es) to assign to the error. Will be
+prefixed by "stbl-error-".}
+
+\item{message_env}{(\code{environment}) The execution environment to use to
+evaluate variables in error messages.}
+
+\item{parent}{A parent condition, as you might create during a
+\code{\link[rlang:try_fetch]{rlang::try_fetch()}}. See \code{\link[rlang:abort]{rlang::abort()}} for additional information.}
+
+\item{...}{Additional parameters passed to \code{\link[cli:cli_abort]{cli::cli_abort()}} and on to
+\code{\link[rlang:abort]{rlang::abort()}}.}
 }
 \value{
 This function is called for its side effect of throwing an error and

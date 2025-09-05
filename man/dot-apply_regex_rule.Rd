@@ -16,8 +16,8 @@
 value will work in most cases, or pass it through from higher-level
 functions to make error messages clearer in unexported functions.}
 
-\item{call}{The execution environment of the call. See the \code{call} argument of
-\code{rlang::abort()} for more information.}
+\item{call}{\code{(environment)} The execution environment to mention as the
+source of error messages.}
 }
 \value{
 A character vector of error messages if the rule fails, otherwise
