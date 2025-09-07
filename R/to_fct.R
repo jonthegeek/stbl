@@ -106,6 +106,16 @@ to_fct.default <- function(
   return(.coerce_fct_levels(x, levels, to_na, x_arg, call))
 }
 
+#' Coerce to factor with specified levels
+#'
+#' A wrapper around level-coercion helpers.
+#'
+#' @param levels `(character)` The desired factor levels.
+#' @param to_na `(character)` Values to convert to `NA`.
+#' @inheritParams .shared-params
+#'
+#' @returns `x` as a factor with specified levels and NAs.
+#' @keywords internal
 .coerce_fct_levels <- function(
   x,
   levels,
@@ -118,6 +128,15 @@ to_fct.default <- function(
   return(x)
 }
 
+#' Coerce specified values to NA
+#'
+#' A helper that converts specified values in `x` to `NA`.
+#'
+#' @param to_na `(character)` Values to convert to `NA`.
+#' @inheritParams .shared-params
+#'
+#' @returns `x` with specified values converted to `NA`.
+#' @keywords internal
 .coerce_fct_to_na <- function(x, to_na, call = caller_env()) {
   to_na <- to_chr(to_na, call = call)
   if (length(to_na)) {
@@ -126,6 +145,16 @@ to_fct.default <- function(
   return(x)
 }
 
+#' Core implementation for applying factor levels
+#'
+#' Checks for values in `x` that are not present in `levels` and throws an error
+#' if any are found.
+#'
+#' @param levels `(character)` The desired factor levels.
+#' @inheritParams .shared-params
+#'
+#' @returns `x` as a factor with the specified levels.
+#' @keywords internal
 .coerce_fct_levels_impl <- function(
   x,
   levels,
@@ -147,6 +176,18 @@ to_fct.default <- function(
   return(x)
 }
 
+#' Stop for bad factor levels
+#'
+#' Throws a standardized error when values are not found in the provided factor
+#' levels.
+#'
+#' @param bad_casts `(logical)` A logical vector indicating which elements of
+#'   `x` are not in the allowed levels.
+#' @inheritParams .shared-params
+#'
+#' @returns This function is called for its side effect of throwing an error and
+#'   does not return a value.
+#' @keywords internal
 .stop_bad_levels <- function(x, bad_casts, x_arg, call) {
   bad_values <- x[bad_casts]
   .stbl_abort(
@@ -185,6 +226,15 @@ to_fct_scalar <- function(
   )
 }
 
+#' Always return FALSE
+#'
+#' A helper to force the slow path in [`.to_cls_scalar()`] for factors, since
+#' `rlang::is_scalar_factor()` does not exist.
+#'
+#' @param x An object (ignored).
+#'
+#' @returns `FALSE`, always.
+#' @keywords internal
 .fast_false <- function(x) {
   FALSE
 }

@@ -1,3 +1,17 @@
+#' Coerce an object to a specific scalar class
+#'
+#' A helper that wraps around a `to_*_scalar()` function to provide a standard
+#' set of checks.
+#'
+#' @param is_rlang_cls_scalar `(function)` An `is_scalar_*()` function from
+#'   rlang, used for a fast path if `x` is already the right type.
+#' @param to_cls_fn `(function)` The `to_*()` function to use for coercion.
+#' @param to_cls_args `(list)` A list of additional arguments to pass to
+#'   `to_cls_fn()`.
+#' @inheritParams .shared-params
+#'
+#' @returns `x` as a scalar of the target class.
+#' @keywords internal
 .to_cls_scalar <- function(
   x,
   is_rlang_cls_scalar,
@@ -36,6 +50,22 @@
   return(x)
 }
 
+#' Stabilize an object of a specific class
+#'
+#' A helper used by the `stabilize_*()` functions to provide a standard set of
+#' checks.
+#'
+#' @param to_cls_fn `(function)` The `to_*()` function to use for coercion.
+#' @param to_cls_args `(list)` A list of additional arguments to pass to
+#'   `to_cls_fn()`.
+#' @param check_cls_value_fn `(function)` A function to check the values of `x`
+#'   after coercion.
+#' @param check_cls_value_fn_args `(list)` A list of additional arguments to
+#'   pass to `check_cls_value_fn()`.
+#' @inheritParams .shared-params
+#'
+#' @returns `x` as a vector of the target class with all checks passed.
+#' @keywords internal
 .stabilize_cls <- function(
   x,
   to_cls_fn,
@@ -86,6 +116,23 @@
   )
 }
 
+#' Stabilize a scalar object of a specific class
+#'
+#' A helper used by the `stabilize_*_scalar()` functions to provide a standard
+#' set of checks.
+#'
+#' @param to_cls_scalar_fn `(function)` The `to_*_scalar()` function to use for
+#'   coercion.
+#' @param to_cls_scalar_args `(list)` A list of additional arguments to pass to
+#'   `to_cls_scalar_fn()`.
+#' @param check_cls_value_fn `(function)` A function to check the values of `x`
+#'   after coercion.
+#' @param check_cls_value_fn_args `(list)` A list of additional arguments to
+#'   pass to `check_cls_value_fn()`.
+#' @inheritParams .shared-params
+#'
+#' @returns `x` as a scalar of the target class with all checks passed.
+#' @keywords internal
 .stabilize_cls_scalar <- function(
   x,
   to_cls_scalar_fn,
