@@ -74,3 +74,43 @@ test_that(".check_x_no_more_than_y() works", {
   )
   expect_snapshot(.check_x_no_more_than_y(2, 1), error = TRUE)
 })
+
+test_that(".check_cast_failures() works", {
+  # Happy path
+  expect_null(
+    .check_cast_failures(
+      failures = c(FALSE, FALSE),
+      x_class = "character",
+      to = logical(),
+      due_to = "incompatible values",
+      x_arg = "test_arg",
+      call = rlang::current_env()
+    )
+  )
+
+  # Failure path
+  failures <- c(FALSE, TRUE, FALSE, TRUE)
+  expect_error(
+    .check_cast_failures(
+      failures = failures,
+      x_class = "character",
+      to = logical(),
+      due_to = "incompatible values",
+      x_arg = "test_arg",
+      call = rlang::current_env()
+    ),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
+
+  expect_snapshot(
+    .check_cast_failures(
+      failures = failures,
+      x_class = "character",
+      to = logical(),
+      due_to = "incompatible values",
+      x_arg = "test_arg",
+      call = rlang::current_env()
+    ),
+    error = TRUE
+  )
+})

@@ -183,3 +183,22 @@
     )
   }
 }
+
+#' Check for coercion failures and stop if any are found
+#'
+#' @param failures `(logical)` A logical vector where `TRUE` indicates a
+#'   coercion failure.
+#' @inheritParams .stop_incompatible
+#' @keywords internal
+.check_cast_failures <- function(failures, x_class, to, due_to, x_arg, call) {
+  if (any(failures)) {
+    .stop_incompatible(
+      x_class = x_class,
+      to = to,
+      failures = failures,
+      due_to = due_to,
+      x_arg = x_arg,
+      call = call
+    )
+  }
+}

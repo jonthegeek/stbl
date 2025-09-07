@@ -46,17 +46,14 @@ to_lgl.character <- function(
 ) {
   cast <- as.logical(toupper(x))
   failures <- xor(is.na(x), is.na(cast))
-
-  if (any(failures)) {
-    .stop_incompatible(
-      x_class,
-      logical(),
-      failures,
-      due_to = "incompatible values",
-      x_arg,
-      call
-    )
-  }
+  .check_cast_failures(
+    failures,
+    x_class,
+    logical(),
+    "incompatible values",
+    x_arg,
+    call
+  )
 
   return(cast)
 }
