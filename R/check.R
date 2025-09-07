@@ -1,3 +1,12 @@
+#' Check for NA values
+#'
+#' Checks for `NA` values in `x`, throwing an error if any are found and
+#' `allow_na` is `FALSE`.
+#'
+#' @inheritParams .shared-params
+#'
+#' @returns `NULL`, invisibly, if `x` passes the check.
+#' @keywords internal
 .check_na <- function(
   x,
   allow_na = TRUE,
@@ -24,6 +33,15 @@
   return(invisible(NULL))
 }
 
+#' Check the size of an object
+#'
+#' Checks if the size of `x` (from [vctrs::vec_size()]) is within the bounds of
+#' `min_size` and `max_size`.
+#'
+#' @inheritParams .shared-params
+#'
+#' @returns `NULL`, invisibly, if `x` passes the check.
+#' @keywords internal
 .check_size <- function(
   x,
   min_size,
@@ -69,6 +87,15 @@
   )
 }
 
+#' Check if an object is a scalar
+#'
+#' Checks if an object is a scalar, allowing for `NULL` and zero-length vectors
+#' if specified.
+#'
+#' @inheritParams .shared-params
+#'
+#' @returns `NULL`, invisibly, if `x` passes the check.
+#' @keywords internal
 .check_scalar <- function(
   x,
   allow_null = TRUE,
@@ -116,11 +143,26 @@
   )
 }
 
+#' Check if a value is NULL and NULLs are allowed
+#'
+#' @inheritParams .shared-params
+#'
+#' @returns `(length-1 logical)` `TRUE` if `x` is `NULL` and `allow_null` is
+#'   `TRUE`.
+#' @keywords internal
 .is_allowed_null <- function(x, allow_null = TRUE, call = caller_env()) {
   allow_null <- to_lgl_scalar(allow_null, allow_null = FALSE, call = call)
   return(is.null(x) && allow_null)
 }
 
+#' Check that one value is not greater than another
+#'
+#' @param y The value to compare against.
+#' @param y_arg `(length-1 character)` The name of the `y` argument.
+#' @inheritParams .shared-params
+#'
+#' @returns `NULL`, invisibly, if `x` is not greater than `y`.
+#' @keywords internal
 .check_x_no_more_than_y <- function(
   x,
   y,

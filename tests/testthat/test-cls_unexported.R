@@ -1,0 +1,189 @@
+test_that(".to_cls_scalar() works", {
+  expect_equal(
+    .to_cls_scalar(
+      "1",
+      is_rlang_cls_scalar = rlang::is_scalar_integer,
+      to_cls_fn = as.integer
+    ),
+    1L
+  )
+
+  expect_equal(
+    .to_cls_scalar(
+      1L,
+      is_rlang_cls_scalar = rlang::is_scalar_integer,
+      to_cls_fn = as.integer
+    ),
+    1L
+  )
+
+  expect_error(
+    .to_cls_scalar(
+      c("1", "2"),
+      is_rlang_cls_scalar = rlang::is_scalar_integer,
+      to_cls_fn = as.integer
+    ),
+    class = .compile_error_class("stbl", "error", "non_scalar")
+  )
+})
+
+test_that(".stabilize_cls() calls to_cls_fn with to_cls_args", {
+  to_fn <- function(x, ..., my_arg = "default") {
+    if (my_arg != "success") {
+      .stbl_abort("wrong arg", "fail")
+    }
+    as.integer(x)
+  }
+
+  expect_equal(
+    .stabilize_cls(
+      1:5,
+      to_cls_fn = to_fn,
+      to_cls_args = list(my_arg = "success")
+    ),
+    1:5
+  )
+
+  expect_error(
+    .stabilize_cls(1:5, to_cls_fn = to_fn),
+    class = .compile_error_class("stbl", "error", "fail")
+  )
+})
+
+test_that(".stabilize_cls() calls check_cls_value_fn", {
+  check_fn <- function(x, ..., my_arg = "default") {
+    if (my_arg != "success") {
+      .stbl_abort("wrong arg", "fail")
+    }
+    if (any(x > 3)) {
+      .stbl_abort("too high", "custom")
+    }
+    NULL
+  }
+
+  expect_equal(
+    .stabilize_cls(1:3, to_cls_fn = as.integer, check_cls_value_fn = NULL),
+    1:3
+  )
+
+  expect_error(
+    .stabilize_cls(
+      1:5,
+      to_cls_fn = as.integer,
+      check_cls_value_fn = check_fn,
+      check_cls_value_fn_args = list(my_arg = "success")
+    ),
+    class = .compile_error_class("stbl", "error", "custom")
+  )
+
+  expect_error(
+    .stabilize_cls(
+      1:3,
+      to_cls_fn = as.integer,
+      check_cls_value_fn = check_fn
+    ),
+    class = .compile_error_class("stbl", "error", "fail")
+  )
+})
+
+test_that(".stabilize_cls() calls stabilize_arg", {
+  expect_equal(
+    .stabilize_cls(1:5, to_cls_fn = as.integer, min_size = 5, max_size = 5),
+    1:5
+  )
+
+  expect_error(
+    .stabilize_cls(1:5, to_cls_fn = as.integer, min_size = 6),
+    class = .compile_error_class("stbl", "error", "size_too_small")
+  )
+
+  expect_error(
+    .stabilize_cls(1:5, to_cls_fn = as.integer, max_size = 4),
+    class = .compile_error_class("stbl", "error", "size_too_large")
+  )
+})
+
+test_that(".stabilize_cls_scalar() calls to_cls_scalar_fn with args", {
+  to_fn_scalar <- function(x, ..., my_arg = "default") {
+    if (my_arg != "success") {
+      .stbl_abort("wrong arg", "fail")
+    }
+    if (length(x) > 1) {
+      .stbl_abort("must be scalar", "non_scalar")
+    }
+    as.integer(x)
+  }
+
+  expect_equal(
+    .stabilize_cls_scalar(
+      "1",
+      to_cls_scalar_fn = to_fn_scalar,
+      to_cls_scalar_args = list(my_arg = "success")
+    ),
+    1L
+  )
+
+  expect_error(
+    .stabilize_cls_scalar("1", to_cls_scalar_fn = to_fn_scalar),
+    class = .compile_error_class("stbl", "error", "fail")
+  )
+})
+
+test_that(".stabilize_cls_scalar() calls check_cls_value_fn", {
+  to_fn_scalar <- function(x, ...) as.integer(x)
+
+  check_fn <- function(x, ..., my_arg = "default") {
+    if (my_arg != "success") {
+      .stbl_abort("wrong arg", "fail")
+    }
+    if (x > 3) {
+      .stbl_abort("too high", "custom")
+    }
+    NULL
+  }
+
+  expect_equal(
+    .stabilize_cls_scalar(
+      "1",
+      to_cls_scalar_fn = to_fn_scalar,
+      check_cls_value_fn = NULL
+    ),
+    1L
+  )
+
+  expect_error(
+    .stabilize_cls_scalar(
+      "5",
+      to_cls_scalar_fn = to_fn_scalar,
+      check_cls_value_fn = check_fn,
+      check_cls_value_fn_args = list(my_arg = "success")
+    ),
+    class = .compile_error_class("stbl", "error", "custom")
+  )
+
+  expect_error(
+    .stabilize_cls_scalar(
+      "1",
+      to_cls_scalar_fn = to_fn_scalar,
+      check_cls_value_fn = check_fn
+    ),
+    class = .compile_error_class("stbl", "error", "fail")
+  )
+})
+
+test_that(".stabilize_cls_scalar() checks for NA and empty dots", {
+  to_fn_scalar <- function(x, ...) as.integer(x)
+  expect_error(
+    .stabilize_cls_scalar(
+      NA_integer_,
+      to_cls_scalar_fn = to_fn_scalar,
+      allow_na = FALSE
+    ),
+    class = .compile_error_class("stbl", "error", "bad_na")
+  )
+
+  expect_error(
+    .stabilize_cls_scalar(1L, to_cls_scalar_fn = to_fn_scalar, blah = "argh"),
+    class = "rlib_error_dots_nonempty"
+  )
+})
