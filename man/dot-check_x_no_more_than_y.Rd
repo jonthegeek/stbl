@@ -13,7 +13,7 @@
 )
 }
 \arguments{
-\item{x}{The argument to stabilize.}
+\item{x}{The object to check.}
 
 \item{y}{The value to compare against.}
 

@@ -27,12 +27,7 @@ to_lgl.NULL <- function(
 }
 
 #' @export
-to_lgl.integer <- function(x, ..., x_arg = caller_arg(x), call = caller_env()) {
-  return(as.logical(x))
-}
-
-#' @export
-to_lgl.double <- function(x, ..., x_arg = caller_arg(x), call = caller_env()) {
+to_lgl.numeric <- function(x, ..., x_arg = caller_arg(x), call = caller_env()) {
   return(as.logical(x))
 }
 
@@ -44,8 +39,7 @@ to_lgl.character <- function(
   call = caller_env(),
   x_class = object_type(x)
 ) {
-  cast <- as.logical(toupper(x))
-  failures <- xor(is.na(x), is.na(cast))
+  failures <- .are_not_lgl_ish_chr(x)
   .check_cast_failures(
     failures,
     x_class,
@@ -54,8 +48,7 @@ to_lgl.character <- function(
     x_arg,
     call
   )
-
-  return(cast)
+  return(as.logical(toupper(x)))
 }
 
 #' @export

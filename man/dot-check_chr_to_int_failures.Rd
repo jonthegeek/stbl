@@ -4,15 +4,10 @@
 \alias{.check_chr_to_int_failures}
 \title{Check for character to integer coercion failures}
 \usage{
-.check_chr_to_int_failures(x, cast, x_na, x_class, x_arg, call)
+.check_chr_to_int_failures(x, x_class, x_arg, call)
 }
 \arguments{
-\item{x}{\code{(character)} The original character vector.}
-
-\item{cast}{\code{(integer)} The vector after attempting coercion with
-\code{as.integer()}.}
-
-\item{x_na}{\code{(logical)} A vector indicating which elements of \code{x} were \code{NA}.}
+\item{x}{The argument to stabilize.}
 
 \item{x_class}{\verb{(length-1 character)} The class name of \code{x} to use in error
 messages. Use this if you remove a special class from \code{x} before checking

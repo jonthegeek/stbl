@@ -9,10 +9,10 @@
 \arguments{
 \item{x}{The argument to stabilize.}
 
-\item{success}{A logical vector indicating which elements of \code{x} passed the
-check.}
+\item{success}{\code{(logical)} A logical vector indicating which elements of \code{x}
+passed the check.}
 
-\item{negate}{\code{(logical)} Was the check a negative one?}
+\item{negate}{\verb{(length-1 logical)} Was the check a negative one?}
 }
 \value{
 A named character vector to be used as \code{additional_msg} in

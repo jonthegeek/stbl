@@ -21,7 +21,6 @@
 #' @inheritParams .shared-params
 #' @param levels `(character)` Expected levels. If `NULL` (default), the levels
 #'   will be computed by [base::factor()].
-#' @param to_na `(character)` Values to coerce to `NA`.
 #'
 #' @returns The argument as a factor.
 #' @export

@@ -187,3 +187,21 @@ test_that(".stabilize_cls_scalar() checks for NA and empty dots", {
     class = "rlib_error_dots_nonempty"
   )
 })
+
+test_that(".elements_are_cls_ish() works", {
+  # A simple, non-S3 predicate function for testing.
+  # The helper will call this function on scalar elements.
+  # For our test, something is "ish" if it is an integer.
+  are_test_ish <- function(x, ...) {
+    is.integer(x)
+  }
+
+  expect_identical(
+    .elements_are_cls_ish(list(1L, 2L), are_test_ish),
+    c(TRUE, TRUE)
+  )
+  expect_identical(
+    .elements_are_cls_ish(list(1L, "a", list(3L)), are_test_ish),
+    c(TRUE, FALSE, FALSE)
+  )
+})

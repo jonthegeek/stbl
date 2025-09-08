@@ -7,7 +7,7 @@
 .is_allowed_null(x, allow_null = TRUE, call = caller_env())
 }
 \arguments{
-\item{x}{The argument to stabilize.}
+\item{x}{The object to check.}
 
 \item{allow_null}{\verb{(length-1 logical)} Is NULL an acceptable value?}
 
