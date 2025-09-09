@@ -4,7 +4,7 @@
 \alias{.shared-params}
 \title{Shared parameters}
 \arguments{
-\item{...}{These dots are for future extensions and should be empty.}
+\item{...}{Arguments passed to methods.}
 
 \item{allow_na}{\verb{(length-1 logical)} Are NA values ok?}
 
@@ -13,19 +13,32 @@
 \item{allow_zero_length}{\verb{(length-1 logical)} Are zero-length vectors
 acceptable?}
 
+\item{are_cls_ish_fn}{The \verb{are_*_ish} function to apply to each element.}
+
 \item{call}{\code{(environment)} The execution environment to mention as the
 source of error messages.}
 
+\item{cast_fn}{\verb{(function)} The \verb{as.*()} function to use for coercion.}
+
+\item{check_cls_value_fn}{\verb{(function)} A function to check the values of \code{x}
+after coercion.}
+
+\item{check_cls_value_fn_args}{\code{(list)} A list of additional arguments to
+pass to \code{check_cls_value_fn()}.}
+
 \item{coerce_character}{\verb{(length-1 logical)} Should character vectors such as
-"1" and "2.0" be considered integer-ish?}
+"1" and "2.0" be considered numeric-ish?}
 
 \item{coerce_factor}{\verb{(length-1 logical)} Should factors with values such as
-"1" and "2.0" be considered integer-ish? Note that this package uses the
-character value from the factor, while \code{\link[=as.integer]{as.integer()}} uses the integer
-index of the factor.}
+"1" and "2.0" be considered numeric-ish? Note that this package uses the
+character value from the factor, while \code{\link[=as.integer]{as.integer()}} and \code{\link[=as.double]{as.double()}} use
+the integer index of the factor.}
 
 \item{depth}{\verb{(length-1 integer)} Current recursion depth. Do not manually
 set this parameter.}
+
+\item{is_rlang_cls_scalar}{\verb{(function)} An \verb{is_scalar_*()} function from
+rlang, used for a fast path if \code{x} is already the right type.}
 
 \item{levels}{\code{(character)} The desired factor levels.}
 
@@ -35,13 +48,13 @@ evaluate variables in error messages.}
 \item{min_size}{\verb{(length-1 integer)} The minimum size of the object. Object
 size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
-\item{min_value}{\verb{(length-1 integer)} The lowest allowed value for \code{x}. If
+\item{min_value}{\verb{(length-1 numeric)} The lowest allowed value for \code{x}. If
 \code{NULL} (default) values are not checked.}
 
 \item{max_size}{\verb{(length-1 integer)} The maximum size of the object. Object
 size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
-\item{max_value}{\verb{(length-1 integer)} The highest allowed value for \code{x}. If
+\item{max_value}{\verb{(length-1 numeric)} The highest allowed value for \code{x}. If
 \code{NULL} (default) values are not checked.}
 
 \item{parent}{A parent condition, as you might create during a
@@ -61,7 +74,22 @@ throws an error, try installing the stringi package.}
 \item{subclass}{(\code{character}) Class(es) to assign to the error. Will be
 prefixed by "stbl-error-".}
 
+\item{to_class}{\verb{(length-1 character)} The name of the class to coerce to.}
+
+\item{to_cls_args}{\code{(list)} A list of additional arguments to pass to
+\code{to_cls_fn()}.}
+
+\item{to_cls_fn}{\verb{(function)} The \verb{to_*()} function to use for coercion.}
+
+\item{to_cls_scalar_args}{\code{(list)} A list of additional arguments to pass to
+\code{to_cls_scalar_fn()}.}
+
+\item{to_cls_scalar_fn}{\verb{(function)} The \verb{to_*_scalar()} function to use for
+coercion.}
+
 \item{to_na}{\code{(character)} Values to convert to \code{NA}.}
+
+\item{to_type_obj}{An empty object of the target type (e.g., \code{integer()}).}
 
 \item{x}{The argument to stabilize.}
 

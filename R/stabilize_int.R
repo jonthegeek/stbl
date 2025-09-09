@@ -67,7 +67,7 @@ stabilize_int <- function(
       coerce_character = coerce_character,
       coerce_factor = coerce_factor
     ),
-    check_cls_value_fn = .check_value_int,
+    check_cls_value_fn = .check_value_dbl,
     check_cls_value_fn_args = list(
       min_value = min_value,
       max_value = max_value
@@ -106,7 +106,7 @@ stabilize_int_scalar <- function(
       coerce_character = coerce_character,
       coerce_factor = coerce_factor
     ),
-    check_cls_value_fn = .check_value_int,
+    check_cls_value_fn = .check_value_dbl,
     check_cls_value_fn_args = list(
       min_value = min_value,
       max_value = max_value
@@ -118,46 +118,5 @@ stabilize_int_scalar <- function(
     call = call,
     x_class = x_class,
     ...
-  )
-}
-
-#' Check integer values against min and max values
-#'
-#' @inheritParams .shared-params
-#' @returns `NULL`, invisibly, if `x` passes all checks.
-#' @keywords internal
-.check_value_int <- function(
-  x,
-  min_value,
-  max_value,
-  x_arg = caller_arg(x),
-  call = caller_env()
-) {
-  min_value <- to_int_scalar(min_value, call = call)
-  max_value <- to_int_scalar(max_value, call = call)
-
-  min_failure_locations <- .find_failures(x, min_value, `<`)
-  max_failure_locations <- .find_failures(x, max_value, `>`)
-
-  if (is.null(min_failure_locations) && is.null(max_failure_locations)) {
-    return(invisible(NULL))
-  }
-
-  min_msg <- min_failure_locations %&&%
-    c(
-      "!" = "Values of {.arg {x_arg}} must be >= {min_value}.",
-      x = "Values are too low at locations {min_failure_locations}."
-    )
-  max_msg <- max_failure_locations %&&%
-    c(
-      "!" = "Values of {.arg {x_arg}} must be <= {max_value}.",
-      x = "Values are too high at locations {max_failure_locations}."
-    )
-
-  .stbl_abort(
-    c(min_msg, max_msg),
-    subclass = "outside_range",
-    call = call,
-    message_env = rlang::current_env()
   )
 }

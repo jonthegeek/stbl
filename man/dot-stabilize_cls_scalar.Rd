@@ -25,7 +25,7 @@
 \item{to_cls_scalar_fn}{\verb{(function)} The \verb{to_*_scalar()} function to use for
 coercion.}
 
-\item{...}{These dots are for future extensions and should be empty.}
+\item{...}{Arguments passed to methods.}
 
 \item{to_cls_scalar_args}{\code{(list)} A list of additional arguments to pass to
 \code{to_cls_scalar_fn()}.}

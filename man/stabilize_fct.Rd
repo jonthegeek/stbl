@@ -4,6 +4,7 @@
 \alias{stabilize_fct}
 \alias{stabilize_fct_scalar}
 \alias{to_fct}
+\alias{to_fct.NULL}
 \alias{to_fct_scalar}
 \title{Ensure a factor argument meets expectations}
 \usage{
@@ -36,7 +37,7 @@ stabilize_fct_scalar(
 
 to_fct(
   x,
-  allow_null = TRUE,
+  ...,
   levels = NULL,
   to_na = character(),
   x_arg = caller_arg(x),
@@ -44,8 +45,11 @@ to_fct(
   x_class = object_type(x)
 )
 
+\method{to_fct}{`NULL`}(x, ..., allow_null = TRUE, x_arg = caller_arg(x), call = caller_env())
+
 to_fct_scalar(
   x,
+  ...,
   allow_null = TRUE,
   allow_zero_length = TRUE,
   levels = NULL,
@@ -58,7 +62,7 @@ to_fct_scalar(
 \arguments{
 \item{x}{The argument to stabilize.}
 
-\item{...}{These dots are for future extensions and should be empty.}
+\item{...}{Arguments passed to methods.}
 
 \item{allow_null}{\verb{(length-1 logical)} Is NULL an acceptable value?}
 

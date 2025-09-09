@@ -4,6 +4,7 @@
 \alias{stabilize_chr}
 \alias{stabilize_chr_scalar}
 \alias{to_chr}
+\alias{to_chr.NULL}
 \alias{to_chr_scalar}
 \title{Ensure a character argument meets expectations}
 \usage{
@@ -34,14 +35,17 @@ stabilize_chr_scalar(
 
 to_chr(
   x,
-  allow_null = TRUE,
+  ...,
   x_arg = caller_arg(x),
   call = caller_env(),
   x_class = object_type(x)
 )
 
+\method{to_chr}{`NULL`}(x, ..., allow_null = TRUE, x_arg = caller_arg(x), call = caller_env())
+
 to_chr_scalar(
   x,
+  ...,
   allow_null = TRUE,
   allow_zero_length = TRUE,
   x_arg = caller_arg(x),
@@ -52,7 +56,7 @@ to_chr_scalar(
 \arguments{
 \item{x}{The argument to stabilize.}
 
-\item{...}{These dots are for future extensions and should be empty.}
+\item{...}{Arguments passed to methods.}
 
 \item{allow_null}{\verb{(length-1 logical)} Is NULL an acceptable value?}
 

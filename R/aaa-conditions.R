@@ -20,7 +20,7 @@ rlang::caller_env
 .stbl_abort <- function(
   message,
   subclass,
-  call = rlang::caller_env(),
+  call = caller_env(),
   message_env = call,
   parent = NULL,
   ...

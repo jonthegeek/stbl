@@ -2,7 +2,7 @@
 #' @rdname stabilize_chr
 to_chr <- function(
   x,
-  allow_null = TRUE,
+  ...,
   x_arg = caller_arg(x),
   call = caller_env(),
   x_class = object_type(x)
@@ -16,6 +16,7 @@ to_chr.character <- function(x, ...) {
 }
 
 #' @export
+#' @rdname stabilize_chr
 to_chr.NULL <- function(
   x,
   ...,
@@ -90,6 +91,7 @@ to_chr.default <- function(
 #' @rdname stabilize_chr
 to_chr_scalar <- function(
   x,
+  ...,
   allow_null = TRUE,
   allow_zero_length = TRUE,
   x_arg = caller_arg(x),
@@ -100,6 +102,7 @@ to_chr_scalar <- function(
     x,
     is_rlang_cls_scalar = is_scalar_character,
     to_cls_fn = to_chr,
+    to_cls_args = list(...),
     allow_null = allow_null,
     allow_zero_length = allow_zero_length,
     x_arg = x_arg,

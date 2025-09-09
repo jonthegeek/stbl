@@ -205,3 +205,52 @@ test_that(".elements_are_cls_ish() works", {
     c(TRUE, FALSE, FALSE)
   )
 })
+
+test_that(".to_cls_from_fct() works", {
+  to_fn <- function(x, ...) as.integer(x)
+
+  # Happy path
+  expect_equal(
+    .to_cls_from_fct(
+      x = factor(1:3),
+      to_cls_fn = to_fn,
+      to_cls_args = list(),
+      to_class = "integer"
+    ),
+    1:3
+  )
+
+  # coerce_factor = FALSE
+  expect_error(
+    .to_cls_from_fct(
+      x = factor(1:3),
+      to_cls_fn = to_fn,
+      to_cls_args = list(),
+      to_class = "integer",
+      coerce_factor = FALSE
+    ),
+    class = .compile_error_class("stbl", "error", "coerce", "integer")
+  )
+})
+
+test_that(".to_num_from_complex() works", {
+  # Happy path
+  expect_equal(
+    .to_num_from_complex(
+      x = as.complex(1:3),
+      cast_fn = as.integer,
+      to_type_obj = integer()
+    ),
+    1:3
+  )
+
+  # Failure path
+  expect_error(
+    .to_num_from_complex(
+      x = c(1 + 1i, 2),
+      cast_fn = as.integer,
+      to_type_obj = integer()
+    ),
+    class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
+})
