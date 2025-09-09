@@ -18,15 +18,17 @@
 \arguments{
 \item{x}{The argument to stabilize.}
 
-\item{to_cls_fn}{\verb{(function)} The \verb{to_*()} function to use for coercion after
-\code{x} is converted to a character.}
+\item{to_cls_fn}{\verb{(function)} The \verb{to_*()} function to use for coercion.}
+
+\item{to_cls_args}{\code{(list)} A list of additional arguments to pass to
+\code{to_cls_fn()}.}
 
 \item{to_class}{\verb{(length-1 character)} The name of the class to coerce to.}
 
 \item{coerce_factor}{\verb{(length-1 logical)} Should factors with values such as
-"1" and "2.0" be considered integer-ish? Note that this package uses the
-character value from the factor, while \code{\link[=as.integer]{as.integer()}} uses the integer
-index of the factor.}
+"1" and "2.0" be considered numeric-ish? Note that this package uses the
+character value from the factor, while \code{\link[=as.integer]{as.integer()}} and \code{\link[=as.double]{as.double()}} use
+the integer index of the factor.}
 
 \item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
 value will work in most cases, or pass it through from higher-level

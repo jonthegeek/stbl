@@ -3,13 +3,7 @@
 #' A helper that wraps around a `to_*_scalar()` function to provide a standard
 #' set of checks.
 #'
-#' @param is_rlang_cls_scalar `(function)` An `is_scalar_*()` function from
-#'   rlang, used for a fast path if `x` is already the right type.
-#' @param to_cls_fn `(function)` The `to_*()` function to use for coercion.
-#' @param to_cls_args `(list)` A list of additional arguments to pass to
-#'   `to_cls_fn()`.
 #' @inheritParams .shared-params
-#'
 #' @returns `x` as a scalar of the target class.
 #' @keywords internal
 .to_cls_scalar <- function(
@@ -55,15 +49,7 @@
 #' A helper used by the `stabilize_*()` functions to provide a standard set of
 #' checks.
 #'
-#' @param to_cls_fn `(function)` The `to_*()` function to use for coercion.
-#' @param to_cls_args `(list)` A list of additional arguments to pass to
-#'   `to_cls_fn()`.
-#' @param check_cls_value_fn `(function)` A function to check the values of `x`
-#'   after coercion.
-#' @param check_cls_value_fn_args `(list)` A list of additional arguments to
-#'   pass to `check_cls_value_fn()`.
 #' @inheritParams .shared-params
-#'
 #' @returns `x` as a vector of the target class with all checks passed.
 #' @keywords internal
 .stabilize_cls <- function(
@@ -121,16 +107,7 @@
 #' A helper used by the `stabilize_*_scalar()` functions to provide a standard
 #' set of checks.
 #'
-#' @param to_cls_scalar_fn `(function)` The `to_*_scalar()` function to use for
-#'   coercion.
-#' @param to_cls_scalar_args `(list)` A list of additional arguments to pass to
-#'   `to_cls_scalar_fn()`.
-#' @param check_cls_value_fn `(function)` A function to check the values of `x`
-#'   after coercion.
-#' @param check_cls_value_fn_args `(list)` A list of additional arguments to
-#'   pass to `check_cls_value_fn()`.
 #' @inheritParams .shared-params
-#'
 #' @returns `x` as a scalar of the target class with all checks passed.
 #' @keywords internal
 .stabilize_cls_scalar <- function(
@@ -178,7 +155,6 @@
 
 #' Check if all elements of a list-like object are ish
 #'
-#' @param are_cls_ish_fn The `are_*_ish` function to apply to each element.
 #' @inheritParams .shared-params-check
 #' @keywords internal
 .elements_are_cls_ish <- function(x, are_cls_ish_fn, ...) {
@@ -193,15 +169,10 @@
 
 #' Coerce an object from a factor to a specific class
 #'
-#' @description
 #' A helper that wraps around a `to_*()` function to provide a standard way to
 #' coerce factors.
 #'
-#' @param to_cls_fn `(function)` The `to_*()` function to use for coercion after
-#'  `x` is converted to a character.
-#' @param to_class `(length-1 character)` The name of the class to coerce to.
 #' @inheritParams .shared-params
-#'
 #' @returns `x` coerced to the target class.
 #' @keywords internal
 .to_cls_from_fct <- function(
@@ -238,14 +209,10 @@
 
 #' Coerce an object from a complex to a numeric class
 #'
-#' @description
 #' A helper that wraps around a `to_*()` function to provide a standard way to
 #' coerce complex numbers.
 #'
-#' @param cast_fn `(function)` The `as.*()` function to use for coercion.
-#' @param to_type_obj An empty object of the target type (e.g., `integer()`).
 #' @inheritParams .shared-params
-#'
 #' @returns `x` coerced to the target class.
 #' @keywords internal
 .to_num_from_complex <- function(

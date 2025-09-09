@@ -89,12 +89,12 @@ to_dbl_scalar(
 \item{allow_na}{\verb{(length-1 logical)} Are NA values ok?}
 
 \item{coerce_character}{\verb{(length-1 logical)} Should character vectors such as
-"1" and "2.0" be considered integer-ish?}
+"1" and "2.0" be considered numeric-ish?}
 
 \item{coerce_factor}{\verb{(length-1 logical)} Should factors with values such as
-"1" and "2.0" be considered integer-ish? Note that this package uses the
-character value from the factor, while \code{\link[=as.integer]{as.integer()}} uses the integer
-index of the factor.}
+"1" and "2.0" be considered numeric-ish? Note that this package uses the
+character value from the factor, while \code{\link[=as.integer]{as.integer()}} and \code{\link[=as.double]{as.double()}} use
+the integer index of the factor.}
 
 \item{min_size}{\verb{(length-1 integer)} The minimum size of the object. Object
 size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
@@ -102,10 +102,10 @@ size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 \item{max_size}{\verb{(length-1 integer)} The maximum size of the object. Object
 size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 
-\item{min_value}{\verb{(length-1 integer)} The lowest allowed value for \code{x}. If
+\item{min_value}{\verb{(length-1 numeric)} The lowest allowed value for \code{x}. If
 \code{NULL} (default) values are not checked.}
 
-\item{max_value}{\verb{(length-1 integer)} The highest allowed value for \code{x}. If
+\item{max_value}{\verb{(length-1 numeric)} The highest allowed value for \code{x}. If
 \code{NULL} (default) values are not checked.}
 
 \item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic

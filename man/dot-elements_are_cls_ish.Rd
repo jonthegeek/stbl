@@ -8,8 +8,6 @@
 }
 \arguments{
 \item{x}{The object to check.}
-
-\item{are_cls_ish_fn}{The \verb{are_*_ish} function to apply to each element.}
 }
 \description{
 Check if all elements of a list-like object are ish
