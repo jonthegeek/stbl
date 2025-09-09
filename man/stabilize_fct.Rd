@@ -73,7 +73,7 @@ size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}
 \item{levels}{\code{(character)} Expected levels. If \code{NULL} (default), the levels
 will be computed by \code{\link[base:factor]{base::factor()}}.}
 
-\item{to_na}{\code{(character)} Values to coerce to \code{NA}.}
+\item{to_na}{\code{(character)} Values to convert to \code{NA}.}
 
 \item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
 value will work in most cases, or pass it through from higher-level

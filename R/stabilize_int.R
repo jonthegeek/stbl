@@ -11,12 +11,6 @@
 #'   length-1 integer vectors.
 #'
 #' @inheritParams .shared-params
-#' @param coerce_character `(logical)` Should character vectors such as "1" and
-#'   "2.0" be coerced to integer?
-#' @param coerce_factor `(logical)` Should factors with values such as "1" and
-#'   "2.0" be coerced to integer? Note that this function uses the character
-#'   value from the factor, while [as.integer()] uses the integer index of the
-#'   factor.
 #'
 #' @returns The argument as an integer.
 #' @export

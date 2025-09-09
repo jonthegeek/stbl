@@ -68,13 +68,13 @@ to_int_scalar(
 
 \item{allow_na}{\verb{(length-1 logical)} Are NA values ok?}
 
-\item{coerce_character}{\code{(logical)} Should character vectors such as "1" and
-"2.0" be coerced to integer?}
+\item{coerce_character}{\verb{(length-1 logical)} Should character vectors such as
+"1" and "2.0" be considered integer-ish?}
 
-\item{coerce_factor}{\code{(logical)} Should factors with values such as "1" and
-"2.0" be coerced to integer? Note that this function uses the character
-value from the factor, while \code{\link[=as.integer]{as.integer()}} uses the integer index of the
-factor.}
+\item{coerce_factor}{\verb{(length-1 logical)} Should factors with values such as
+"1" and "2.0" be considered integer-ish? Note that this package uses the
+character value from the factor, while \code{\link[=as.integer]{as.integer()}} uses the integer
+index of the factor.}
 
 \item{min_size}{\verb{(length-1 integer)} The minimum size of the object. Object
 size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}

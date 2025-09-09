@@ -53,12 +53,8 @@ to_int.character <- function(
     call = call
   )
   if (coerce_character) {
-    cast <- suppressWarnings(as.integer(x))
-    x_na <- is.na(x)
-
-    .check_chr_to_int_failures(x, cast, x_na, x_class, x_arg, call)
-
-    return(cast)
+    .check_chr_to_int_failures(x, x_class, x_arg, call)
+    return(suppressWarnings(as.integer(x)))
   }
   .stop_cant_coerce(
     from_class = x_class,
@@ -154,22 +150,17 @@ to_int_scalar <- function(
 
 #' Check for character to integer coercion failures
 #'
-#' @param x `(character)` The original character vector.
-#' @param cast `(integer)` The vector after attempting coercion with
-#'   `as.integer()`.
-#' @param x_na `(logical)` A vector indicating which elements of `x` were `NA`.
 #' @inheritParams .shared-params
 #'
 #' @returns `NULL`, invisibly, if `x` passes all checks.
 #' @keywords internal
-.check_chr_to_int_failures <- function(x, cast, x_na, x_class, x_arg, call) {
-  non_numbers <- xor(x_na, is.na(cast))
-  bad_precision <- cast != suppressWarnings(as.double(x)) & !x_na
-  if (!any(non_numbers | bad_precision)) {
+.check_chr_to_int_failures <- function(x, x_class, x_arg, call) {
+  failures <- .are_not_int_ish_chr(x)
+  if (!any(failures)) {
     return(invisible(NULL))
   }
   .check_cast_failures(
-    non_numbers,
+    failures[, "non_number"],
     x_class,
     integer(),
     "incompatible values",
@@ -179,7 +170,7 @@ to_int_scalar <- function(
   .stop_incompatible(
     x_class,
     integer(),
-    bad_precision,
+    failures[, "bad_precision"],
     due_to = "loss of precision",
     x_arg,
     call

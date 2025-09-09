@@ -175,3 +175,18 @@
   .check_na(x, allow_na = allow_na, x_arg = x_arg, call = call)
   return(x)
 }
+
+#' Check if all elements of a list-like object are ish
+#'
+#' @param are_cls_ish_fn The `are_*_ish` function to apply to each element.
+#' @inheritParams .shared-params-check
+#' @keywords internal
+.elements_are_cls_ish <- function(x, are_cls_ish_fn, ...) {
+  vapply(
+    unname(x),
+    function(elem) {
+      rlang::is_scalar_atomic(elem) && are_cls_ish_fn(elem, ..., depth = 2)
+    },
+    logical(1)
+  )
+}

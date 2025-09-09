@@ -1,0 +1,63 @@
+test_that("are_chr_ish() errors for extra dots", {
+  expect_error(
+    are_chr_ish("a", extra = "arg"),
+    class = "rlib_error_dots_unused"
+  )
+  expect_error(
+    is_chr_ish("a", extra = "arg"),
+    class = "rlib_error_dots_unused"
+  )
+})
+
+test_that("are_chr_ish() returns TRUE for every element of a chr", {
+  expect_identical(are_chr_ish(letters), rep(TRUE, 26))
+  given <- c(letters, NA)
+  expect_identical(are_chr_ish(given), rep(TRUE, 27))
+})
+
+test_that("are_chr_ish() works for NULL", {
+  expect_identical(are_chr_ish(NULL), logical(0))
+})
+
+test_that("are_chr_ish() returns TRUE for every element of other atomics", {
+  expect_identical(are_chr_ish(1:10), rep(TRUE, 10))
+  expect_identical(are_chr_ish(c(TRUE, FALSE)), c(TRUE, TRUE))
+  expect_identical(are_chr_ish(factor(letters)), rep(TRUE, 26))
+  expect_identical(are_chr_ish(as.raw(1:10)), rep(TRUE, 10))
+  expect_identical(are_chr_ish(as.complex(1:10)), rep(TRUE, 10))
+})
+
+test_that("are_chr_ish() works for lists and data.frames", {
+  expect_identical(are_chr_ish(list("a", 1, TRUE)), c(TRUE, TRUE, TRUE))
+  expect_identical(are_chr_ish(list("a", NULL, "b")), c(TRUE, FALSE, TRUE))
+  expect_identical(are_chr_ish(list(a = 1, b = 1:5)), c(TRUE, FALSE))
+  expect_identical(are_chr_ish(list(a = character(0))), FALSE)
+  expect_identical(are_chr_ish(mtcars), rep(FALSE, length(mtcars)))
+})
+
+test_that("are_chr_ish() returns unnamed vectors", {
+  expect_named(are_chr_ish(list(a = 1, b = "c")), NULL)
+})
+
+test_that("are_chr_ish() returns FALSE for non-vectors", {
+  expect_false(are_chr_ish(mean))
+})
+
+test_that("is_chr_ish() returns a single TRUE for coercible objects", {
+  expect_true(is_chr_ish("a"))
+  expect_true(is_chr_ish(1:10))
+  expect_true(is_chr_ish(NULL))
+  expect_true(is_chr_ish(list("a", 1, TRUE)))
+})
+
+test_that("is_chr_ish() works for NULL", {
+  expect_true(is_chr_ish(NULL))
+})
+
+test_that("is_chr_ish() returns FALSE for uncoercibles", {
+  expect_false(is_chr_ish(mean))
+  expect_false(is_chr_ish(list("a", NULL, "b")))
+  expect_false(is_chr_ish(list(a = 1, b = 1:5)))
+  expect_false(is_chr_ish(list(a = character(0))))
+  expect_false(is_chr_ish(mtcars))
+})

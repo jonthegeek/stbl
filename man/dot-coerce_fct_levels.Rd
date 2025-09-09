@@ -6,8 +6,8 @@
 \usage{
 .coerce_fct_levels(
   x,
-  levels,
-  to_na,
+  levels = NULL,
+  to_na = character(),
   x_arg = caller_arg(x),
   call = caller_env()
 )

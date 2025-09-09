@@ -195,9 +195,9 @@ stabilize_chr_scalar <- function(
 #' Describe a character-based validation failure
 #'
 #' @inheritParams .shared-params
-#' @param success A logical vector indicating which elements of `x` passed the
-#'   check.
-#' @param negate `(logical)` Was the check a negative one?
+#' @param success `(logical)` A logical vector indicating which elements of `x`
+#'   passed the check.
+#' @param negate `(length-1 logical)` Was the check a negative one?
 #'
 #' @returns A named character vector to be used as `additional_msg` in
 #'   [.stop_must()].

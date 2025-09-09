@@ -3,6 +3,7 @@
 #' Checks for `NA` values in `x`, throwing an error if any are found and
 #' `allow_na` is `FALSE`.
 #'
+#' @inheritParams .shared-params-check
 #' @inheritParams .shared-params
 #'
 #' @returns `NULL`, invisibly, if `x` passes the check.
@@ -38,6 +39,7 @@
 #' Checks if the size of `x` (from [vctrs::vec_size()]) is within the bounds of
 #' `min_size` and `max_size`.
 #'
+#' @inheritParams .shared-params-check
 #' @inheritParams .shared-params
 #'
 #' @returns `NULL`, invisibly, if `x` passes the check.
@@ -92,6 +94,7 @@
 #' Checks if an object is a scalar, allowing for `NULL` and zero-length vectors
 #' if specified.
 #'
+#' @inheritParams .shared-params-check
 #' @inheritParams .shared-params
 #'
 #' @returns `NULL`, invisibly, if `x` passes the check.
@@ -145,6 +148,7 @@
 
 #' Check if a value is NULL and NULLs are allowed
 #'
+#' @inheritParams .shared-params-check
 #' @inheritParams .shared-params
 #'
 #' @returns `(length-1 logical)` `TRUE` if `x` is `NULL` and `allow_null` is
@@ -159,6 +163,7 @@
 #'
 #' @param y The value to compare against.
 #' @param y_arg `(length-1 character)` The name of the `y` argument.
+#' @inheritParams .shared-params-check
 #' @inheritParams .shared-params
 #'
 #' @returns `NULL`, invisibly, if `x` is not greater than `y`.

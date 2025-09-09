@@ -16,6 +16,19 @@ acceptable?}
 \item{call}{\code{(environment)} The execution environment to mention as the
 source of error messages.}
 
+\item{coerce_character}{\verb{(length-1 logical)} Should character vectors such as
+"1" and "2.0" be considered integer-ish?}
+
+\item{coerce_factor}{\verb{(length-1 logical)} Should factors with values such as
+"1" and "2.0" be considered integer-ish? Note that this package uses the
+character value from the factor, while \code{\link[=as.integer]{as.integer()}} uses the integer
+index of the factor.}
+
+\item{depth}{\verb{(length-1 integer)} Current recursion depth. Do not manually
+set this parameter.}
+
+\item{levels}{\code{(character)} The desired factor levels.}
+
 \item{message_env}{(\code{environment}) The execution environment to use to
 evaluate variables in error messages.}
 
@@ -47,6 +60,8 @@ throws an error, try installing the stringi package.}
 
 \item{subclass}{(\code{character}) Class(es) to assign to the error. Will be
 prefixed by "stbl-error-".}
+
+\item{to_na}{\code{(character)} Values to convert to \code{NA}.}
 
 \item{x}{The argument to stabilize.}
 

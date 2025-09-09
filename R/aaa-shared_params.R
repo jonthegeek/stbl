@@ -10,6 +10,15 @@
 #'   acceptable?
 #' @param call `(environment)` The execution environment to mention as the
 #'   source of error messages.
+#' @param coerce_character `(length-1 logical)` Should character vectors such as
+#'   "1" and "2.0" be considered integer-ish?
+#' @param coerce_factor `(length-1 logical)` Should factors with values such as
+#'   "1" and "2.0" be considered integer-ish? Note that this package uses the
+#'   character value from the factor, while [as.integer()] uses the integer
+#'   index of the factor.
+#' @param depth `(length-1 integer)` Current recursion depth. Do not manually
+#'   set this parameter.
+#' @param levels `(character)` The desired factor levels.
 #' @param message_env (`environment`) The execution environment to use to
 #'   evaluate variables in error messages.
 #' @param min_size `(length-1 integer)` The minimum size of the object. Object
@@ -34,6 +43,7 @@
 #'   throws an error, try installing the stringi package.
 #' @param subclass (`character`) Class(es) to assign to the error. Will be
 #'   prefixed by "stbl-error-".
+#' @param to_na `(character)` Values to convert to `NA`.
 #' @param x The argument to stabilize.
 #' @param x_arg `(length-1 character)` An argument name for x. The automatic
 #'   value will work in most cases, or pass it through from higher-level
@@ -43,5 +53,14 @@
 #'   its coercion, but want the error message to match the original class.
 #'
 #' @name .shared-params
+#' @keywords internal
+NULL
+
+#' Shared parameters for check functions
+#'
+#' @param ... Arguments passed to methods.
+#' @param x The object to check.
+#'
+#' @name .shared-params-check
 #' @keywords internal
 NULL

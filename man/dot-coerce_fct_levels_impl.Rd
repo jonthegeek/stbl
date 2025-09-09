@@ -4,12 +4,20 @@
 \alias{.coerce_fct_levels_impl}
 \title{Core implementation for applying factor levels}
 \usage{
-.coerce_fct_levels_impl(x, levels, x_arg = caller_arg(x), call = caller_env())
+.coerce_fct_levels_impl(
+  x,
+  levels = NULL,
+  to_na = character(),
+  x_arg = caller_arg(x),
+  call = caller_env()
+)
 }
 \arguments{
 \item{x}{The argument to stabilize.}
 
 \item{levels}{\code{(character)} The desired factor levels.}
+
+\item{to_na}{\code{(character)} Values to convert to \code{NA}.}
 
 \item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
 value will work in most cases, or pass it through from higher-level

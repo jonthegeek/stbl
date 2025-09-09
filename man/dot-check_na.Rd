@@ -7,7 +7,7 @@
 .check_na(x, allow_na = TRUE, x_arg = caller_arg(x), call = caller_env())
 }
 \arguments{
-\item{x}{The argument to stabilize.}
+\item{x}{The object to check.}
 
 \item{allow_na}{\verb{(length-1 logical)} Are NA values ok?}
 

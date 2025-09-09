@@ -7,7 +7,7 @@
 .check_size(x, min_size, max_size, x_arg = caller_arg(x), call = caller_env())
 }
 \arguments{
-\item{x}{The argument to stabilize.}
+\item{x}{The object to check.}
 
 \item{min_size}{\verb{(length-1 integer)} The minimum size of the object. Object
 size will be tested using \code{\link[vctrs:vec_size]{vctrs::vec_size()}}.}

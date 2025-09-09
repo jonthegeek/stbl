@@ -4,7 +4,7 @@
 \alias{.coerce_fct_to_na}
 \title{Coerce specified values to NA}
 \usage{
-.coerce_fct_to_na(x, to_na, call = caller_env())
+.coerce_fct_to_na(x, to_na = character(), call = caller_env())
 }
 \arguments{
 \item{x}{The argument to stabilize.}

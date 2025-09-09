@@ -110,21 +110,18 @@ to_fct.default <- function(
 #'
 #' A wrapper around level-coercion helpers.
 #'
-#' @param levels `(character)` The desired factor levels.
-#' @param to_na `(character)` Values to convert to `NA`.
 #' @inheritParams .shared-params
-#'
 #' @returns `x` as a factor with specified levels and NAs.
 #' @keywords internal
 .coerce_fct_levels <- function(
   x,
-  levels,
-  to_na,
+  levels = NULL,
+  to_na = character(),
   x_arg = caller_arg(x),
   call = caller_env()
 ) {
   x <- .coerce_fct_to_na(x, to_na, call)
-  x <- .coerce_fct_levels_impl(x, levels, x_arg, call)
+  x <- .coerce_fct_levels_impl(x, levels, to_na, x_arg, call)
   return(x)
 }
 
@@ -132,12 +129,10 @@ to_fct.default <- function(
 #'
 #' A helper that converts specified values in `x` to `NA`.
 #'
-#' @param to_na `(character)` Values to convert to `NA`.
 #' @inheritParams .shared-params
-#'
 #' @returns `x` with specified values converted to `NA`.
 #' @keywords internal
-.coerce_fct_to_na <- function(x, to_na, call = caller_env()) {
+.coerce_fct_to_na <- function(x, to_na = character(), call = caller_env()) {
   to_na <- to_chr(to_na, call = call)
   if (length(to_na)) {
     x[x %in% to_na] <- NA
@@ -150,26 +145,23 @@ to_fct.default <- function(
 #' Checks for values in `x` that are not present in `levels` and throws an error
 #' if any are found.
 #'
-#' @param levels `(character)` The desired factor levels.
 #' @inheritParams .shared-params
-#'
 #' @returns `x` as a factor with the specified levels.
 #' @keywords internal
 .coerce_fct_levels_impl <- function(
   x,
-  levels,
+  levels = NULL,
+  to_na = character(),
   x_arg = caller_arg(x),
   call = caller_env()
 ) {
   levels <- to_chr(levels)
   if (length(levels)) {
-    was_na <- is.na(x)
-    cast <- factor(as.character(x), levels = levels)
-    bad_casts <- xor(is.na(cast), was_na)
+    bad_casts <- .are_not_fct_ish_chr(x, levels, to_na)
     if (any(bad_casts)) {
       .stop_bad_levels(x, bad_casts, x_arg, call)
     }
-    x <- cast
+    x <- factor(as.character(x), levels = levels)
   } else {
     x <- factor(x)
   }
@@ -184,7 +176,6 @@ to_fct.default <- function(
 #' @param bad_casts `(logical)` A logical vector indicating which elements of
 #'   `x` are not in the allowed levels.
 #' @inheritParams .shared-params
-#'
 #' @returns This function is called for its side effect of throwing an error and
 #'   does not return a value.
 #' @keywords internal
@@ -232,7 +223,6 @@ to_fct_scalar <- function(
 #' `rlang::is_scalar_factor()` does not exist.
 #'
 #' @param x An object (ignored).
-#'
 #' @returns `FALSE`, always.
 #' @keywords internal
 .fast_false <- function(x) {
