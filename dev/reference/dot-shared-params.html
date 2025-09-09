@@ -9,7 +9,7 @@ make them easier to import and to find."><meta name="robots" content="noindex"><
 
     <a class="navbar-brand me-2" href="../index.html">stbl</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.1.9005</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.1.9006</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@ make them easier to import and to find.</p>
 
 
 <dl><dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>These dots are for future extensions and should be empty.</p></dd>
+<dd><p>Arguments passed to methods.</p></dd>
 
 
 <dt id="arg-allow-na">allow_na<a class="anchor" aria-label="anchor" href="#arg-allow-na"></a></dt>
@@ -62,26 +62,49 @@ make them easier to import and to find.</p>
 acceptable?</p></dd>
 
 
+<dt id="arg-are-cls-ish-fn">are_cls_ish_fn<a class="anchor" aria-label="anchor" href="#arg-are-cls-ish-fn"></a></dt>
+<dd><p>The <code>are_*_ish</code> function to apply to each element.</p></dd>
+
+
 <dt id="arg-call">call<a class="anchor" aria-label="anchor" href="#arg-call"></a></dt>
 <dd><p><code>(environment)</code> The execution environment to mention as the
 source of error messages.</p></dd>
 
 
+<dt id="arg-cast-fn">cast_fn<a class="anchor" aria-label="anchor" href="#arg-cast-fn"></a></dt>
+<dd><p><code>(function)</code> The <code>as.*()</code> function to use for coercion.</p></dd>
+
+
+<dt id="arg-check-cls-value-fn">check_cls_value_fn<a class="anchor" aria-label="anchor" href="#arg-check-cls-value-fn"></a></dt>
+<dd><p><code>(function)</code> A function to check the values of <code>x</code>
+after coercion.</p></dd>
+
+
+<dt id="arg-check-cls-value-fn-args">check_cls_value_fn_args<a class="anchor" aria-label="anchor" href="#arg-check-cls-value-fn-args"></a></dt>
+<dd><p><code>(list)</code> A list of additional arguments to
+pass to <code>check_cls_value_fn()</code>.</p></dd>
+
+
 <dt id="arg-coerce-character">coerce_character<a class="anchor" aria-label="anchor" href="#arg-coerce-character"></a></dt>
 <dd><p><code>(length-1 logical)</code> Should character vectors such as
-"1" and "2.0" be considered integer-ish?</p></dd>
+"1" and "2.0" be considered numeric-ish?</p></dd>
 
 
 <dt id="arg-coerce-factor">coerce_factor<a class="anchor" aria-label="anchor" href="#arg-coerce-factor"></a></dt>
 <dd><p><code>(length-1 logical)</code> Should factors with values such as
-"1" and "2.0" be considered integer-ish? Note that this package uses the
-character value from the factor, while <code><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer()</a></code> uses the integer
-index of the factor.</p></dd>
+"1" and "2.0" be considered numeric-ish? Note that this package uses the
+character value from the factor, while <code><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer()</a></code> and <code><a href="https://rdrr.io/r/base/double.html" class="external-link">as.double()</a></code> use
+the integer index of the factor.</p></dd>
 
 
 <dt id="arg-depth">depth<a class="anchor" aria-label="anchor" href="#arg-depth"></a></dt>
 <dd><p><code>(length-1 integer)</code> Current recursion depth. Do not manually
 set this parameter.</p></dd>
+
+
+<dt id="arg-is-rlang-cls-scalar">is_rlang_cls_scalar<a class="anchor" aria-label="anchor" href="#arg-is-rlang-cls-scalar"></a></dt>
+<dd><p><code>(function)</code> An <code>is_scalar_*()</code> function from
+rlang, used for a fast path if <code>x</code> is already the right type.</p></dd>
 
 
 <dt id="arg-levels">levels<a class="anchor" aria-label="anchor" href="#arg-levels"></a></dt>
@@ -99,7 +122,7 @@ size will be tested using <code><a href="https://vctrs.r-lib.org/reference/vec_s
 
 
 <dt id="arg-min-value">min_value<a class="anchor" aria-label="anchor" href="#arg-min-value"></a></dt>
-<dd><p><code>(length-1 integer)</code> The lowest allowed value for <code>x</code>. If
+<dd><p><code>(length-1 numeric)</code> The lowest allowed value for <code>x</code>. If
 <code>NULL</code> (default) values are not checked.</p></dd>
 
 
@@ -109,7 +132,7 @@ size will be tested using <code><a href="https://vctrs.r-lib.org/reference/vec_s
 
 
 <dt id="arg-max-value">max_value<a class="anchor" aria-label="anchor" href="#arg-max-value"></a></dt>
-<dd><p><code>(length-1 integer)</code> The highest allowed value for <code>x</code>. If
+<dd><p><code>(length-1 numeric)</code> The highest allowed value for <code>x</code>. If
 <code>NULL</code> (default) values are not checked.</p></dd>
 
 
@@ -136,8 +159,35 @@ throws an error, try installing the stringi package.</p></dd>
 prefixed by "stbl-error-".</p></dd>
 
 
+<dt id="arg-to-class">to_class<a class="anchor" aria-label="anchor" href="#arg-to-class"></a></dt>
+<dd><p><code>(length-1 character)</code> The name of the class to coerce to.</p></dd>
+
+
+<dt id="arg-to-cls-args">to_cls_args<a class="anchor" aria-label="anchor" href="#arg-to-cls-args"></a></dt>
+<dd><p><code>(list)</code> A list of additional arguments to pass to
+<code>to_cls_fn()</code>.</p></dd>
+
+
+<dt id="arg-to-cls-fn">to_cls_fn<a class="anchor" aria-label="anchor" href="#arg-to-cls-fn"></a></dt>
+<dd><p><code>(function)</code> The <code>to_*()</code> function to use for coercion.</p></dd>
+
+
+<dt id="arg-to-cls-scalar-args">to_cls_scalar_args<a class="anchor" aria-label="anchor" href="#arg-to-cls-scalar-args"></a></dt>
+<dd><p><code>(list)</code> A list of additional arguments to pass to
+<code>to_cls_scalar_fn()</code>.</p></dd>
+
+
+<dt id="arg-to-cls-scalar-fn">to_cls_scalar_fn<a class="anchor" aria-label="anchor" href="#arg-to-cls-scalar-fn"></a></dt>
+<dd><p><code>(function)</code> The <code>to_*_scalar()</code> function to use for
+coercion.</p></dd>
+
+
 <dt id="arg-to-na">to_na<a class="anchor" aria-label="anchor" href="#arg-to-na"></a></dt>
 <dd><p><code>(character)</code> Values to convert to <code>NA</code>.</p></dd>
+
+
+<dt id="arg-to-type-obj">to_type_obj<a class="anchor" aria-label="anchor" href="#arg-to-type-obj"></a></dt>
+<dd><p>An empty object of the target type (e.g., <code><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer()</a></code>).</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
