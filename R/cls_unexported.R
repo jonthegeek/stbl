@@ -190,3 +190,82 @@
     logical(1)
   )
 }
+
+#' Coerce an object from a factor to a specific class
+#'
+#' @description
+#' A helper that wraps around a `to_*()` function to provide a standard way to
+#' coerce factors.
+#'
+#' @param to_cls_fn `(function)` The `to_*()` function to use for coercion after
+#'  `x` is converted to a character.
+#' @param to_class `(length-1 character)` The name of the class to coerce to.
+#' @inheritParams .shared-params
+#'
+#' @returns `x` coerced to the target class.
+#' @keywords internal
+.to_cls_from_fct <- function(
+  x,
+  to_cls_fn,
+  to_cls_args,
+  to_class,
+  coerce_factor = TRUE,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
+  coerce_factor <- to_lgl_scalar(coerce_factor, allow_null = FALSE, call = call)
+  if (coerce_factor) {
+    return(
+      rlang::inject(
+        to_cls_fn(
+          as.character(x),
+          !!!to_cls_args,
+          x_arg = x_arg,
+          call = call,
+          x_class = x_class
+        )
+      )
+    )
+  }
+  .stop_cant_coerce(
+    from_class = x_class,
+    to_class = to_class,
+    x_arg = x_arg,
+    call = call
+  )
+}
+
+#' Coerce an object from a complex to a numeric class
+#'
+#' @description
+#' A helper that wraps around a `to_*()` function to provide a standard way to
+#' coerce complex numbers.
+#'
+#' @param cast_fn `(function)` The `as.*()` function to use for coercion.
+#' @param to_type_obj An empty object of the target type (e.g., `integer()`).
+#' @inheritParams .shared-params
+#'
+#' @returns `x` coerced to the target class.
+#' @keywords internal
+.to_num_from_complex <- function(
+  x,
+  cast_fn,
+  to_type_obj,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
+  cast <- suppressWarnings(cast_fn(x))
+  x_na <- is.na(x)
+  failures <- (cast != x & !x_na) | xor(x_na, is.na(cast))
+  .check_cast_failures(
+    failures,
+    x_class,
+    to_type_obj,
+    "non-zero complex components",
+    x_arg,
+    call
+  )
+  return(cast)
+}

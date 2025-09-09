@@ -2,7 +2,7 @@
 #' @rdname stabilize_fct
 to_fct <- function(
   x,
-  allow_null = TRUE,
+  ...,
   levels = NULL,
   to_na = character(),
   x_arg = caller_arg(x),
@@ -38,6 +38,7 @@ to_fct.character <- function(
 }
 
 #' @export
+#' @rdname stabilize_fct
 to_fct.NULL <- function(
   x,
   ...,
@@ -46,38 +47,6 @@ to_fct.NULL <- function(
   call = caller_env()
 ) {
   to_null(x, allow_null = allow_null, x_arg = x_arg, call = call)
-}
-
-#' @export
-to_fct.data.frame <- function(
-  x,
-  ...,
-  x_arg = caller_arg(x),
-  call = caller_env(),
-  x_class = object_type(x)
-) {
-  .stop_cant_coerce(
-    from_class = x_class,
-    to_class = "factor",
-    x_arg = x_arg,
-    call = call
-  )
-}
-
-#' @export
-to_fct.list <- function(
-  x,
-  ...,
-  x_arg = caller_arg(x),
-  call = caller_env(),
-  x_class = object_type(x)
-) {
-  .stop_cant_coerce(
-    from_class = x_class,
-    to_class = "factor",
-    x_arg = x_arg,
-    call = call
-  )
 }
 
 #' @export
@@ -196,6 +165,7 @@ to_fct.default <- function(
 #' @rdname stabilize_fct
 to_fct_scalar <- function(
   x,
+  ...,
   allow_null = TRUE,
   allow_zero_length = TRUE,
   levels = NULL,
@@ -208,7 +178,7 @@ to_fct_scalar <- function(
     x,
     is_rlang_cls_scalar = .fast_false,
     to_cls_fn = to_fct,
-    to_cls_args = list(levels = levels, to_na = to_na),
+    to_cls_args = list(levels = levels, to_na = to_na, ...),
     allow_null = allow_null,
     allow_zero_length = allow_zero_length,
     x_arg = x_arg,

@@ -66,7 +66,7 @@ are_int_ish.character <- function(x, ..., coerce_character = TRUE) {
   cast_dbl <- suppressWarnings(as.double(x))
   x_na <- is.na(x)
   cbind(
-    non_number = xor(x_na, is.na(cast_int)),
+    non_number = .are_not_dbl_ish_chr(x),
     bad_precision = cast_int != cast_dbl & !x_na
   )
 }
@@ -83,7 +83,7 @@ are_int_ish.factor <- function(x, ..., coerce_factor = TRUE) {
 #' @export
 are_int_ish.complex <- function(x, ...) {
   # The imaginary part must be zero, and the real part must be int-ish.
-  is.na(x) | (are_int_ish(Re(x), ...) & Im(x) == 0)
+  are_dbl_ish(x, ...) & are_int_ish(Re(x), ...)
 }
 
 #' @export

@@ -4,8 +4,6 @@
 \alias{.shared-params-check}
 \title{Shared parameters for check functions}
 \arguments{
-\item{...}{Arguments passed to methods.}
-
 \item{x}{The object to check.}
 }
 \description{

@@ -4,6 +4,7 @@
 \alias{stabilize_lgl}
 \alias{stabilize_lgl_scalar}
 \alias{to_lgl}
+\alias{to_lgl.NULL}
 \alias{to_lgl_scalar}
 \title{Ensure a logical argument meets expectations}
 \usage{
@@ -32,14 +33,17 @@ stabilize_lgl_scalar(
 
 to_lgl(
   x,
-  allow_null = TRUE,
+  ...,
   x_arg = caller_arg(x),
   call = caller_env(),
   x_class = object_type(x)
 )
 
+\method{to_lgl}{`NULL`}(x, ..., allow_null = TRUE, x_arg = caller_arg(x), call = caller_env())
+
 to_lgl_scalar(
   x,
+  ...,
   allow_null = TRUE,
   allow_zero_length = TRUE,
   x_arg = caller_arg(x),
@@ -50,7 +54,7 @@ to_lgl_scalar(
 \arguments{
 \item{x}{The argument to stabilize.}
 
-\item{...}{These dots are for future extensions and should be empty.}
+\item{...}{Arguments passed to methods.}
 
 \item{allow_null}{\verb{(length-1 logical)} Is NULL an acceptable value?}
 

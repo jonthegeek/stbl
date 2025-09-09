@@ -3,7 +3,7 @@
 #' These parameters are used in multiple functions. They are defined here to
 #' make them easier to import and to find.
 #'
-#' @param ... These dots are for future extensions and should be empty.
+#' @param ... Arguments passed to methods.
 #' @param allow_na `(length-1 logical)` Are NA values ok?
 #' @param allow_null `(length-1 logical)` Is NULL an acceptable value?
 #' @param allow_zero_length `(length-1 logical)` Are zero-length vectors
@@ -58,7 +58,6 @@ NULL
 
 #' Shared parameters for check functions
 #'
-#' @param ... Arguments passed to methods.
 #' @param x The object to check.
 #'
 #' @name .shared-params-check

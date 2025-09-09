@@ -7,7 +7,7 @@
 .stbl_abort(
   message,
   subclass,
-  call = rlang::caller_env(),
+  call = caller_env(),
   message_env = call,
   parent = NULL,
   ...

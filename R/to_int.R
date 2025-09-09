@@ -2,9 +2,7 @@
 #' @rdname stabilize_int
 to_int <- function(
   x,
-  allow_null = TRUE,
-  coerce_character = TRUE,
-  coerce_factor = TRUE,
+  ...,
   x_arg = caller_arg(x),
   call = caller_env(),
   x_class = object_type(x)
@@ -18,6 +16,7 @@ to_int.integer <- function(x, ...) {
 }
 
 #' @export
+#' @rdname stabilize_int
 to_int.NULL <- function(
   x,
   ...,
@@ -39,6 +38,7 @@ to_int.logical <- function(x, ..., x_arg = caller_arg(x), call = caller_env()) {
 }
 
 #' @export
+#' @rdname stabilize_int
 to_int.character <- function(
   x,
   ...,
@@ -65,6 +65,7 @@ to_int.character <- function(
 }
 
 #' @export
+#' @rdname stabilize_int
 to_int.factor <- function(
   x,
   ...,
@@ -73,23 +74,15 @@ to_int.factor <- function(
   call = caller_env(),
   x_class = object_type(x)
 ) {
-  coerce_factor <- to_lgl_scalar(coerce_factor, allow_null = FALSE, call = call)
-  if (coerce_factor) {
-    return(
-      to_int(
-        as.character(x),
-        ...,
-        x_arg = x_arg,
-        call = call,
-        x_class = x_class
-      )
-    )
-  }
-  .stop_cant_coerce(
-    from_class = x_class,
+  .to_cls_from_fct(
+    x,
+    to_cls_fn = to_int,
+    to_cls_args = list(...),
     to_class = "integer",
+    coerce_factor = coerce_factor,
     x_arg = x_arg,
-    call = call
+    call = call,
+    x_class = x_class
   )
 }
 
@@ -101,18 +94,14 @@ to_int.complex <- function(
   call = caller_env(),
   x_class = object_type(x)
 ) {
-  cast <- suppressWarnings(as.integer(x))
-  x_na <- is.na(x)
-  failures <- (cast != x & !x_na) | xor(x_na, is.na(cast))
-  .check_cast_failures(
-    failures,
-    x_class,
-    integer(),
-    "non-zero complex components",
-    x_arg,
-    call
+  .to_num_from_complex(
+    x,
+    cast_fn = as.integer,
+    to_type_obj = integer(),
+    x_arg = x_arg,
+    call = call,
+    x_class = x_class
   )
-  return(cast)
 }
 
 #' @export
@@ -124,10 +113,9 @@ to_int.default <- function(x, ..., x_arg = caller_arg(x), call = caller_env()) {
 #' @rdname stabilize_int
 to_int_scalar <- function(
   x,
+  ...,
   allow_null = TRUE,
   allow_zero_length = TRUE,
-  coerce_character = TRUE,
-  coerce_factor = TRUE,
   x_arg = caller_arg(x),
   call = caller_env(),
   x_class = object_type(x)
@@ -136,10 +124,7 @@ to_int_scalar <- function(
     x,
     is_rlang_cls_scalar = is_scalar_integer,
     to_cls_fn = to_int,
-    to_cls_args = list(
-      coerce_character = coerce_character,
-      coerce_factor = coerce_factor
-    ),
+    to_cls_args = list(...),
     allow_null = allow_null,
     allow_zero_length = allow_zero_length,
     x_arg = x_arg,

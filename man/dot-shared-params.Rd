@@ -4,7 +4,7 @@
 \alias{.shared-params}
 \title{Shared parameters}
 \arguments{
-\item{...}{These dots are for future extensions and should be empty.}
+\item{...}{Arguments passed to methods.}
 
 \item{allow_na}{\verb{(length-1 logical)} Are NA values ok?}
 

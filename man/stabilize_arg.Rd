@@ -31,7 +31,7 @@ stabilize_arg_scalar(
 \arguments{
 \item{x}{The argument to stabilize.}
 
-\item{...}{These dots are for future extensions and should be empty.}
+\item{...}{Arguments passed to methods.}
 
 \item{allow_null}{\verb{(length-1 logical)} Is NULL an acceptable value?}
 
