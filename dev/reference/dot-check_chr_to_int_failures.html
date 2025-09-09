@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">stbl</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.1.9004</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.1.9005</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.check_chr_to_int_failures</span><span class="op">(</span><span class="va">x</span>, <span class="va">cast</span>, <span class="va">x_na</span>, <span class="va">x_class</span>, <span class="va">x_arg</span>, <span class="va">call</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.check_chr_to_int_failures</span><span class="op">(</span><span class="va">x</span>, <span class="va">x_class</span>, <span class="va">x_arg</span>, <span class="va">call</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -47,16 +47,7 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p><code>(character)</code> The original character vector.</p></dd>
-
-
-<dt id="arg-cast">cast<a class="anchor" aria-label="anchor" href="#arg-cast"></a></dt>
-<dd><p><code>(integer)</code> The vector after attempting coercion with
-<code><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer()</a></code>.</p></dd>
-
-
-<dt id="arg-x-na">x_na<a class="anchor" aria-label="anchor" href="#arg-x-na"></a></dt>
-<dd><p><code>(logical)</code> A vector indicating which elements of <code>x</code> were <code>NA</code>.</p></dd>
+<dd><p>The argument to stabilize.</p></dd>
 
 
 <dt id="arg-x-class">x_class<a class="anchor" aria-label="anchor" href="#arg-x-class"></a></dt>
