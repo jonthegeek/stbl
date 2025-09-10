@@ -9,6 +9,7 @@ on:
       - opened
       - closed
       - reopened
+      - deleted
 
 permissions:
   contents: write
