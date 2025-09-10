@@ -19,8 +19,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout using a PAT with repo scope to allow pushing to protected branches
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ADMIN_PAT }}
 
       - name: Setup R
         id: setup-r
@@ -50,7 +53,8 @@ jobs:
       - name: Run script to fetch issues
         run: Rscript .github/scripts/fetch-issues.R
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Use the PAT for API calls as well
+          GITHUB_TOKEN: ${{ secrets.ADMIN_PAT }}
 
       - name: Commit and push changes
         run: |
