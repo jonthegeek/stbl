@@ -3,8 +3,12 @@
 on:
   push:
     branches: [main, master]
+    paths-ignore:
+      - '.github/ai/issues.json'
   pull_request:
     branches: [main, master]
+    paths-ignore:
+      - '.github/ai/issues.json'
 
 name: R-CMD-check
 
