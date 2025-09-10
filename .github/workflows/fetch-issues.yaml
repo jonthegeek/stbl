@@ -17,8 +17,6 @@ permissions:
 jobs:
   fetch-issues:
     runs-on: ubuntu-latest
-    env:
-      R_LIBS_USER: ${{ runner.temp }}/R-pkgs
 
     steps:
       - name: Checkout repository
