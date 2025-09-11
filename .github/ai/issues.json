@@ -101,13 +101,7 @@
       "body": "There's a cli decorator to automatically put `\" \"` around the `Bad values:` list. Do that.",
       "comments": {}
     },
-    "67": {
-      "title": "to_fct: Enumerate options",
-      "type": {},
-      "milestone": 4,
-      "body": "For `to_fct()`, the error message says \"All values of `location` must be present in `levels` or `to_na`.\"\r\n\r\nWhen those are fixed values, the user doesn't know what `levels` and `to_na` are referring to.\r\nInstead give the list of acceptable values (potentially pointing out the ones that will be treated as NA).",
-      "comments": {}
-    },
+    "67": [],
     "68": [],
     "69": [],
     "70": [],
