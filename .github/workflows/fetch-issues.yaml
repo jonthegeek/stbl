@@ -77,7 +77,8 @@ jobs:
               WAIT_TIME=$((DEBOUNCE_WINDOW - DIFF))
               echo "Last update was less than ${DEBOUNCE_WINDOW_MINUTES} minutes ago. Waiting for $WAIT_TIME seconds..."
               sleep "$WAIT_TIME"
-              echo "Wait complete."
+              echo "Wait complete. Pulling latest changes before proceeding."
+              git pull
             else
               echo "Proceeding without delay."
             fi
