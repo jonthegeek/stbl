@@ -5,7 +5,9 @@
     Condition
       Error:
       ! All values of `letters[1:5]` must be present in `levels` or `to_na`.
-      * Bad values: d and e.
+      i Disallowed values: d and e
+      i Allowed values: a and c
+      i Values that will be converted to `NA`: b
 
 ---
 
@@ -14,7 +16,9 @@
     Condition
       Error in `wrapped_stabilize_fct()`:
       ! All values of `val` must be present in `levels` or `to_na`.
-      * Bad values: d and e.
+      i Disallowed values: d and e
+      i Allowed values: a and c
+      i Values that will be converted to `NA`: b
 
 # stabilize_fct_scalar() errors for non-scalars
 

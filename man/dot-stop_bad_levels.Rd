@@ -4,13 +4,17 @@
 \alias{.stop_bad_levels}
 \title{Stop for bad factor levels}
 \usage{
-.stop_bad_levels(x, bad_casts, x_arg, call)
+.stop_bad_levels(x, bad_casts, levels, to_na, x_arg, call)
 }
 \arguments{
 \item{x}{The argument to stabilize.}
 
 \item{bad_casts}{\code{(logical)} A logical vector indicating which elements of
 \code{x} are not in the allowed levels.}
+
+\item{levels}{\code{(character)} The desired factor levels.}
+
+\item{to_na}{\code{(character)} Values to convert to \code{NA}.}
 
 \item{x_arg}{\verb{(length-1 character)} An argument name for x. The automatic
 value will work in most cases, or pass it through from higher-level

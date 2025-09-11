@@ -124,17 +124,16 @@ to_fct.default <- function(
   x_arg = caller_arg(x),
   call = caller_env()
 ) {
-  levels <- to_chr(levels)
+  levels <- to_chr(levels, call = call)
   if (length(levels)) {
-    bad_casts <- .are_not_fct_ish_chr(x, levels, to_na)
+    # Don't send to_na because it has already been applied
+    bad_casts <- .are_not_fct_ish_chr(x, levels)
     if (any(bad_casts)) {
-      .stop_bad_levels(x, bad_casts, x_arg, call)
+      .stop_bad_levels(x, bad_casts, levels, to_na, x_arg, call)
     }
-    x <- factor(as.character(x), levels = levels)
-  } else {
-    x <- factor(x)
+    return(factor(as.character(x), levels = levels))
   }
-  return(x)
+  return(factor(x))
 }
 
 #' Stop for bad factor levels
@@ -148,13 +147,23 @@ to_fct.default <- function(
 #' @returns This function is called for its side effect of throwing an error and
 #'   does not return a value.
 #' @keywords internal
-.stop_bad_levels <- function(x, bad_casts, x_arg, call) {
-  bad_values <- x[bad_casts]
+.stop_bad_levels <- function(x, bad_casts, levels, to_na, x_arg, call) {
+  bad_values <- unique(x[bad_casts])
+  msg <- c(
+    "All values of {.arg {x_arg}} must be present in {.arg levels} or {.arg to_na}.",
+    "i" = "Disallowed values: {bad_values}",
+    "i" = "Allowed values: {levels}"
+  )
+
+  if (length(to_na) > 0) {
+    msg <- c(
+      msg,
+      "i" = "Values that will be converted to {.code NA}: {to_na}"
+    )
+  }
+
   .stbl_abort(
-    message = c(
-      "All values of {.arg {x_arg}} must be present in {.arg levels} or {.arg to_na}.",
-      "*" = "Bad values: {bad_values}."
-    ),
+    message = msg,
     subclass = "fct_levels",
     call = call,
     message_env = rlang::current_env()
