@@ -41,17 +41,8 @@ are_lgl_ish.numeric <- function(x, ...) {
 
 #' @export
 are_lgl_ish.character <- function(x, ...) {
-  !.are_not_lgl_ish_chr(x)
-}
-
-#' Check for character to logical coercion failures
-#'
-#' @inheritParams .shared-params-check
-#' @returns A logical vector where `TRUE` indicates a failure.
-#' @keywords internal
-.are_not_lgl_ish_chr <- function(x) {
   cast <- as.logical(toupper(x))
-  xor(is.na(x), is.na(cast))
+  !xor(is.na(x), is.na(cast)) | are_dbl_ish(x, ...)
 }
 
 #' @export
