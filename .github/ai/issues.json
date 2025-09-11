@@ -51,23 +51,11 @@
       "type": {},
       "milestone": 4,
       "body": "Should \"0\" and \"1\" cast to FALSE and TRUE? Should ANY integer? Behind a flag?",
-      "comments": {}
+      "comments": "Consider how often this could happen in imported data: everything imports as chr, and a column, clearly SHOULD be logical, so you try to use `to_lgl()` and get an error. Let's not make people go chr -> int -> lgl. For chr, check for the true/false stuff (or any other valid characters), and then, before throwing an error, try casting to int first and then calling `to_lgl.integer()`. I'm tempted to also allow double, but that feels like a step where the user should explicitly deal with it."
     },
-    "31": {
-      "title": "to_lgl.double() options",
-      "type": {},
-      "milestone": 4,
-      "body": "By default, we accept `1.1` as TRUE. Add an argument to make it stricter?",
-      "comments": {}
-    },
+    "31": [],
     "32": [],
-    "33": {
-      "title": "Export to_null()",
-      "type": {},
-      "milestone": 4,
-      "body": "Is this anything?",
-      "comments": {}
-    },
+    "33": [],
     "34": [],
     "35": [],
     "36": [],
@@ -93,7 +81,7 @@
     "44": {
       "title": "Export stabilize_cls()?",
       "type": {},
-      "milestone": 4,
+      "milestone": 5,
       "body": "As a developer, I'd like to implement a stbl-style checker for my fancy new class, so that users can get informative error messages for broken bits.\r\n\r\nSee how necessary this is after finishing vctrs setup.",
       "comments": {}
     },
@@ -172,13 +160,7 @@
     "93": [],
     "94": [],
     "95": [],
-    "96": {
-      "title": "Refine error subclasses",
-      "type": {},
-      "milestone": 4,
-      "body": "The `to_int.character()` method has two distinct failure modes (incompatible values and loss of precision) that could benefit from more specific error subclasses.\n\nSimilar to to_int(), the coercion functions for logicals could have more specific error subclasses for different failure types.\n",
-      "comments": {}
-    },
+    "96": [],
     "97": [],
     "98": [],
     "99": [],
