@@ -53,13 +53,7 @@
     "34": [],
     "35": [],
     "36": [],
-    "37": {
-      "title": "allow_empty in stabilize_chr()",
-      "type": {},
-      "milestone": 4,
-      "body": "Allow user to reject \"\"",
-      "comments": {}
-    },
+    "37": [],
     "38": [],
     "39": [],
     "40": [],
