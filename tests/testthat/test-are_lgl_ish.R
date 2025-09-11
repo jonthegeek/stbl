@@ -16,14 +16,8 @@ test_that("are_lgl_ish() works for characters", {
     rep(TRUE, 7)
   )
   expect_identical(are_lgl_ish(c("a", "")), c(FALSE, FALSE))
-})
-
-test_that(".are_not_lgl_ish_chr() works", {
-  expect_identical(
-    .are_not_lgl_ish_chr(c("TRUE", "FALSE", "T", "F", "true", "false", NA)),
-    rep(FALSE, 7)
-  )
-  expect_identical(.are_not_lgl_ish_chr(c("a", "")), c(TRUE, TRUE))
+  expect_identical(are_lgl_ish(c("0", "1", "-1", "1.0")), rep(TRUE, 4))
+  expect_identical(are_lgl_ish("1.1"), TRUE)
 })
 
 test_that("are_lgl_ish() works for factors", {

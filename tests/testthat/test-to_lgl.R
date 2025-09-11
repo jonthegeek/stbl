@@ -103,6 +103,10 @@ test_that("to_lgl works for characters", {
     to_lgl(given),
     c(TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE)
   )
+
+  expect_identical(to_lgl(c("0", "1", "-1", "10")), c(FALSE, TRUE, TRUE, TRUE))
+  expect_identical(to_lgl(c("1.0", "0.0")), c(TRUE, FALSE))
+  expect_identical(to_lgl(c("1.1", "0.1", "-1.1")), c(TRUE, TRUE, TRUE))
 })
 
 test_that("to_lgl() errors for bad characters", {
