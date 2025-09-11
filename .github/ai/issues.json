@@ -19,13 +19,7 @@
       "body": "Add an argument to all `stabilize_*()` functions, `named`, with default value `NULL` or maybe `NA`. Its behavior depends on its value:\n\n- `NULL` or `NA` or `character(0)`: Don't check names.\n- `TRUE`: Object must be named, but we don't care what the values are.\n- `FALSE`: Object must not be named.\n- character vector: Object must have these names. Technically it's \"the object must `rlang::is_named2(x), and all names of object must be in this vector\", because we aren't checking length specifically via this argument.\n\nI don't like that I cant stabilize this argument, but this is the best pattern I can think of for interpretation.",
       "comments": {}
     },
-    "9": {
-      "title": "Wrapper to switch on type?",
-      "type": {},
-      "milestone": 4,
-      "body": "If an arg can have two types (length-1 logical vs character vector as in the \"has_names\" ticket I just submitted as #8), should we have a function to deal with those? Do we coerce at all? Maybe something that throws an error if it isn't coercible to either? Or encourage people to make S3s to handle those?",
-      "comments": {}
-    },
+    "9": [],
     "10": [],
     "11": [],
     "12": [],
@@ -51,13 +45,7 @@
     },
     "27": [],
     "28": [],
-    "29": {
-      "title": "to_lgl.int() options",
-      "type": {},
-      "milestone": 4,
-      "body": "coerce_int argument, or something else? If it looks like the chr and fctr arguments in to_int, then it should be logical scalar. If I want a family of choices (something like \"always\", \"never\", \"01\"), I should think of a different arg name.",
-      "comments": {}
-    },
+    "29": [],
     "30": {
       "title": "to_lgl.character(): \"0\" and \"1\"",
       "type": {},
