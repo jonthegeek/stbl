@@ -30,12 +30,7 @@
     "13": [],
     "14": [],
     "15": [],
-    "16": {
-      "title": "Benchmark",
-      "comments": ["to_int() adds about 20 microseconds for a length-1-million integer. SAME for length-10-million, which is good.\r\nwith_stabilize has to look at the values, so it added about 3 *milliseconds* for 10^6, almost 50 ms for 10^7.\r\n\r\nAdding microseconds feels tolerable.\r\n\r\nWhen coercion is necessary, it adds microseconds even for to_int(), but to be fair it's actually DOING something. It's almost identical to as.integer.\r\n\r\nFor these simple cases, ykwim is *faster* than checkmate!", "I will have to add this to the readme or an article or something eventually....", "Do this as an article.\r\n\r\nCompare to `as()`, `stopifnot()`, and the various packages.\r\n\r\n{stbl} will be slower than some of them, but it shouldn't be slower than what it takes to turn that thing into {stbl}, basically."],
-      "body": "I'm not sure whether this should be a vignette or just something in tests, but somewhere I should compare code with my checks to code without the checks, and to checks using checkmate and maybe things like vec_cast.",
-      "milestone": {}
-    },
+    "16": [],
     "17": [],
     "18": [],
     "19": [],
@@ -88,19 +83,9 @@
       "milestone": 4
     },
     "38": [],
-    "39": {
-      "title": "Investigate stringi vs grepl",
-      "comments": {},
-      "body": "I seem to remember stringi actually outperforming grepl. Test that out, and implement stringi if so, with stringi in suggests (it's only needed for the regex arg of stabilize_chr() so far, which will probably usually be NULL).",
-      "milestone": {}
-    },
+    "39": [],
     "40": [],
-    "41": {
-      "title": "Race: is_scalar_vector vs is_scalar_cls",
-      "comments": {},
-      "body": "Is it faster to quickly eliminate non-scalars, and then do the more detailed class conversion? ",
-      "milestone": 4
-    },
+    "41": [],
     "42": {
       "title": "Update usage",
       "comments": "Pausing to actually use stbl in a package before writing about how I imagine it will be used.",
