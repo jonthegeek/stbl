@@ -2,7 +2,7 @@
   "_metadata": {
     "description": "A collection of GitHub issues for the stbl repository.",
     "lookup_key": "issue_number",
-    "comment": "Each key in the 'issues' object is a string representation of the GitHub issue number."
+    "comment": "Each key in the 'issues' object is a string representation of the GitHub issue number. Empty objects are placeholders so that positions and ids match. Empty objects should be ignored."
   },
   "issues": {
     "1": [],
@@ -13,16 +13,18 @@
     "6": [],
     "7": [],
     "8": {
-      "title": "has_names arg",
-      "comments": {},
-      "body": "Scalar logical. A separate function will deal with more complex cases.",
-      "milestone": 4
+      "title": "`named` arg",
+      "type": {},
+      "milestone": 4,
+      "body": "Add an argument to all `stabilize_*()` functions, `named`, with default value `NULL` or maybe `NA`. Its behavior depends on its value:\n\n- `NULL` or `NA` or `character(0)`: Don't check names.\n- `TRUE`: Object must be named, but we don't care what the values are.\n- `FALSE`: Object must not be named.\n- character vector: Object must have these names. Technically it's \"the object must `rlang::is_named2(x), and all names of object must be in this vector\", because we aren't checking length specifically via this argument.\n\nI don't like that I cant stabilize this argument, but this is the best pattern I can think of for interpretation.",
+      "comments": {}
     },
     "9": {
       "title": "Wrapper to switch on type?",
-      "comments": {},
+      "type": {},
+      "milestone": 4,
       "body": "If an arg can have two types (length-1 logical vs character vector as in the \"has_names\" ticket I just submitted as #8), should we have a function to deal with those? Do we coerce at all? Maybe something that throws an error if it isn't coercible to either? Or encourage people to make S3s to handle those?",
-      "milestone": 4
+      "comments": {}
     },
     "10": [],
     "11": [],
@@ -42,45 +44,51 @@
     "25": [],
     "26": {
       "title": "stabilize_names()",
-      "comments": {},
+      "type": {},
+      "milestone": 5,
       "body": "A more complete stabilizer that can confirm precise names, or no duplicates, or that certain names are present, etc.",
-      "milestone": 5
+      "comments": {}
     },
     "27": [],
     "28": [],
     "29": {
       "title": "to_lgl.int() options",
-      "comments": {},
+      "type": {},
+      "milestone": 4,
       "body": "coerce_int argument, or something else? If it looks like the chr and fctr arguments in to_int, then it should be logical scalar. If I want a family of choices (something like \"always\", \"never\", \"01\"), I should think of a different arg name.",
-      "milestone": 4
+      "comments": {}
     },
     "30": {
       "title": "to_lgl.character(): \"0\" and \"1\"",
-      "comments": {},
+      "type": {},
+      "milestone": 4,
       "body": "Should \"0\" and \"1\" cast to FALSE and TRUE? Should ANY integer? Behind a flag?",
-      "milestone": 4
+      "comments": {}
     },
     "31": {
       "title": "to_lgl.double() options",
-      "comments": {},
+      "type": {},
+      "milestone": 4,
       "body": "By default, we accept `1.1` as TRUE. Add an argument to make it stricter?",
-      "milestone": 4
+      "comments": {}
     },
     "32": [],
     "33": {
       "title": "Export to_null()",
-      "comments": {},
+      "type": {},
+      "milestone": 4,
       "body": "Is this anything?",
-      "milestone": 4
+      "comments": {}
     },
     "34": [],
     "35": [],
     "36": [],
     "37": {
       "title": "allow_empty in stabilize_chr()",
-      "comments": {},
+      "type": {},
+      "milestone": 4,
       "body": "Allow user to reject \"\"",
-      "milestone": 4
+      "comments": {}
     },
     "38": [],
     "39": [],
@@ -88,16 +96,18 @@
     "41": [],
     "42": {
       "title": "Update usage",
-      "comments": "Pausing to actually use stbl in a package before writing about how I imagine it will be used.",
+      "type": {},
+      "milestone": 4,
       "body": "Clean up the info in the Readme and add a main usage vignette for pkgdown. ",
-      "milestone": 4
+      "comments": "Pausing to actually use stbl in a package before writing about how I imagine it will be used."
     },
     "43": [],
     "44": {
       "title": "Export stabilize_cls()?",
-      "comments": {},
+      "type": {},
+      "milestone": 4,
       "body": "As a developer, I'd like to implement a stbl-style checker for my fancy new class, so that users can get informative error messages for broken bits.\r\n\r\nSee how necessary this is after finishing vctrs setup.",
-      "milestone": 4
+      "comments": {}
     },
     "45": [],
     "46": [],
@@ -122,15 +132,17 @@
     "65": [],
     "66": {
       "title": "Quotes around bad values in to_fct",
-      "comments": {},
+      "type": {},
+      "milestone": 5,
       "body": "There's a cli decorator to automatically put `\" \"` around the `Bad values:` list. Do that.",
-      "milestone": 5
+      "comments": {}
     },
     "67": {
       "title": "to_fct: Enumerate options",
-      "comments": {},
+      "type": {},
+      "milestone": 4,
       "body": "For `to_fct()`, the error message says \"All values of `location` must be present in `levels` or `to_na`.\"\r\n\r\nWhen those are fixed values, the user doesn't know what `levels` and `to_na` are referring to.\r\nInstead give the list of acceptable values (potentially pointing out the ones that will be treated as NA).",
-      "milestone": 4
+      "comments": {}
     },
     "68": [],
     "69": [],
@@ -146,15 +158,17 @@
     "79": [],
     "80": {
       "title": "JSON schema tix",
-      "comments": {},
+      "type": {},
+      "milestone": 5,
       "body": "Make tickets for all the json schéma-recognized field types. That's really what this package is about, lean into it. Some might involve packages in Suggests (eg, don't import clock/lubridate if people don't care about dates, probably something similar for urls). ",
-      "milestone": 5
+      "comments": {}
     },
     "81": {
       "title": "Migrate to api2r organization?",
-      "comments": "This exists because of api2r, though, and it's about function APIs, so... yeah, probably api2r is fine.",
+      "type": {},
+      "milestone": 4,
       "body": "In order to organize things better and take advantage of additional GitHub features, as the lead developer of these packages, I would like to wrap them up into the api2r organization.\n\nI'm not 100% certain that this one belongs in api2r. Maybe I need a github org for my R packages that don't have a \"family\"?",
-      "milestone": 4
+      "comments": "This exists because of api2r, though, and it's about function APIs, so... yeah, probably api2r is fine."
     },
     "82": [],
     "83": [],
@@ -172,9 +186,10 @@
     "95": [],
     "96": {
       "title": "Refine error subclasses",
-      "comments": {},
+      "type": {},
+      "milestone": 4,
       "body": "The `to_int.character()` method has two distinct failure modes (incompatible values and loss of precision) that could benefit from more specific error subclasses.\n\nSimilar to to_int(), the coercion functions for logicals could have more specific error subclasses for different failure types.\n",
-      "milestone": 4
+      "comments": {}
     },
     "97": [],
     "98": [],
@@ -185,15 +200,17 @@
     "103": [],
     "104": {
       "title": "Stabilize dates",
-      "comments": {},
+      "type": {},
+      "milestone": 5,
       "body": "Add `to_date()` etc. Will probably use `base::as.Date()`, but maybe check for other date packages (clock, lubridate) when coercion is necessary.",
-      "milestone": 5
+      "comments": {}
     },
     "105": {
       "title": "Stabilize date-times",
-      "comments": {},
+      "type": {},
+      "milestone": 5,
       "body": "Add `to_dttm()` etc. Will probably use `base::as.POSIXct()`, but maybe check for other date packages (clock, lubridate) when coercion is necessary.",
-      "milestone": 5
+      "comments": {}
     },
     "106": [],
     "107": [],
@@ -201,9 +218,10 @@
     "109": [],
     "110": {
       "title": "Implement `stabilize_list()`",
-      "comments": {},
+      "type": {},
+      "milestone": 5,
       "body": "(Issue created via conversation with a stbl \"expert\" gem on Google Gemini)\n\n## Overview\n\nWe should add a `stabilize_list()` function family (`stabilize_list`, `to_list`, `are_list_ish`, etc.) to `{stbl}`. The primary purpose of this family would be to validate the structure and contents of lists, which is a common requirement for functions that accept complex configuration objects.\n\n## API Design\n\nThe key challenge is creating an API that is both powerful enough to handle complex, nested, and heterogeneous lists, but simple enough that it doesn't require users to write complex wrappers or use non-standard syntax like `quote()`.\n\nThe proposed API distinguishes between checks on the list container and checks on the list elements.\n\n1. Container Checks: Arguments prefixed with a `.` (e.g., `.min_size`, `.allow_named = TRUE`) will apply to the list object itself.\n2. Element Checks: Unprefixed arguments passed via `...` will define the validation rules for the elements within the list. These arguments should accept `purrr`-style anonymous functions (`~ .x`).\n\n## Proposed Syntax\n\n```r\nstabilize_list(\n  x,\n  ..., # Named arguments are purrr-style formulas for named elements\n  .default = NULL, # A default formula for unspecified/unnamed elements\n  .min_size = NULL,\n  .max_size = NULL\n  # ... other potential container checks\n)\n```\n\n## Concrete Use Case\n\nA function that builds a plot specification could use `stabilize_list` to validate its main argument:\n\n```r\ncreate_plot_spec <- function(spec) {\n  spec <- stabilize_list(\n    spec,\n    # --- Schema for list elements (using formulas) ---\n    title = ~ stabilize_chr_scalar(.x, allow_null = FALSE),\n    data = ~ stabilize_arg(.x, allow_null = FALSE),\n    aesthetics = ~ stabilize_list(\n      .x,\n      x = ~ stabilize_chr_scalar(.x),\n      y = ~ stabilize_chr_scalar(.x),\n      .min_size = 2,\n      .max_size = 2\n    ),\n    # --- Rules for the list container itself ---\n    .min_size = 3,\n    .max_size = 3\n  )\n\n  # ... function logic now operates on a guaranteed-valid spec object ...\n  return(spec)\n}\n```\n\n## Acceptance Criteria\n\n- Create the `stabilize_list` function family with corresponding `to_list` and `are_list_ish` functions and tests.\n- The implementation must support validation of both homogeneous and heterogeneous lists via the formula syntax.\n- The implementation must support both named and unnamed lists.\n- Error messages must be informative, clearly indicating which element of which list failed validation and providing the underlying error from the specific stabilizer that failed.\n",
-      "milestone": 5
+      "comments": {}
     }
   }
 }

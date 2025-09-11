@@ -46,9 +46,10 @@ if (max_issue_number > 0) {
 
     all_issues[[issue$number]] <- list(
       title = issue$title,
-      comments = comments,
+      type = issue$type,
+      milestone = issue$milestone$number,
       body = issue$body,
-      milestone = issue$milestone$number
+      comments = comments
     )
   }
 
@@ -58,7 +59,7 @@ if (max_issue_number > 0) {
         "A collection of GitHub issues for the {repo_name} repository."
       ),
       lookup_key = "issue_number",
-      comment = "Each key in the 'issues' object is a string representation of the GitHub issue number."
+      comment = "Each key in the 'issues' object is a string representation of the GitHub issue number. Empty objects are placeholders so that positions and ids match. Empty objects should be ignored."
     ),
     issues = all_issues
   )
