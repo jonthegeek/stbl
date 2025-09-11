@@ -46,13 +46,7 @@
     "27": [],
     "28": [],
     "29": [],
-    "30": {
-      "title": "to_lgl.character(): \"0\" and \"1\"",
-      "type": {},
-      "milestone": 4,
-      "body": "Should \"0\" and \"1\" cast to FALSE and TRUE? Should ANY integer? Behind a flag?",
-      "comments": "Consider how often this could happen in imported data: everything imports as chr and a column clearly SHOULD be logical, so you try to use `to_lgl()`, and get an error. Let's not make people go chr -> int -> lgl. For chr, check for the true/false stuff (or any other valid characters), and then, before throwing an error, try casting to int first and then calling `to_lgl.integer()`. I'm tempted to also allow double, but that feels like a step where the user should explicitly deal with it."
-    },
+    "30": [],
     "31": [],
     "32": [],
     "33": [],
