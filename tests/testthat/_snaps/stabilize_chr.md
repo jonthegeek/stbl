@@ -5,7 +5,7 @@
     Condition
       Error:
       ! `given` must match the regex pattern "^\\d{5}(?:[-\\s]\\d{4})?$"
-      x Some values do not match.
+      x Some values fail the check.
       * Locations: 1
       * Values: 123456789
 
@@ -16,7 +16,7 @@
     Condition
       Error in `wrapped_stabilize_chr()`:
       ! `val` must match the regex pattern "^\\d{5}(?:[-\\s]\\d{4})?$"
-      x Some values do not match.
+      x Some values fail the check.
       * Locations: 1
       * Values: 123456789
 
@@ -34,7 +34,7 @@
     Condition
       Error:
       ! `c("example.com", "not a url")` must match the regex pattern "^(?:(?:(?:https?|ftp):)?\\/\\/)?(?:\\S+(?::\\S*)?@)?(?:(?!(?:10|127)(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z0-9\\u00a1-\\uffff][a-z0-9\\u00a1-\\uffff_-]{0,62})?[a-z0-9\\u00a1-\\uffff]\\.)+(?:[a-z\\u00a1-\\uffff]{2,}\\.?))(?::\\d{2,5})?(?:[/?#]\\S*)?$"
-      x Some values do not match.
+      x Some values fail the check.
       * Locations: 2
       * Values: not a url
 
@@ -45,7 +45,7 @@
     Condition
       Error:
       ! `c("not a url", "example.com")` must be a url.
-      x Some values do not match.
+      x Some values fail the check.
       * Locations: 1
       * Values: not a url
 
@@ -56,7 +56,7 @@
     Condition
       Error:
       ! `c("b", "aa")` must match the regex pattern "a{1,3}"
-      x Some values do not match.
+      x Some values fail the check.
       * Locations: 1
       * Values: b
 
@@ -67,7 +67,7 @@
     Condition
       Error:
       ! `given` must not match the regex pattern "c"
-      x Some values match.
+      x Some values fail the check.
       * Locations: 3
       * Values: c
 
@@ -78,11 +78,11 @@
     Condition
       Error:
       ! `given` must match the regex pattern "a"
-      x Some values do not match.
+      x Some values fail the check.
       * Locations: 4
       * Values: plum
       `given` must not match the regex pattern "b"
-      x Some values match.
+      x Some values fail the check.
       * Locations: 2 and 3
       * Values: banana and boat
 
@@ -93,7 +93,7 @@
     Condition
       Error:
       ! `c("a.b", "acb")` must match the regex pattern "a.b"
-      x Some values do not match.
+      x Some values fail the check.
       * Locations: 2
       * Values: acb
 
@@ -104,7 +104,7 @@
     Condition
       Error:
       ! `c("a", "A")` must match the regex pattern "a"
-      x Some values do not match.
+      x Some values fail the check.
       * Locations: 2
       * Values: A
 
@@ -115,7 +115,7 @@
     Condition
       Error:
       ! `c("A", "B")` must match the regex pattern "a"
-      x Some values do not match.
+      x Some values fail the check.
       * Locations: 2
       * Values: B
 
@@ -144,5 +144,5 @@
     Condition
       Error:
       ! `"b"` must match the regex pattern "a{1,3}"
-      x "b" does not match.
+      x "b" fails the check.
 

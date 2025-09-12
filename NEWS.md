@@ -1,5 +1,6 @@
 # stbl (development version)
 
+* `vignette("stbl")` provides an overview of the package and its functions (#42).
 * `to_fct()` now lists the acceptable values when a conversion fails to make it easier for users to understand what went wrong (#67).
 * `to_lgl()` now converts character numbers such as "0" and "1" to `FALSE` and `TRUE` respectively (#30).
 * Functions for `double` vectors are now available: `are_dbl_ish()`, `is_dbl_ish()`, `to_dbl()`,  `to_dbl_scalar()`,  `stabilize_dbl()`, and `stabilize_dbl_scalar()` (#23).

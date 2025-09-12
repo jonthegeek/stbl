@@ -206,13 +206,11 @@ stabilize_chr_scalar <- function(
   locations <- which(!success)
 
   if (length(x) == 1) {
-    verb <- if (negate) "matches" else "does not match"
-    return(c(x = cli::format_inline("{.val {x}} {verb}.")))
+    return(c(x = cli::format_inline("{.val {x}} fails the check.")))
   }
 
-  verb <- if (negate) "match" else "do not match"
   c(
-    x = glue("Some values {verb}."),
+    x = glue("Some values fail the check."),
     "*" = cli::format_inline("Locations: {locations}"),
     "*" = cli::format_inline("Values: {x[locations]}")
   )
