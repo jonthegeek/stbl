@@ -36,9 +36,28 @@ input. \code{is_fct_ish()} returns a \verb{length-1 logical} (\code{TRUE} or \co
 the entire vector.
 }
 \description{
-\code{are_fct_ish()} is a vectorized predicate function that checks whether each
-element of its input can be safely coerced to a factor.
+\code{are_fct_ish()} is a vectorized predicate function that checks
+whether each element of its input can be safely coerced to a factor.
 
-\code{is_fct_ish()} is a scalar predicate function that checks if all elements of
-its input can be safely coerced to a factor.
+\code{is_fct_ish()} is a scalar predicate function that checks if all elements
+of its input can be safely coerced to a factor.
+}
+\examples{
+# When `levels` is `NULL`, atomic vectors are fct_ish, but nested lists are not.
+are_fct_ish(c("a", 1, NA))
+is_fct_ish(c("a", 1, NA))
+are_fct_ish(list("a", list("b", "c")))
+is_fct_ish(list("a", list("b", "c")))
+
+# When `levels` is specified, values must be in `levels` or `to_na`.
+are_fct_ish(c("a", "b", "c"), levels = c("a", "b"))
+is_fct_ish(c("a", "b", "c"), levels = c("a", "b"))
+
+# The `to_na` argument allows some values to be treated as `NA`.
+are_fct_ish(c("a", "b", "z"), levels = c("a", "b"), to_na = "z")
+is_fct_ish(c("a", "b", "z"), levels = c("a", "b"), to_na = "z")
+
+# Factors are also checked against the specified levels.
+are_fct_ish(factor(c("a", "b", "c")), levels = c("a", "b"))
+is_fct_ish(factor(c("a", "b", "c")), levels = c("a", "b"))
 }

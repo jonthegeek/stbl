@@ -14,6 +14,19 @@
 #'   input. `is_chr_ish()` returns a `length-1 logical` (`TRUE` or `FALSE`) for
 #'   the entire vector.
 #' @export
+#'
+#' @examples
+#' are_chr_ish(letters)
+#' is_chr_ish(letters)
+#'
+#' are_chr_ish(1:10)
+#' is_chr_ish(1:10)
+#'
+#' are_chr_ish(list("a", 1, TRUE))
+#' is_chr_ish(list("a", 1, TRUE))
+#'
+#' are_chr_ish(list("a", 1, list(1, 2)))
+#' is_chr_ish(list("a", 1, list(1, 2)))
 are_chr_ish <- function(x, ...) {
   rlang::check_dots_used()
   UseMethod("are_chr_ish")
