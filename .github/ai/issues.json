@@ -58,13 +58,7 @@
     "39": [],
     "40": [],
     "41": [],
-    "42": {
-      "title": "Update usage",
-      "type": {},
-      "milestone": 4,
-      "body": "Clean up the info in the Readme and add a main usage vignette for pkgdown. ",
-      "comments": "Pausing to actually use stbl in a package before writing about how I imagine it will be used."
-    },
+    "42": [],
     "43": [],
     "44": {
       "title": "Export stabilize_cls()?",
@@ -185,17 +179,11 @@
     "118": [],
     "119": [],
     "120": [],
-    "121": {
-      "title": "Clarify usage",
-      "type": {},
-      "milestone": {},
-      "body": "Also fixed a bug in to_chr() for a complex failure mode, and made the regex error messages clearer.\r\n\r\n- Closes #42",
-      "comments": {}
-    },
+    "121": [],
     "122": {
       "title": "Update examples",
       "type": {},
-      "milestone": {},
+      "milestone": 4,
       "body": "All exported functions should have examples. Many do, but not all.",
       "comments": {}
     }
