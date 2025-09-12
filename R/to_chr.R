@@ -36,11 +36,11 @@ to_chr.list <- function(
   x_class = object_type(x)
 ) {
   flat <- unlist(x)
-  if (length(flat) == length(x)) {
+  if (!is.list(flat) && length(flat) == length(x)) {
     if (length(flat) == 1) {
       flat <- flat[[1]]
     }
-    return(to_chr(flat))
+    return(to_chr(flat, ..., x_arg = x_arg, call = call, x_class = x_class))
   }
   .stop_cant_coerce(
     from_class = x_class,

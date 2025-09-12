@@ -36,6 +36,38 @@
       to_chr(given)
     Condition
       Error:
+      ! Can't coerce `given` <list> to <character>.
+
+---
+
+    Code
+      wrapped_to_chr(given)
+    Condition
+      Error in `wrapped_to_chr()`:
+      ! Can't coerce `val` <list> to <character>.
+
+---
+
+    Code
+      to_chr(given)
+    Condition
+      Error:
+      ! Can't coerce `given` <list> to <character>.
+
+---
+
+    Code
+      wrapped_to_chr(given)
+    Condition
+      Error in `wrapped_to_chr()`:
+      ! Can't coerce `val` <list> to <character>.
+
+---
+
+    Code
+      to_chr(given)
+    Condition
+      Error:
       ! Can't coerce `given` <data.frame> to <character>.
 
 ---

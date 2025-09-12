@@ -86,6 +86,34 @@ test_that("to_chr() fails gracefully for weird cases", {
     error = TRUE
   )
 
+  given <- list(mean)
+  expect_error(
+    to_chr(given),
+    class = .compile_error_class("stbl", "error", "coerce", "character")
+  )
+  expect_snapshot(
+    to_chr(given),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapped_to_chr(given),
+    error = TRUE
+  )
+
+  given <- list("x", mean)
+  expect_error(
+    to_chr(given),
+    class = .compile_error_class("stbl", "error", "coerce", "character")
+  )
+  expect_snapshot(
+    to_chr(given),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapped_to_chr(given),
+    error = TRUE
+  )
+
   given <- mtcars
   expect_error(
     to_chr(given),
