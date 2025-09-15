@@ -10,8 +10,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![CRAN
 status](https://www.r-pkg.org/badges/version/stbl)](https://CRAN.R-project.org/package=stbl)
 [![Codecov test
-coverage](https://codecov.io/gh/jonthegeek/stbl/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jonthegeek/stbl?branch=main)
-[![R-CMD-check](https://github.com/jonthegeek/stbl/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jonthegeek/stbl/actions/workflows/R-CMD-check.yaml)
+coverage](https://codecov.io/gh/api2r/stbl/branch/main/graph/badge.svg)](https://app.codecov.io/gh/api2r/stbl?branch=main)
+[![R-CMD-check](https://github.com/api2r/stbl/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/api2r/stbl/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 R is flexible about classes. Variables are not declared with explicit
@@ -48,7 +48,7 @@ Install the development version of stbl from
 
 ``` r
 # install.packages("pak")
-pak::pak("jonthegeek/stbl")
+pak::pak("api2r/stbl")
 ```
 
 </div>
@@ -132,5 +132,5 @@ approaches:
 ## Code of Conduct
 
 Please note that the stbl project is released with a [Contributor Code
-of Conduct](https://jonthegeek.github.io/stbl/CODE_OF_CONDUCT.html). By
+of Conduct](https://api2r.github.io/stbl/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.

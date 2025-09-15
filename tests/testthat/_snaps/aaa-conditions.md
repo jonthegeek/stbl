@@ -24,7 +24,7 @@
       Error:
       ! A message.
       i This is an internal error that was detected in the stbl package.
-        Please report it at <https://github.com/jonthegeek/stbl/issues> with a reprex (<https://tidyverse.org/help/>) and the full backtrace.
+        Please report it at <https://github.com/api2r/stbl/issues> with a reprex (<https://tidyverse.org/help/>) and the full backtrace.
 
 # .stbl_abort() uses message_env when provided
 
@@ -94,7 +94,7 @@
       Error:
       ! `my_arg` must not be <NULL>.
       i This is an internal error that was detected in the stbl package.
-        Please report it at <https://github.com/jonthegeek/stbl/issues> with a reprex (<https://tidyverse.org/help/>) and the full backtrace.
+        Please report it at <https://github.com/api2r/stbl/issues> with a reprex (<https://tidyverse.org/help/>) and the full backtrace.
 
 # .stop_incompatible() throws the expected error
 
@@ -118,5 +118,5 @@
       x Can't convert some values due to some reason.
       * Locations: 2 and 4
       i This is an internal error that was detected in the stbl package.
-        Please report it at <https://github.com/jonthegeek/stbl/issues> with a reprex (<https://tidyverse.org/help/>) and the full backtrace.
+        Please report it at <https://github.com/api2r/stbl/issues> with a reprex (<https://tidyverse.org/help/>) and the full backtrace.
 
