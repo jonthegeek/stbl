@@ -46,3 +46,22 @@ element of its input can be safely coerced to a double vector.
 \code{is_dbl_ish()} is a scalar predicate function that checks if all elements of
 its input can be safely coerced to a double vector.
 }
+\examples{
+are_dbl_ish(c(1.0, 2.2, 3.14))
+is_dbl_ish(c(1.0, 2.2, 3.14))
+
+are_dbl_ish(1:3)
+is_dbl_ish(1:3)
+
+are_dbl_ish(c("1.1", "2.2", NA))
+is_dbl_ish(c("1.1", "2.2", NA))
+
+are_dbl_ish(c("a", "1.0"))
+is_dbl_ish(c("a", "1.0"))
+
+are_dbl_ish(list(1, "2.2", "c"))
+is_dbl_ish(list(1, "2.2", "c"))
+
+are_dbl_ish(c(1 + 1i, 1 + 0i, NA))
+is_dbl_ish(c(1 + 1i, 1 + 0i, NA))
+}

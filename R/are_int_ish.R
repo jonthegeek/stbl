@@ -14,6 +14,25 @@
 #'   input. `is_int_ish()` returns a `length-1 logical` (`TRUE` or `FALSE`) for
 #'   the entire vector.
 #' @export
+#'
+#' @examples
+#' are_int_ish(1:4)
+#' is_int_ish(1:4)
+#'
+#' are_int_ish(c(1.0, 2.0, 3.00000))
+#' is_int_ish(c(1.0, 2.0, 3.00000))
+#'
+#' are_int_ish(c("1.0", "2.0", "3.00000"))
+#' is_int_ish(c("1.0", "2.0", "3.00000"))
+#'
+#' are_int_ish(c(1, 2.2, NA))
+#' is_int_ish(c(1, 2.2, NA))
+#'
+#' are_int_ish(c("1", "1.0", "1.1", "a"))
+#' is_int_ish(c("1", "1.0", "1.1", "a"))
+#'
+#' are_int_ish(factor(c("1", "a")))
+#' is_int_ish(factor(c("1", "a")))
 are_int_ish <- function(x, ...) {
   UseMethod("are_int_ish")
 }

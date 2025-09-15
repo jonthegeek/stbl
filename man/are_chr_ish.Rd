@@ -26,3 +26,16 @@ element of its input can be safely coerced to a character vector.
 \code{is_chr_ish()} is a scalar predicate function that checks if all elements of
 its input can be safely coerced to a character vector.
 }
+\examples{
+are_chr_ish(letters)
+is_chr_ish(letters)
+
+are_chr_ish(1:10)
+is_chr_ish(1:10)
+
+are_chr_ish(list("a", 1, TRUE))
+is_chr_ish(list("a", 1, TRUE))
+
+are_chr_ish(list("a", 1, list(1, 2)))
+is_chr_ish(list("a", 1, list(1, 2)))
+}

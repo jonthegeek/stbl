@@ -32,3 +32,22 @@ element of its input can be safely coerced to a logical vector.
 \code{is_lgl_ish()} is a scalar predicate function that checks if all elements of
 its input can be safely coerced to a logical vector.
 }
+\examples{
+are_lgl_ish(c(TRUE, FALSE, NA))
+is_lgl_ish(c(TRUE, FALSE, NA))
+
+are_lgl_ish(c(1, 0, 1.0, NA))
+is_lgl_ish(c(1, 0, 1.0, NA))
+
+are_lgl_ish(c("T", "F", "TRUE", "FALSE", "true", "false", "1", "0"))
+is_lgl_ish(c("T", "F", "TRUE", "FALSE", "true", "false", "1", "0"))
+
+are_lgl_ish(c("T", "F", "a", "1.1"))
+is_lgl_ish(c("T", "F", "a", "1.1"))
+
+are_lgl_ish(factor(c("T", "a")))
+is_lgl_ish(factor(c("T", "a")))
+
+are_lgl_ish(list(TRUE, 0, "F", "a"))
+is_lgl_ish(list(TRUE, 0, "F", "a"))
+}

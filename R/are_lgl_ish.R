@@ -14,6 +14,25 @@
 #'   input. `is_lgl_ish()` returns a `length-1 logical` (`TRUE` or `FALSE`) for
 #'   the entire vector.
 #' @export
+#'
+#' @examples
+#' are_lgl_ish(c(TRUE, FALSE, NA))
+#' is_lgl_ish(c(TRUE, FALSE, NA))
+#'
+#' are_lgl_ish(c(1, 0, 1.0, NA))
+#' is_lgl_ish(c(1, 0, 1.0, NA))
+#'
+#' are_lgl_ish(c("T", "F", "TRUE", "FALSE", "true", "false", "1", "0"))
+#' is_lgl_ish(c("T", "F", "TRUE", "FALSE", "true", "false", "1", "0"))
+#'
+#' are_lgl_ish(c("T", "F", "a", "1.1"))
+#' is_lgl_ish(c("T", "F", "a", "1.1"))
+#'
+#' are_lgl_ish(factor(c("T", "a")))
+#' is_lgl_ish(factor(c("T", "a")))
+#'
+#' are_lgl_ish(list(TRUE, 0, "F", "a"))
+#' is_lgl_ish(list(TRUE, 0, "F", "a"))
 are_lgl_ish <- function(x, ...) {
   UseMethod("are_lgl_ish")
 }
