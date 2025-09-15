@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   stbl: stbl.html
-last_built: 2025-09-15T16:15Z
+last_built: 2025-09-15T16:33Z
 urls:
-  reference: https://api2r.github.io/stbl/reference
-  article: https://api2r.github.io/stbl/articles
+  reference: https://stbl.api2r.org/reference
+  article: https://stbl.api2r.org/articles
