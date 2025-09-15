@@ -132,5 +132,5 @@ approaches:
 ## Code of Conduct
 
 Please note that the stbl project is released with a [Contributor Code
-of Conduct](https://api2r.github.io/stbl/CODE_OF_CONDUCT.html). By
+of Conduct](https://stbl.api2r.org/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.
