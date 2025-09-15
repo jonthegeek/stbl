@@ -8,7 +8,7 @@ Description: A set of consistent, opinionated functions to quickly check
     function arguments, coerce them to the desired configuration, or
     deliver informative error messages when that is not possible.
 License: MIT + file LICENSE
-URL: https://api2r.github.io/stbl/,
+URL: https://stbl.api2r.org/,
     https://github.com/api2r/stbl
 BugReports: https://github.com/api2r/stbl/issues
 Imports:

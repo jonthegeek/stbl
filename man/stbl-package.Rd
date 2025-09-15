@@ -11,7 +11,7 @@ A set of consistent, opinionated functions to quickly check function arguments, 
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://api2r.github.io/stbl/}
+  \item \url{https://stbl.api2r.org/}
   \item \url{https://github.com/api2r/stbl}
   \item Report bugs at \url{https://github.com/api2r/stbl/issues}
 }

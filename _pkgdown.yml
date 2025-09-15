@@ -1,4 +1,4 @@
-url: https://api2r.github.io/stbl/
+url: https://stbl.api2r.org/
 development:
   mode: auto
 template:
