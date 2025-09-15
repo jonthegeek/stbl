@@ -115,13 +115,7 @@
       "body": "Make tickets for all the json schéma-recognized field types. That's really what this package is about, lean into it. Some might involve packages in Suggests (eg, don't import clock/lubridate if people don't care about dates, probably something similar for urls). ",
       "comments": {}
     },
-    "81": {
-      "title": "Migrate to api2r organization?",
-      "type": {},
-      "milestone": 4,
-      "body": "In order to organize things better and take advantage of additional GitHub features, as the lead developer of these packages, I would like to wrap them up into the api2r organization.\n\nI'm not 100% certain that this one belongs in api2r. Maybe I need a github org for my R packages that don't have a \"family\"?",
-      "comments": "This exists because of api2r, though, and it's about function APIs, so... yeah, probably api2r is fine."
-    },
+    "81": [],
     "82": [],
     "83": [],
     "84": [],
