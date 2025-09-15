@@ -57,6 +57,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.ADMIN_PAT }}
+          # Fetch all history so that git log can find the true last modification time
+          fetch-depth: 0
 
       - name: Debounce issue-triggered runs
         if: github.event_name != 'workflow_dispatch'
