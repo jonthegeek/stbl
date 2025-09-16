@@ -35,6 +35,10 @@ test_that("are_lgl_ish() works for lists", {
   )
   expect_identical(
     are_lgl_ish(list("a", NULL, list(1))),
+    c(FALSE, FALSE, TRUE)
+  )
+  expect_identical(
+    are_lgl_ish(list("a", NULL, list(1, 0))),
     c(FALSE, FALSE, FALSE)
   )
 })

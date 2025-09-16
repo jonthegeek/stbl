@@ -202,6 +202,10 @@ test_that(".elements_are_cls_ish() works", {
   )
   expect_identical(
     .elements_are_cls_ish(list(1L, "a", list(3L)), are_test_ish),
+    c(TRUE, FALSE, TRUE)
+  )
+  expect_identical(
+    .elements_are_cls_ish(list(1L, "a", list(2L, 3L)), are_test_ish),
     c(TRUE, FALSE, FALSE)
   )
 })
@@ -252,5 +256,38 @@ test_that(".to_num_from_complex() works", {
       to_type_obj = integer()
     ),
     class = .compile_error_class("stbl", "error", "incompatible_type")
+  )
+})
+
+test_that(".to_cls_from_list() works", {
+  to_fn <- function(x, ...) as.character(x)
+  expect_identical(
+    .to_cls_from_list(list(1, "b"), to_fn, "character"),
+    c("1", "b")
+  )
+  expect_identical(
+    .to_cls_from_list(list(list(1), "b"), to_fn, "character"),
+    c("1", "b")
+  )
+  expect_error(
+    .to_cls_from_list(list(1, 1:5), to_fn, "character"),
+    class = .compile_error_class("stbl", "error", "coerce", "character")
+  )
+})
+
+test_that(".to_cls_from_list() works for single-element lists", {
+  to_fn <- function(x, ...) as.character(x)
+  # This tests the `if (length(flat) == 1)` block
+  expect_identical(
+    .to_cls_from_list(list("a"), to_fn, "character"),
+    "a"
+  )
+  expect_identical(
+    .to_cls_from_list(list(list("a")), to_fn, "character"),
+    "a"
+  )
+  expect_identical(
+    .to_cls_from_list(list(1L), to_fn, "character"),
+    "1"
   )
 })

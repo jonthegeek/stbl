@@ -28,7 +28,6 @@
 #' are_chr_ish(list("a", 1, list(1, 2)))
 #' is_chr_ish(list("a", 1, list(1, 2)))
 are_chr_ish <- function(x, ...) {
-  rlang::check_dots_used()
   UseMethod("are_chr_ish")
 }
 
@@ -49,12 +48,12 @@ are_chr_ish.NULL <- function(x, ...) {
 }
 
 #' @export
-are_chr_ish.default <- function(x, ...) {
+are_chr_ish.default <- function(x, ..., depth = 1) {
   if (rlang::is_atomic(x)) {
     return(rep(TRUE, length(x)))
   }
-  if (!rlang::is_vector(x)) {
+  if (!rlang::is_vector(x) || depth != 1) {
     return(FALSE)
   }
-  vapply(unname(x), rlang::is_scalar_atomic, logical(1))
+  .elements_are_cls_ish(x, are_chr_ish, ...)
 }

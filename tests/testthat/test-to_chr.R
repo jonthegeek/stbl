@@ -69,6 +69,14 @@ test_that("to_chr() tries to flatten lists", {
     to_chr(list("a")),
     "a"
   )
+  expect_identical(
+    to_chr(list(list("a"))),
+    "a"
+  )
+  expect_identical(
+    to_chr(list(list("a"), "b")),
+    c("a", "b")
+  )
 })
 
 test_that("to_chr() fails gracefully for weird cases", {

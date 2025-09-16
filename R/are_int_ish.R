@@ -1,11 +1,11 @@
 #' Check if an object can be safely coerced to integer
 #'
-#' @description
-#' `are_int_ish()` is a vectorized predicate function that checks whether each
-#' element of its input can be safely coerced to an integer vector.
+#' @description `are_int_ish()` is a vectorized predicate function that checks
+#'   whether each element of its input can be safely coerced to an integer
+#'   vector.
 #'
-#' `is_int_ish()` is a scalar predicate function that checks if all elements of
-#' its input can be safely coerced to an integer vector.
+#'   `is_int_ish()` is a scalar predicate function that checks if all elements
+#'   of its input can be safely coerced to an integer vector.
 #'
 #' @inheritParams .shared-params-check
 #' @inheritParams .shared-params
@@ -77,8 +77,7 @@ are_int_ish.character <- function(x, ..., coerce_character = TRUE) {
 #' Check for character to integer coercion failures
 #'
 #' @inheritParams .shared-params-check
-#' @returns A logical matrix with two columns: `non_number` and
-#'   `bad_precision`.
+#' @returns A logical matrix with two columns: `non_number` and `bad_precision`.
 #' @keywords internal
 .are_not_int_ish_chr <- function(x) {
   cast_int <- suppressWarnings(as.integer(x))

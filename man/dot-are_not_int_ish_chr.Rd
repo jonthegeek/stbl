@@ -10,8 +10,7 @@
 \item{x}{The object to check.}
 }
 \value{
-A logical matrix with two columns: \code{non_number} and
-\code{bad_precision}.
+A logical matrix with two columns: \code{non_number} and \code{bad_precision}.
 }
 \description{
 Check for character to integer coercion failures

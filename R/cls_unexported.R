@@ -161,6 +161,7 @@
   vapply(
     unname(x),
     function(elem) {
+      elem <- unlist(elem)
       rlang::is_scalar_atomic(elem) && are_cls_ish_fn(elem, ..., depth = 2)
     },
     logical(1)
@@ -235,4 +236,30 @@
     call
   )
   return(cast)
+}
+
+#' Coerce a list to a specific class
+#'
+#' @inheritParams .shared-params
+#' @returns `x` coerced to the target class.
+#' @keywords internal
+.to_cls_from_list <- function(
+  x,
+  to_cls_fn,
+  to_class,
+  ...,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
+  flat <- unlist(x)
+  if (!is.list(flat) && length(flat) == length(x)) {
+    return(to_cls_fn(flat, ..., x_arg = x_arg, call = call, x_class = x_class))
+  }
+  .stop_cant_coerce(
+    from_class = x_class,
+    to_class = to_class,
+    x_arg = x_arg,
+    call = call
+  )
 }

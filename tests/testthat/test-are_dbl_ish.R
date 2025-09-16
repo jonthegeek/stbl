@@ -67,6 +67,10 @@ test_that("are_dbl_ish() works for lists", {
   )
   testthat::expect_identical(
     are_dbl_ish(list("a", NULL, list(1))),
+    c(FALSE, FALSE, TRUE)
+  )
+  testthat::expect_identical(
+    are_dbl_ish(list("a", NULL, list(1, 2))),
     c(FALSE, FALSE, FALSE)
   )
   testthat::expect_identical(

@@ -83,6 +83,25 @@ to_lgl.factor <- function(
 }
 
 #' @export
+to_lgl.list <- function(
+  x,
+  ...,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
+  .to_cls_from_list(
+    x,
+    to_lgl,
+    "logical",
+    ...,
+    x_arg = x_arg,
+    call = call,
+    x_class = x_class
+  )
+}
+
+#' @export
 to_lgl.default <- function(
   x,
   ...,
