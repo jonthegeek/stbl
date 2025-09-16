@@ -48,6 +48,7 @@ are_chr_ish.NULL <- function(x, ...) {
 }
 
 #' @export
+#' @rdname are_chr_ish
 are_chr_ish.default <- function(x, ..., depth = 1) {
   if (rlang::is_atomic(x)) {
     return(rep(TRUE, length(x)))
