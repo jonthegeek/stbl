@@ -46,7 +46,7 @@ to_fct.NULL <- function(
   x_arg = caller_arg(x),
   call = caller_env()
 ) {
-  to_null(x, allow_null = allow_null, x_arg = x_arg, call = call)
+  .to_null(x, allow_null = allow_null, x_arg = x_arg, call = call)
 }
 
 #' @export
