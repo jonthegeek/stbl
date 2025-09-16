@@ -43,13 +43,11 @@ is_fct_ish <- function(x, ...) {
 }
 
 #' @export
-#' @rdname are_fct_ish
 are_fct_ish.factor <- function(x, ..., levels = NULL, to_na = character()) {
   are_fct_ish(as.character(x), ..., levels = levels, to_na = to_na)
 }
 
 #' @export
-#' @rdname are_fct_ish
 are_fct_ish.character <- function(x, ..., levels = NULL, to_na = character()) {
   !.are_not_fct_ish_chr(x, levels, to_na)
 }

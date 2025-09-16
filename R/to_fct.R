@@ -50,6 +50,29 @@ to_fct.NULL <- function(
 }
 
 #' @export
+to_fct.list <- function(
+  x,
+  ...,
+  levels = NULL,
+  to_na = character(),
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
+  .to_cls_from_list(
+    x,
+    to_fct,
+    "factor",
+    ...,
+    levels = levels,
+    to_na = to_na,
+    x_arg = x_arg,
+    call = call,
+    x_class = x_class
+  )
+}
+
+#' @export
 to_fct.default <- function(
   x,
   ...,

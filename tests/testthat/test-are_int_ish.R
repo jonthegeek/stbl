@@ -65,8 +65,10 @@ test_that("are_int_ish() works for lists", {
   )
   expect_identical(
     are_int_ish(list(1.1, "a", NULL, list(1))),
-    c(FALSE, FALSE, FALSE, FALSE)
+    c(FALSE, FALSE, FALSE, TRUE)
   )
+  expect_identical(are_int_ish(list(list(1), 2)), c(TRUE, TRUE))
+  expect_identical(are_int_ish(list(1, 1:5)), c(TRUE, FALSE))
 })
 
 test_that("are_int_ish() returns FALSE for non-vectors", {

@@ -176,8 +176,34 @@ test_that("to_lgl errors for bad factors", {
   )
 })
 
+test_that("to_lgl() works for lists", {
+  expect_identical(
+    to_lgl(list(TRUE, FALSE, 1, 0, "T", "F")),
+    as.logical(c(1, 0, 1, 0, 1, 0))
+  )
+  expect_identical(to_lgl(list(list(TRUE), 0L)), c(TRUE, FALSE))
+  expect_error(
+    to_lgl(list(TRUE, 1:5)),
+    class = .compile_error_class("stbl", "error", "coerce", "logical")
+  )
+})
+
 test_that("to_lgl() errors for other types", {
-  given <- list(1:10)
+  given <- list(1, 1:10)
+  expect_error(
+    to_lgl(given),
+    class = .compile_error_class("stbl", "error", "coerce", "logical")
+  )
+  expect_snapshot(
+    to_lgl(given),
+    error = TRUE
+  )
+  expect_snapshot(
+    wrapped_to_lgl(given),
+    error = TRUE
+  )
+
+  given <- mean
   expect_error(
     to_lgl(given),
     class = .compile_error_class("stbl", "error", "coerce", "logical")

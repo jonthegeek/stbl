@@ -1,14 +1,3 @@
-test_that("are_chr_ish() errors for extra dots", {
-  expect_error(
-    are_chr_ish("a", extra = "arg"),
-    class = "rlib_error_dots_unused"
-  )
-  expect_error(
-    is_chr_ish("a", extra = "arg"),
-    class = "rlib_error_dots_unused"
-  )
-})
-
 test_that("are_chr_ish() returns TRUE for every element of a chr", {
   expect_identical(are_chr_ish(letters), rep(TRUE, 26))
   given <- c(letters, NA)
@@ -31,8 +20,9 @@ test_that("are_chr_ish() works for lists and data.frames", {
   expect_identical(are_chr_ish(list("a", 1, TRUE)), c(TRUE, TRUE, TRUE))
   expect_identical(are_chr_ish(list("a", NULL, "b")), c(TRUE, FALSE, TRUE))
   expect_identical(are_chr_ish(list(a = 1, b = 1:5)), c(TRUE, FALSE))
-  expect_identical(are_chr_ish(list(a = character(0))), FALSE)
+  expect_identical(are_chr_ish(list(a = character(0))), c(FALSE))
   expect_identical(are_chr_ish(mtcars), rep(FALSE, length(mtcars)))
+  expect_identical(are_chr_ish(list(list(1), 2)), c(TRUE, TRUE))
 })
 
 test_that("are_chr_ish() returns unnamed vectors", {

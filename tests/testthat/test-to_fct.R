@@ -58,6 +58,21 @@ test_that("to_fct() respects allow_null", {
   )
 })
 
+test_that("to_fct() works for lists", {
+  expect_identical(
+    to_fct(list("a", "b")),
+    factor(c("a", "b"))
+  )
+  expect_identical(
+    to_fct(list(list("a"), "b")),
+    factor(c("a", "b"))
+  )
+  expect_error(
+    to_fct(list("a", 1:5)),
+    class = .compile_error_class("stbl", "error", "coerce", "factor")
+  )
+})
+
 test_that("to_fct() errors for things that can't be coerced", {
   given <- mean
   expect_error(

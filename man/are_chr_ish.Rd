@@ -3,16 +3,22 @@
 \name{are_chr_ish}
 \alias{are_chr_ish}
 \alias{is_chr_ish}
+\alias{are_chr_ish.default}
 \title{Check if an object can be safely coerced to character}
 \usage{
 are_chr_ish(x, ...)
 
 is_chr_ish(x, ...)
+
+\method{are_chr_ish}{default}(x, ..., depth = 1)
 }
 \arguments{
 \item{x}{The object to check.}
 
 \item{...}{Arguments passed to methods.}
+
+\item{depth}{\verb{(length-1 integer)} Current recursion depth. Do not manually
+set this parameter.}
 }
 \value{
 \code{are_chr_ish()} returns a logical vector with the same length as the

@@ -28,6 +28,25 @@ to_dbl.NULL <- function(
 }
 
 #' @export
+to_dbl.list <- function(
+  x,
+  ...,
+  x_arg = caller_arg(x),
+  call = caller_env(),
+  x_class = object_type(x)
+) {
+  .to_cls_from_list(
+    x,
+    to_dbl,
+    "double",
+    ...,
+    x_arg = x_arg,
+    call = call,
+    x_class = x_class
+  )
+}
+
+#' @export
 to_dbl.integer <- function(x, ..., x_arg = caller_arg(x), call = caller_env()) {
   vctrs::vec_cast(x, double(), x_arg = x_arg, call = call)
 }

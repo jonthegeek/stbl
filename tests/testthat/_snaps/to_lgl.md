@@ -70,6 +70,22 @@
       Error in `wrapped_to_lgl()`:
       ! Can't coerce `val` <list> to <logical>.
 
+---
+
+    Code
+      to_lgl(given)
+    Condition
+      Error:
+      ! Can't coerce `given` <function> to <logical>.
+
+---
+
+    Code
+      wrapped_to_lgl(given)
+    Condition
+      Error in `wrapped_to_lgl()`:
+      ! Can't coerce `val` <function> to <logical>.
+
 # to_lgl_scalar() errors for non-scalars
 
     Code

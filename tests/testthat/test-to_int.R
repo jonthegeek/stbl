@@ -167,6 +167,15 @@ test_that("to_int() errors informatively for bad factors", {
   )
 })
 
+test_that("to_int() works for lists", {
+  expect_identical(to_int(list(1L, 2.0, "3")), c(1L, 2L, 3L))
+  expect_identical(to_int(list(list(1L), 2L)), c(1L, 2L))
+  expect_error(
+    to_int(list(1L, 1:5)),
+    class = .compile_error_class("stbl", "error", "coerce", "integer")
+  )
+})
+
 test_that("to_int() errors properly for other types", {
   # These errors are from vctrs, so just watch for that error class
   given <- as.raw(1:10)

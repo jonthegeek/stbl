@@ -40,11 +40,12 @@ input. \code{is_int_ish()} returns a \verb{length-1 logical} (\code{TRUE} or \co
 the entire vector.
 }
 \description{
-\code{are_int_ish()} is a vectorized predicate function that checks whether each
-element of its input can be safely coerced to an integer vector.
+\code{are_int_ish()} is a vectorized predicate function that checks
+whether each element of its input can be safely coerced to an integer
+vector.
 
-\code{is_int_ish()} is a scalar predicate function that checks if all elements of
-its input can be safely coerced to an integer vector.
+\code{is_int_ish()} is a scalar predicate function that checks if all elements
+of its input can be safely coerced to an integer vector.
 }
 \examples{
 are_int_ish(1:4)

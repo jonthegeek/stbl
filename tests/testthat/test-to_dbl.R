@@ -136,6 +136,15 @@ test_that("to_dbl() errors informatively for bad factors", {
   )
 })
 
+test_that("to_dbl() works for lists", {
+  expect_identical(to_dbl(list(1.1, 2L, "3.3")), c(1.1, 2.0, 3.3))
+  expect_identical(to_dbl(list(list(1.1), 2L)), c(1.1, 2.0))
+  expect_error(
+    to_dbl(list(1.1, 1:5)),
+    class = .compile_error_class("stbl", "error", "coerce", "double")
+  )
+})
+
 test_that("to_dbl() errors properly for other types", {
   given <- as.raw(1:10)
   testthat::expect_error(to_dbl(given), class = "vctrs_error_cast")

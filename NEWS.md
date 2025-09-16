@@ -1,5 +1,6 @@
 # stbl (development version)
 
+* `to_*()` functions now handle lists containing length-1 lists (etc) consistently, flattening when no information will be lost (#128).
 * `vignette("stbl")` provides an overview of the package and its functions (#42).
 * `to_fct()` now lists the acceptable values when a conversion fails to make it easier for users to understand what went wrong (#67).
 * `to_lgl()` now converts character numbers such as "0" and "1" to `FALSE` and `TRUE` respectively (#30).
