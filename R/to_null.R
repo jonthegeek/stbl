@@ -6,7 +6,7 @@
 #' @inheritParams .shared-params
 #' @returns `NULL` or an error.
 #' @keywords internal
-to_null <- function(
+.to_null <- function(
   x,
   allow_null = TRUE,
   x_arg = caller_arg(x),
