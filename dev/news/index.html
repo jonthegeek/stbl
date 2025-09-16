@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">stbl</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.1.9009</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.1.9010</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +36,8 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="stbl-development-version">stbl (development version)<a class="anchor" aria-label="anchor" href="#stbl-development-version"></a></h2>
 <ul><li>
+<code>to_*()</code> functions now handle lists containing length-1 lists (etc) consistently, flattening when no information will be lost (<a href="https://github.com/api2r/stbl/issues/128" class="external-link">#128</a>).</li>
+<li>
 <code><a href="../articles/stbl.html">vignette("stbl")</a></code> provides an overview of the package and its functions (<a href="https://github.com/api2r/stbl/issues/42" class="external-link">#42</a>).</li>
 <li>
 <code><a href="../reference/stabilize_fct.html">to_fct()</a></code> now lists the acceptable values when a conversion fails to make it easier for users to understand what went wrong (<a href="https://github.com/api2r/stbl/issues/67" class="external-link">#67</a>).</li>
