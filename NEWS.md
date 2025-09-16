@@ -1,4 +1,4 @@
-# stbl (development version)
+# stbl 0.2.0
 
 ## New features
 
