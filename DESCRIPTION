@@ -8,9 +8,10 @@ Description: A set of consistent, opinionated functions to quickly check
     function arguments, coerce them to the desired configuration, or
     deliver informative error messages when that is not possible.
 License: MIT + file LICENSE
-URL: https://stbl.api2r.org/,
-    https://github.com/api2r/stbl
+URL: https://stbl.api2r.org/, https://github.com/api2r/stbl
 BugReports: https://github.com/api2r/stbl/issues
+Depends:
+    R (>= 4.1)
 Imports:
     cli,
     glue,
@@ -22,10 +23,11 @@ Suggests:
     stringi,
     stringr,
     testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-VignetteBuilder: knitr
