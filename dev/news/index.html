@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">stbl</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.1.9011</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.2.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,15 +35,18 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="stbl-development-version">stbl (development version)<a class="anchor" aria-label="anchor" href="#stbl-development-version"></a></h2>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="stbl-020">stbl 0.2.0<a class="anchor" aria-label="anchor" href="#stbl-020"></a></h2><p class="text-muted">CRAN release: 2025-09-16</p>
 <div class="section level3">
-<h3 id="new-features-development-version">New features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<h3 id="new-features-0-2-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-2-0"></a></h3>
 <ul><li>New predicate functions check if an object can be safely coerced to a specific type. The <code>is_*_ish()</code> family (<code><a href="../reference/are_chr_ish.html">is_chr_ish()</a></code>, <code><a href="../reference/are_dbl_ish.html">is_dbl_ish()</a></code>, <code><a href="../reference/are_fct_ish.html">is_fct_ish()</a></code>, <code><a href="../reference/are_int_ish.html">is_int_ish()</a></code>, and <code><a href="../reference/are_lgl_ish.html">is_lgl_ish()</a></code>) checks the entire object at once. The <code>are_*_ish()</code> family (<code><a href="../reference/are_chr_ish.html">are_chr_ish()</a></code>, <code><a href="../reference/are_dbl_ish.html">are_dbl_ish()</a></code>, <code><a href="../reference/are_fct_ish.html">are_fct_ish()</a></code>, <code><a href="../reference/are_int_ish.html">are_int_ish()</a></code>, and <code><a href="../reference/are_lgl_ish.html">are_lgl_ish()</a></code>) checks each element of a vector individually (<a href="https://github.com/api2r/stbl/issues/23" class="external-link">#23</a>, <a href="https://github.com/api2r/stbl/issues/93" class="external-link">#93</a>).</li>
 <li>New functions for working with doubles are available: <code><a href="../reference/stabilize_dbl.html">to_dbl()</a></code>, <code><a href="../reference/stabilize_dbl.html">to_dbl_scalar()</a></code>, <code><a href="../reference/stabilize_dbl.html">stabilize_dbl()</a></code>, and <code><a href="../reference/stabilize_dbl.html">stabilize_dbl_scalar()</a></code> (<a href="https://github.com/api2r/stbl/issues/23" class="external-link">#23</a>).</li>
 <li>
 <code><a href="../reference/stabilize_chr.html">stabilize_chr()</a></code> now accepts patterns from <code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">stringr::regex()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">stringr::fixed()</a></code>, and <code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">stringr::coll()</a></code> (<a href="https://github.com/api2r/stbl/issues/87" class="external-link">#87</a>), and can generate more informative error messages for regex failures via the new <code><a href="../reference/regex_must_match.html">regex_must_match()</a></code> and <code><a href="../reference/regex_must_not_match.html">regex_must_not_match()</a></code> helper functions (<a href="https://github.com/api2r/stbl/issues/52" class="external-link">#52</a>, <a href="https://github.com/api2r/stbl/issues/85" class="external-link">#85</a>, <a href="https://github.com/api2r/stbl/issues/86" class="external-link">#86</a>, <a href="https://github.com/api2r/stbl/issues/89" class="external-link">#89</a>).</li>
 </ul></div>
 <div class="section level3">
-<h3 id="minor-improvements-and-fixes-development-version">Minor improvements and fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-fixes-development-version"></a></h3>
+<h3 id="minor-improvements-and-fixes-0-2-0">Minor improvements and fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-fixes-0-2-0"></a></h3>
 <ul><li>Error messages are now clearer and more standardized throughout the package (<a href="https://github.com/api2r/stbl/issues/95" class="external-link">#95</a>).</li>
 <li>
 <code>to_*()</code> functions now consistently flatten list-like inputs when no information would be lost in the process (<a href="https://github.com/api2r/stbl/issues/128" class="external-link">#128</a>).</li>
@@ -53,7 +56,7 @@
 <code><a href="../reference/stabilize_lgl.html">to_lgl()</a></code> now coerces character representations of numbers (e.g., “0” and “1”) to <code>FALSE</code> and <code>TRUE</code> respectively (<a href="https://github.com/api2r/stbl/issues/30" class="external-link">#30</a>).</li>
 </ul></div>
 <div class="section level3">
-<h3 id="documentation-development-version">Documentation<a class="anchor" aria-label="anchor" href="#documentation-development-version"></a></h3>
+<h3 id="documentation-0-2-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-2-0"></a></h3>
 <ul><li>The purpose of and vision for this package are now more clearly described in documentation (<a href="https://github.com/api2r/stbl/issues/56" class="external-link">#56</a>, <a href="https://github.com/api2r/stbl/issues/77" class="external-link">#77</a>).</li>
 <li>New <code><a href="../articles/stbl.html">vignette("stbl")</a></code> provides an overview of the package and its functions (<a href="https://github.com/api2r/stbl/issues/42" class="external-link">#42</a>).</li>
 </ul></div>
