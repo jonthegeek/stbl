@@ -189,7 +189,7 @@
       "title": "Release stbl 0.2.0",
       "type": {},
       "milestone": {},
-      "body": "Prepare for release:\n\n* [x] `git pull`\n* [x] Check [current CRAN check results](https://cran.rstudio.org/web/checks/check_results_stbl.html)\n* [x] [Polish NEWS](https://style.tidyverse.org/news.html#news-release)\n* [x] `urlchecker::url_check()`\n* [x] `devtools::build_readme()`\n* [x] `devtools::check(remote = TRUE, manual = TRUE)`\n* [x] `devtools::check_win_devel()`\n* [x] Update `cran-comments.md`\n* [x] `git push`\n* [x] Draft blog post\n\nSubmit to CRAN:\n\n* [x] `usethis::use_version('minor')`\n* [x] `devtools::submit_cran()`\n* [x] Approve email\n\nWait for CRAN...\n\n* [ ] Accepted :tada:\n* [ ] Finish & publish blog post\n* [ ] Add link to blog post in pkgdown news menu\n* [ ] `usethis::use_github_release()`\n* [ ] `usethis::use_dev_version(push = TRUE)`\n* [ ] Share on social media\n",
+      "body": "Prepare for release:\n\n* [x] `git pull`\n* [x] Check [current CRAN check results](https://cran.rstudio.org/web/checks/check_results_stbl.html)\n* [x] [Polish NEWS](https://style.tidyverse.org/news.html#news-release)\n* [x] `urlchecker::url_check()`\n* [x] `devtools::build_readme()`\n* [x] `devtools::check(remote = TRUE, manual = TRUE)`\n* [x] `devtools::check_win_devel()`\n* [x] Update `cran-comments.md`\n* [x] `git push`\n* [x] Draft blog post\n\nSubmit to CRAN:\n\n* [x] `usethis::use_version('minor')`\n* [x] `devtools::submit_cran()`\n* [x] Approve email\n\nWait for CRAN...\n\n* [x] Accepted :tada:\n* [x] Finish & publish blog post\n* [x] Add link to blog post in pkgdown news menu\n* [x] `usethis::use_github_release()`\n* [ ] `usethis::use_dev_version(push = TRUE)`\n* [ ] Share on social media\n",
       "comments": {}
     }
   }
