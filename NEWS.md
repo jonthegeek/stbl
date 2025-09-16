@@ -1,15 +1,22 @@
 # stbl (development version)
 
-* `to_*()` functions now handle lists containing length-1 lists (etc) consistently, flattening when no information will be lost (#128).
-* `vignette("stbl")` provides an overview of the package and its functions (#42).
-* `to_fct()` now lists the acceptable values when a conversion fails to make it easier for users to understand what went wrong (#67).
-* `to_lgl()` now converts character numbers such as "0" and "1" to `FALSE` and `TRUE` respectively (#30).
-* Functions for `double` vectors are now available: `are_dbl_ish()`, `is_dbl_ish()`, `to_dbl()`,  `to_dbl_scalar()`,  `stabilize_dbl()`, and `stabilize_dbl_scalar()` (#23).
-* A new group of predicate functions are now available. Use `is_chr_ish()`, `is_fct_ish()`, `is_int_ish()`, and `is_lgl_ish()` to check if an object can be coerced to a specific type, and `are_chr_ish()`, `are_fct_ish()`, `are_int_ish()`, and `are_lgl_ish()` to check each element of a given vector (#93).
+## New features
+
+* New predicate functions check if an object can be safely coerced to a specific type. The `is_*_ish()` family (`is_chr_ish()`, `is_dbl_ish()`, `is_fct_ish()`, `is_int_ish()`, and `is_lgl_ish()`) checks the entire object at once. The `are_*_ish()` family (`are_chr_ish()`, `are_dbl_ish()`, `are_fct_ish()`, `are_int_ish()`, and `are_lgl_ish()`) checks each element of a vector individually (#23, #93).
+* New functions for working with doubles are available: `to_dbl()`, `to_dbl_scalar()`, `stabilize_dbl()`, and `stabilize_dbl_scalar()` (#23).
+* `stabilize_chr()` now accepts patterns from `stringr::regex()`, `stringr::fixed()`, and `stringr::coll()` (#87), and can generate more informative error messages for regex failures via the new `regex_must_match()` and `regex_must_not_match()` helper functions (#52, #85, #86, #89).
+
+## Minor improvements and fixes
+
 * Error messages are now clearer and more standardized throughout the package (#95).
-* `stabilize_chr()` supports `stringr::regex()`, `stringr::fixed()`, and `stringr::coll()` patterns (#87).
-* `stabilize_chr()` can now use new helpers `regex_must_match()` and `regex_must_not_match()` to describe regex patterns for more useful error messages (#52, #85, #86, #89).
+* `to_*()` functions now consistently flatten list-like inputs when no information would be lost in the process (#128).
+* `to_fct()` now lists the allowed values in its error message when a value is not in the expected set, making it easier to debug (#67).
+* `to_lgl()` now coerces character representations of numbers (e.g., "0" and "1") to `FALSE` and `TRUE` respectively (#30).
+
+## Documentation
+
 * The purpose of and vision for this package are now more clearly described in documentation (#56, #77).
+* New `vignette("stbl")` provides an overview of the package and its functions (#42).
 
 # stbl 0.1.1
 
