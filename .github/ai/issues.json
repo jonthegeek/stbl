@@ -180,22 +180,7 @@
     "125": [],
     "126": [],
     "127": [],
-    "128": {
-      "title": "Ensure `are_*_ish()` and `to_*()` are consistent",
-      "type": {
-        "id": 20894812,
-        "node_id": "IT_kwDOCPuMJs4BPtRc",
-        "name": "Bug",
-        "description": "An unexpected problem or behavior",
-        "color": "red",
-        "created_at": "2024-02-20T11:21:46Z",
-        "updated_at": "2024-07-26T15:33:07Z",
-        "is_enabled": true
-      },
-      "milestone": 4,
-      "body": "Currently, the `are_*_ish()` and `to_*()` function families have some different ideas about what is coercible to a given type.\n\nFor example, `to_chr(list(list(\"a\")))` successfully unnests the lists to produce `\"a\"`, but `are_chr_ish(list(list(\"a\")))` returns `FALSE`.\n\nWe should review the logic in the `are_*_ish()` function family to ensure it is consistent with the `to_*()` family. A developer should be able to use an `are_*_ish()` function to check if a `to_*()` function will succeed.\n\nThis will involve making the `are_*_ish()` functions more permissive (e.g., allowing for list unnesting) to match the behavior of the `to_*()` functions. We should also review for other potential inconsistencies between the two families.\n",
-      "comments": {}
-    },
+    "128": [],
     "129": {
       "title": "Rename `to_null()` to `.to_null()`",
       "type": {
