@@ -162,35 +162,6 @@
       "milestone": 5,
       "body": "(Issue created via conversation with a stbl \"expert\" gem on Google Gemini)\n\n## Overview\n\nWe should add a `stabilize_list()` function family (`stabilize_list`, `to_list`, `are_list_ish`, etc.) to `{stbl}`. The primary purpose of this family would be to validate the structure and contents of lists, which is a common requirement for functions that accept complex configuration objects.\n\n## API Design\n\nThe key challenge is creating an API that is both powerful enough to handle complex, nested, and heterogeneous lists, but simple enough that it doesn't require users to write complex wrappers or use non-standard syntax like `quote()`.\n\nThe proposed API distinguishes between checks on the list container and checks on the list elements.\n\n1. Container Checks: Arguments prefixed with a `.` (e.g., `.min_size`, `.allow_named = TRUE`) will apply to the list object itself.\n2. Element Checks: Unprefixed arguments passed via `...` will define the validation rules for the elements within the list. These arguments should accept `purrr`-style anonymous functions (`~ .x`).\n\n## Proposed Syntax\n\n```r\nstabilize_list(\n  x,\n  ..., # Named arguments are purrr-style formulas for named elements\n  .default = NULL, # A default formula for unspecified/unnamed elements\n  .min_size = NULL,\n  .max_size = NULL\n  # ... other potential container checks\n)\n```\n\n## Concrete Use Case\n\nA function that builds a plot specification could use `stabilize_list` to validate its main argument:\n\n```r\ncreate_plot_spec <- function(spec) {\n  spec <- stabilize_list(\n    spec,\n    # --- Schema for list elements (using formulas) ---\n    title = ~ stabilize_chr_scalar(.x, allow_null = FALSE),\n    data = ~ stabilize_arg(.x, allow_null = FALSE),\n    aesthetics = ~ stabilize_list(\n      .x,\n      x = ~ stabilize_chr_scalar(.x),\n      y = ~ stabilize_chr_scalar(.x),\n      .min_size = 2,\n      .max_size = 2\n    ),\n    # --- Rules for the list container itself ---\n    .min_size = 3,\n    .max_size = 3\n  )\n\n  # ... function logic now operates on a guaranteed-valid spec object ...\n  return(spec)\n}\n```\n\n## Acceptance Criteria\n\n- Create the `stabilize_list` function family with corresponding `to_list` and `are_list_ish` functions and tests.\n- The implementation must support validation of both homogeneous and heterogeneous lists via the formula syntax.\n- The implementation must support both named and unnamed lists.\n- Error messages must be informative, clearly indicating which element of which list failed validation and providing the underlying error from the specific stabilizer that failed.\n",
       "comments": {}
-    },
-    "111": [],
-    "112": [],
-    "113": [],
-    "114": [],
-    "115": [],
-    "116": [],
-    "117": [],
-    "118": [],
-    "119": [],
-    "120": [],
-    "121": [],
-    "122": [],
-    "123": [],
-    "124": [],
-    "125": [],
-    "126": [],
-    "127": [],
-    "128": [],
-    "129": [],
-    "130": [],
-    "131": [],
-    "132": [],
-    "133": {
-      "title": "Release stbl 0.2.0",
-      "type": {},
-      "milestone": {},
-      "body": "Prepare for release:\n\n* [x] `git pull`\n* [x] Check [current CRAN check results](https://cran.rstudio.org/web/checks/check_results_stbl.html)\n* [x] [Polish NEWS](https://style.tidyverse.org/news.html#news-release)\n* [x] `urlchecker::url_check()`\n* [x] `devtools::build_readme()`\n* [x] `devtools::check(remote = TRUE, manual = TRUE)`\n* [x] `devtools::check_win_devel()`\n* [x] Update `cran-comments.md`\n* [x] `git push`\n* [x] Draft blog post\n\nSubmit to CRAN:\n\n* [x] `usethis::use_version('minor')`\n* [x] `devtools::submit_cran()`\n* [x] Approve email\n\nWait for CRAN...\n\n* [x] Accepted :tada:\n* [x] Finish & publish blog post\n* [x] Add link to blog post in pkgdown news menu\n* [x] `usethis::use_github_release()`\n* [ ] `usethis::use_dev_version(push = TRUE)`\n* [ ] Share on social media\n",
-      "comments": {}
     }
   }
 }
